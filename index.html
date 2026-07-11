@@ -1564,83 +1564,230 @@
       }
 
       @media (max-width: 620px) {
+        html {
+          scroll-padding-top: 18px;
+        }
+
         .poster-shell {
-          width: min(100% - 24px, 1320px);
-          padding-top: 22px;
+          width: calc(100% - 28px);
+          padding: 18px 0 34px;
         }
 
         .topbar {
-          align-items: flex-start;
+          gap: 14px 12px;
+          align-items: center;
+          min-height: 0;
+          padding-bottom: 14px;
+        }
+
+        .wordmark {
+          font-size: 0.95rem;
+        }
+
+        .mode-toggle {
+          width: 164px;
+          min-height: 42px;
+        }
+
+        .mode-button {
+          min-height: 40px;
         }
 
         .nav-links {
-          gap: 14px;
+          width: 100%;
+          gap: 0;
+          justify-content: space-between;
+          font-size: 0.73rem;
+        }
+
+        .nav-links a {
+          min-height: 32px;
+          padding: 8px 0 4px;
         }
 
         .poster-hero {
-          padding-top: 24px;
+          gap: 6px;
+          padding: 28px 0 20px;
         }
 
         .title-lockup {
-          padding-left: 62px;
+          width: 100%;
+          padding-left: 54px;
         }
 
         .title-small {
-          margin-left: 62px;
+          margin-left: 58px;
+          font-size: 0.76rem;
         }
 
         .massive-title {
-          font-size: clamp(3.4rem, 20vw, 5.2rem);
+          max-width: 100%;
+          font-size: clamp(3.25rem, 19vw, 4.85rem);
+          line-height: 0.82;
         }
 
         .red-slab {
-          inset: 44px 0 12px 112px;
+          inset: 40px 0 10px 102px;
         }
 
         body[data-mode="pro"] .red-slab {
-          inset: 48px 0 24px 108px;
+          inset: 44px 0 20px 98px;
         }
 
         .stamp {
-          top: 24px;
-          width: 78px;
+          top: 22px;
+          width: 72px;
           border-width: 3px;
-          font-size: 0.78rem;
+          font-size: 0.7rem;
         }
 
         body[data-mode="pro"] .stamp {
-          top: 28px;
-          width: 74px;
+          top: 26px;
+          width: 70px;
           border-width: 2px;
         }
 
         .hero-art {
-          min-height: 410px;
+          min-height: 350px;
         }
 
         body[data-mode="pro"] .hero-art {
-          min-height: 520px;
+          min-height: 450px;
         }
 
         .portrait-wrap {
-          width: min(320px, calc(100vw - 48px));
+          width: min(290px, calc(100vw - 54px));
+        }
+
+        .scratch-lines {
+          width: min(280px, calc(100vw - 58px));
+          height: 58px;
         }
 
         .portrait-caption {
-          font-size: 0.72rem;
+          margin-top: 8px;
+          padding-top: 7px;
+          font-size: 0.68rem;
+        }
+
+        .lab-blurb {
+          gap: 9px;
+          padding-top: 15px;
+        }
+
+        .lab-blurb p,
+        .lab-blurb p:first-child {
+          font-size: 0.78rem;
+          line-height: 1.4;
+          white-space: normal;
+        }
+
+        .dots::before {
+          width: 36px;
+          height: 14px;
+          margin-right: 8px;
+          background:
+            radial-gradient(circle at 7px 7px, var(--ink) 0 6px, transparent 7px),
+            radial-gradient(circle at 29px 7px, var(--ink) 0 6px, transparent 7px);
+        }
+
+        .ticker span {
+          padding: 9px 16px;
+          font-size: 0.78rem;
+        }
+
+        .project-feature {
+          margin-top: 26px;
         }
 
         .project-mark,
         .project-story {
-          padding: 18px;
+          padding: 17px 16px;
+        }
+
+        .project-mark {
+          min-height: 178px;
+        }
+
+        .project-title {
+          margin-bottom: 12px;
+          font-size: clamp(3rem, 16vw, 4.1rem);
+        }
+
+        .project-copy {
+          font-size: 0.94rem;
+          line-height: 1.5;
+        }
+
+        .project-metrics {
+          grid-template-columns: 1fr;
+          margin-top: 20px;
+          padding-top: 0;
         }
 
         .project-metric {
-          padding: 12px 10px;
+          display: grid;
+          grid-template-columns: minmax(98px, 0.48fr) 1fr;
+          gap: 14px;
+          align-items: baseline;
+          padding: 11px 0;
+          border-right: 0;
         }
 
         .project-metric strong {
-          font-size: 1.35rem;
+          font-size: 1.28rem;
+        }
+
+        .project-metric small {
+          margin-top: 0;
+        }
+
+        .project-actions {
+          gap: 18px;
+          margin-top: 16px;
+        }
+
+        .project-link,
+        .feed-profile {
+          min-height: 36px;
+          padding-top: 8px;
+        }
+
+        .feed-header {
+          gap: 14px;
+          margin-top: 34px;
+          padding-bottom: 14px;
+        }
+
+        .feed-title {
+          font-size: clamp(2rem, 11vw, 2.8rem);
+          line-height: 0.94;
+        }
+
+        .note-card,
+        .note-card:last-child {
+          min-height: 0;
+          padding: 20px 16px 22px;
+        }
+
+        .note-card small {
+          margin-bottom: 18px;
+          font-size: 0.68rem;
+        }
+
+        .note-card h2 {
+          font-size: clamp(1.4rem, 7vw, 1.8rem);
+          line-height: 1;
+        }
+
+        .note-card p {
+          font-size: 0.93rem;
+          line-height: 1.48;
+        }
+
+        .card-cta {
+          margin-top: 24px;
+          padding-top: 0;
         }
 
       }
@@ -1651,8 +1798,29 @@
         }
 
         .mode-toggle {
-          width: min(100%, 208px);
-          justify-self: start;
+          grid-row: 2;
+          width: 100%;
+          justify-self: stretch;
+        }
+
+        .nav-links {
+          grid-row: 3;
+        }
+
+        .massive-title {
+          font-size: clamp(3rem, 18vw, 4rem);
+        }
+
+        .hero-art {
+          min-height: 320px;
+        }
+
+        body[data-mode="pro"] .hero-art {
+          min-height: 420px;
+        }
+
+        .portrait-wrap {
+          width: min(265px, calc(100vw - 48px));
         }
 
         .lab-blurb p:first-child {
