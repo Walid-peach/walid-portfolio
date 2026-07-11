@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Walid EL KHOUKH - AI Lab Poster Engine</title>
+    <script>
+      window.va = window.va || function () {
+        (window.vaq = window.vaq || []).push(arguments);
+      };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <style>
       :root {
         --paper: #d8d3bf;
@@ -1999,7 +2005,7 @@
           </button>
         </div>
         <div class="nav-links">
-          <a href="#monelu-project" data-nav-key="first">MonÉlu</a>
+          <a href="#monelu-project" data-nav-key="first" data-analytics-event="MonElu Click" data-analytics-detail="navigation">MonÉlu</a>
           <a href="#writing" data-nav-key="second">Writing</a>
           <a href="https://medium.com/@walidelkhoukh99" target="_blank" rel="noreferrer" data-nav-key="third">Medium</a>
           <a class="lab-nav-only" href="https://x.com/vvalidelk" target="_blank" rel="noreferrer" aria-label="Walid on X">X</a>
@@ -2065,7 +2071,7 @@
       <section class="pro-cta mono" aria-label="Professional contact and CV">
         <p class="pro-cta-copy">Available for data platform, Databricks, cloud migration, and GenAI data missions.</p>
         <div class="cv-actions" aria-label="Download CV">
-          <a class="conversion-link conversion-link-primary" href="walid-el-khoukh-cv-en.pdf" download>
+          <a class="conversion-link conversion-link-primary" href="walid-el-khoukh-cv-en.pdf" download data-analytics-event="CV Download" data-analytics-detail="english">
             Download CV <span aria-hidden="true">&nbsp;/ EN</span>
           </a>
           <a
@@ -2073,11 +2079,15 @@
             href="walid-el-khoukh-cv-fr.pdf"
             download
             aria-label="Download CV in French"
+            data-analytics-event="CV Download"
+            data-analytics-detail="french"
           >FR</a>
         </div>
         <a
           class="conversion-link conversion-link-contact"
           href="mailto:walidelkhoukh99@gmail.com?subject=Data%20Engineering%20Opportunity"
+          data-analytics-event="Contact Click"
+          data-analytics-detail="email"
         >Contact me</a>
         <a
           class="conversion-link conversion-link-social"
@@ -2109,6 +2119,8 @@
           target="_blank"
           rel="noreferrer"
           aria-label="Open the MonÉlu civic intelligence platform"
+          data-analytics-event="MonElu Click"
+          data-analytics-detail="feature"
         ></a>
         <div class="project-mark">
           <p class="project-eyebrow mono">AI Lab / Civic intelligence</p>
@@ -2128,7 +2140,7 @@
             <div class="project-metric"><strong>SQL + RAG</strong><small>Query routing</small></div>
           </div>
           <div class="project-actions mono">
-            <a class="project-link" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer">Open product</a>
+            <a class="project-link" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="MonElu Click" data-analytics-detail="open-product">Open product</a>
             <a class="project-link" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">View source</a>
           </div>
         </div>
@@ -2199,6 +2211,12 @@
       let entranceTimer = 0;
       let asciiReady = false;
       let asciiLoading = false;
+
+      const trackPortfolioEvent = (name, data = {}) => {
+        const isLocalPreview = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
+        if (isLocalPreview) return;
+        window.va("event", { name, data });
+      };
 
       const modes = {
         lab: {
@@ -2510,6 +2528,10 @@
           window.clearTimeout(toggleTimer);
           modeToggle.classList.add("is-changing");
           modeToggle.setAttribute("aria-busy", "true");
+          trackPortfolioEvent("Mode View", {
+            mode: button.dataset.modeButton === "lab" ? "perso" : "pro",
+            source: "switch",
+          });
           applyMode(button.dataset.modeButton);
           toggleTimer = window.setTimeout(() => {
             modeToggle.classList.remove("is-changing");
@@ -2518,8 +2540,19 @@
         });
       });
 
+      document.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const trackedLink = event.target.closest("[data-analytics-event]");
+        if (!trackedLink) return;
+        trackPortfolioEvent(trackedLink.dataset.analyticsEvent, {
+          detail: trackedLink.dataset.analyticsDetail || "unspecified",
+          mode: document.body.dataset.mode === "lab" ? "perso" : "pro",
+        });
+      });
+
       renderAsciiPortrait();
       applyMode("lab", false);
+      trackPortfolioEvent("Mode View", { mode: "perso", source: "initial" });
     </script>
   </body>
 </html>
