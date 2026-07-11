@@ -766,11 +766,43 @@
       }
 
       .project-feature {
+        position: relative;
         display: grid;
         grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.52fr);
         margin-top: 34px;
         border-top: 2px solid var(--ink);
         border-bottom: 2px solid var(--ink);
+        transition:
+          box-shadow 220ms var(--ease-out),
+          transform 220ms var(--ease-out);
+      }
+
+      .project-hit-area {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+      }
+
+      .project-mark,
+      .project-story {
+        pointer-events: none;
+      }
+
+      .project-actions {
+        position: relative;
+        z-index: 3;
+        pointer-events: auto;
+      }
+
+      .project-feature:has(.project-hit-area:hover),
+      .project-feature:has(.project-hit-area:focus-visible) {
+        box-shadow: 8px 8px 0 var(--ink);
+        transform: translate(-4px, -4px);
+      }
+
+      .project-hit-area:focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 5px;
       }
 
       .project-mark {
@@ -1920,6 +1952,13 @@
       </section>
 
       <section id="monelu-project" class="project-feature" aria-label="MonÉlu AI project">
+        <a
+          class="project-hit-area"
+          href="https://mon-elu.vercel.app/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open the MonÉlu civic intelligence platform"
+        ></a>
         <div class="project-mark">
           <p class="project-eyebrow mono">AI Lab / Civic intelligence</p>
           <h2 class="project-title poster">MonÉlu</h2>
