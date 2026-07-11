@@ -746,7 +746,7 @@
 
       body[data-mode="pro"] .pro-cta {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto auto;
+        grid-template-columns: minmax(0, 1fr) auto auto auto;
         gap: 18px;
         align-items: center;
         margin: 4px 0 28px;
@@ -803,6 +803,11 @@
         background: var(--red);
       }
 
+      .conversion-link-social {
+        border: 2px solid var(--ink);
+        background: var(--paper);
+      }
+
       .conversion-link:hover,
       .conversion-link:focus-visible {
         color: var(--ink);
@@ -813,7 +818,9 @@
       .conversion-link-language:hover,
       .conversion-link-language:focus-visible,
       .conversion-link-contact:hover,
-      .conversion-link-contact:focus-visible {
+      .conversion-link-contact:focus-visible,
+      .conversion-link-social:hover,
+      .conversion-link-social:focus-visible {
         color: var(--paper);
         background: var(--ink);
       }
@@ -1678,7 +1685,7 @@
         }
 
         body[data-mode="pro"] .pro-cta {
-          grid-template-columns: 1fr auto;
+          grid-template-columns: minmax(0, 1fr) auto auto;
         }
 
         .pro-cta-copy {
@@ -1835,6 +1842,10 @@
         }
 
         .conversion-link-contact {
+          width: 100%;
+        }
+
+        .conversion-link-social {
           width: 100%;
         }
 
@@ -2063,6 +2074,12 @@
           class="conversion-link conversion-link-contact"
           href="mailto:walidelkhoukh99@gmail.com?subject=Data%20Engineering%20Opportunity"
         >Contact me</a>
+        <a
+          class="conversion-link conversion-link-social"
+          href="https://www.linkedin.com/in/walid-elkhoukh"
+          target="_blank"
+          rel="noreferrer"
+        >LinkedIn</a>
       </section>
 
       <section class="ticker mono" aria-label="Moving AI Lab focus">
