@@ -740,6 +740,89 @@
           background 320ms ease;
       }
 
+      .pro-cta {
+        display: none;
+      }
+
+      body[data-mode="pro"] .pro-cta {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 18px;
+        align-items: center;
+        margin: 4px 0 28px;
+        padding: 18px 0;
+        border-top: 2px solid var(--ink);
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .pro-cta-copy {
+        margin: 0;
+        max-width: 560px;
+        font-size: 0.78rem;
+        font-weight: 900;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .cv-actions {
+        display: flex;
+        align-items: stretch;
+        border: 2px solid var(--ink);
+      }
+
+      .conversion-link {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 18px;
+        font-size: 0.76rem;
+        font-weight: 950;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition:
+          color 180ms ease,
+          background 180ms ease,
+          transform 220ms var(--ease-out);
+      }
+
+      .conversion-link-primary {
+        color: var(--paper);
+        background: var(--ink);
+      }
+
+      .conversion-link-language {
+        min-width: 52px;
+        padding: 0 12px;
+        border-left: 2px solid var(--ink);
+        background: var(--paper);
+      }
+
+      .conversion-link-contact {
+        border: 2px solid var(--ink);
+        background: var(--red);
+      }
+
+      .conversion-link:hover,
+      .conversion-link:focus-visible {
+        color: var(--ink);
+        background: var(--red);
+        transform: translateY(-3px);
+      }
+
+      .conversion-link-language:hover,
+      .conversion-link-language:focus-visible,
+      .conversion-link-contact:hover,
+      .conversion-link-contact:focus-visible {
+        color: var(--paper);
+        background: var(--ink);
+      }
+
+      .conversion-link:focus-visible {
+        outline: 3px solid var(--red);
+        outline-offset: 4px;
+      }
+
       .ticker-track {
         display: flex;
         width: max-content;
@@ -1593,6 +1676,14 @@
           grid-column: 1 / -1;
           justify-content: flex-start;
         }
+
+        body[data-mode="pro"] .pro-cta {
+          grid-template-columns: 1fr auto;
+        }
+
+        .pro-cta-copy {
+          grid-column: 1 / -1;
+        }
       }
 
       @media (max-width: 620px) {
@@ -1726,6 +1817,25 @@
         .ticker span {
           padding: 9px 16px;
           font-size: 0.78rem;
+        }
+
+        body[data-mode="pro"] .pro-cta {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          margin: 0 0 22px;
+          padding: 15px 0;
+        }
+
+        .cv-actions {
+          width: 100%;
+        }
+
+        .conversion-link-primary {
+          flex: 1;
+        }
+
+        .conversion-link-contact {
+          width: 100%;
         }
 
         .project-feature {
@@ -1934,6 +2044,25 @@
           <p>MonÉlu turns French parliamentary archives into a public, queryable data product.</p>
           <p>Writing about production data engineering, civic AI, and the architecture behind useful agents.</p>
         </div>
+      </section>
+
+      <section class="pro-cta mono" aria-label="Professional contact and CV">
+        <p class="pro-cta-copy">Available for data platform, Databricks, cloud migration, and GenAI data missions.</p>
+        <div class="cv-actions" aria-label="Download CV">
+          <a class="conversion-link conversion-link-primary" href="walid-el-khoukh-cv-en.pdf" download>
+            Download CV <span aria-hidden="true">&nbsp;/ EN</span>
+          </a>
+          <a
+            class="conversion-link conversion-link-language"
+            href="walid-el-khoukh-cv-fr.pdf"
+            download
+            aria-label="Download CV in French"
+          >FR</a>
+        </div>
+        <a
+          class="conversion-link conversion-link-contact"
+          href="mailto:walidelkhoukh99@gmail.com?subject=Data%20Engineering%20Opportunity"
+        >Contact me</a>
       </section>
 
       <section class="ticker mono" aria-label="Moving AI Lab focus">
