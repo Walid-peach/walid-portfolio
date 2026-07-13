@@ -197,11 +197,7 @@
         border: 0;
       }
 
-      .honeypot {
-        display: none;
-      }
-
-      :where(a, button, input, textarea):focus-visible {
+      :where(a, button):focus-visible {
         outline: 3px solid var(--red);
         outline-offset: 4px;
       }
@@ -845,6 +841,35 @@
         white-space: nowrap;
       }
 
+      .hero-pro-actions {
+        display: none;
+      }
+
+      body[data-mode="pro"] .hero-pro-actions {
+        position: absolute;
+        left: 0;
+        bottom: 82px;
+        display: flex;
+        width: 100%;
+        gap: 12px;
+        align-items: center;
+        padding-top: 14px;
+        border-top: 2px solid var(--ink);
+      }
+
+      .hero-pro-intro {
+        margin: 0 auto 0 0;
+        max-width: 520px;
+        font-size: 0.72rem;
+        font-weight: 900;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      body[data-mode="pro"] .lab-blurb {
+        bottom: 12px;
+      }
+
       .dots::before {
         content: "";
         display: inline-block;
@@ -867,30 +892,6 @@
         transition:
           color 320ms ease,
           background 320ms ease;
-      }
-
-      .pro-cta {
-        display: none;
-      }
-
-      body[data-mode="pro"] .pro-cta {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto auto auto;
-        gap: 18px;
-        align-items: center;
-        margin: 4px 0 28px;
-        padding: 18px 0;
-        border-top: 2px solid var(--ink);
-        border-bottom: 2px solid var(--ink);
-      }
-
-      .pro-cta-copy {
-        margin: 0;
-        max-width: 560px;
-        font-size: 0.78rem;
-        font-weight: 900;
-        line-height: 1.35;
-        text-transform: uppercase;
       }
 
       .cv-actions {
@@ -1141,6 +1142,63 @@
         color: var(--red-dark);
         border-color: var(--red-dark);
         transform: translateX(4px);
+      }
+
+      .slide-hustle-feature {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.12fr);
+        margin-top: 34px;
+        border-top: 2px solid var(--ink);
+        border-bottom: 2px solid var(--ink);
+      }
+
+      body[data-mode="pro"] .slide-hustle-feature {
+        display: none;
+      }
+
+      .slide-hustle-visual {
+        min-height: 440px;
+        margin: 0;
+        border-right: 2px solid var(--ink);
+        overflow: hidden;
+        background: var(--ink);
+      }
+
+      .slide-hustle-visual img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 440px;
+        object-fit: cover;
+      }
+
+      .slide-hustle-story {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        padding: 26px;
+      }
+
+      .slide-hustle-story h2 {
+        margin: 16px 0 22px;
+        max-width: 720px;
+        font-size: clamp(2.6rem, 5.4vw, 5.8rem);
+        line-height: 0.87;
+      }
+
+      .slide-hustle-story > p:not(.section-kicker) {
+        margin: 0;
+        max-width: 720px;
+        font-size: clamp(0.96rem, 1.35vw, 1.18rem);
+        font-weight: 700;
+        line-height: 1.52;
+      }
+
+      .slide-hustle-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: auto;
+        padding-top: 28px;
       }
 
       .feed-header {
@@ -1754,6 +1812,11 @@
         line-height: 1.5;
       }
 
+      .timeline-outcome {
+        color: var(--red-dark);
+        font-weight: 950;
+      }
+
       .contact-section {
         display: grid;
         grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
@@ -1761,7 +1824,7 @@
       }
 
       .contact-copy,
-      .contact-form {
+      .contact-actions-panel {
         padding: 28px;
       }
 
@@ -1801,83 +1864,36 @@
         text-transform: uppercase;
       }
 
-      .contact-form {
+      .contact-actions-panel {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 18px;
+        align-content: center;
       }
 
-      .form-field {
+      .contact-action {
         display: grid;
-        gap: 7px;
-      }
-
-      .form-field-message,
-      .form-actions,
-      .form-status {
-        grid-column: 1 / -1;
-      }
-
-      .form-field label {
-        font-size: 0.7rem;
-        font-weight: 950;
-        text-transform: uppercase;
-      }
-
-      .form-field input,
-      .form-field textarea {
-        width: 100%;
-        border: 2px solid var(--ink);
-        border-radius: 0;
-        padding: 12px;
-        color: var(--ink);
-        background: var(--paper);
-        font: inherit;
-      }
-
-      .form-field textarea {
-        min-height: 150px;
-        resize: vertical;
-      }
-
-      .form-actions {
-        display: flex;
+        grid-template-columns: minmax(0, 1fr) auto;
         gap: 18px;
+        min-height: 70px;
         align-items: center;
-      }
-
-      .submit-button {
-        min-height: 48px;
-        padding: 0 20px;
-        border: 2px solid var(--ink);
-        background: var(--ink);
-        color: var(--paper);
-        font-size: 0.76rem;
+        border-bottom: 2px solid var(--ink);
+        font-size: 0.78rem;
         font-weight: 950;
-        text-transform: uppercase;
-      }
-
-      .submit-button:hover {
-        background: var(--red);
-        color: var(--ink);
-      }
-
-      .submit-button:disabled {
-        cursor: wait;
-        opacity: 0.58;
-      }
-
-      .form-fallback,
-      .form-status {
-        margin: 0;
-        font-size: 0.72rem;
-        font-weight: 800;
-        line-height: 1.4;
-      }
-
-      .form-fallback a {
-        border-bottom: 1px solid currentColor;
         text-decoration: none;
+        text-transform: uppercase;
+        transition: color 180ms ease, background 180ms ease, padding 220ms var(--ease-out);
+      }
+
+      .contact-action:first-child {
+        border-top: 2px solid var(--ink);
+      }
+
+      .contact-action:hover {
+        padding-inline: 12px;
+        background: var(--red);
+      }
+
+      .contact-action span:last-child {
+        font-size: 1.2rem;
       }
 
       .site-footer {
@@ -1977,12 +1993,33 @@
           border-top: 1px solid var(--hairline);
         }
 
+        body[data-mode="pro"] .lab-blurb {
+          bottom: auto;
+        }
+
+        body[data-mode="pro"] .hero-pro-actions {
+          position: relative;
+          bottom: auto;
+          flex-wrap: wrap;
+          margin-top: 4px;
+        }
+
+        .hero-pro-intro {
+          width: 100%;
+          max-width: none;
+          flex-basis: 100%;
+        }
+
         .lab-feed {
           grid-template-columns: 1fr;
         }
 
         .project-feature {
           grid-template-columns: 1fr;
+        }
+
+        .slide-hustle-feature {
+          grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
         }
 
         .project-mark {
@@ -2030,13 +2067,6 @@
           justify-content: flex-start;
         }
 
-        body[data-mode="pro"] .pro-cta {
-          grid-template-columns: minmax(0, 1fr) auto auto;
-        }
-
-        .pro-cta-copy {
-          grid-column: 1 / -1;
-        }
       }
 
       @media (max-width: 620px) {
@@ -2062,11 +2092,11 @@
 
         .mode-toggle {
           width: 164px;
-          min-height: 42px;
+          min-height: 46px;
         }
 
         .mode-button {
-          min-height: 40px;
+          min-height: 44px;
         }
 
         .nav-links {
@@ -2077,8 +2107,8 @@
         }
 
         .nav-links a {
-          min-height: 32px;
-          padding: 8px 0 4px;
+          min-height: 44px;
+          padding: 13px 0 8px;
         }
 
         .poster-hero {
@@ -2153,7 +2183,7 @@
 
         .lab-blurb p,
         .lab-blurb p:first-child {
-          font-size: 0.78rem;
+          font-size: 0.86rem;
           line-height: 1.4;
           white-space: normal;
         }
@@ -2172,27 +2202,19 @@
           font-size: 0.78rem;
         }
 
-        body[data-mode="pro"] .pro-cta {
-          grid-template-columns: 1fr;
-          gap: 10px;
-          margin: 0 0 22px;
-          padding: 15px 0;
+        body[data-mode="pro"] .hero-pro-actions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
         }
 
-        .cv-actions {
-          width: 100%;
+        .hero-pro-intro {
+          grid-column: 1 / -1;
+          margin-bottom: 4px;
         }
 
-        .conversion-link-primary {
-          flex: 1;
-        }
-
-        .conversion-link-contact {
-          width: 100%;
-        }
-
-        .conversion-link-social {
-          width: 100%;
+        .hero-pro-actions .conversion-link:last-child {
+          grid-column: 1 / -1;
         }
 
         .project-feature {
@@ -2248,8 +2270,39 @@
 
         .project-link,
         .feed-profile {
-          min-height: 36px;
-          padding-top: 8px;
+          min-height: 44px;
+          padding-top: 12px;
+        }
+
+        .slide-hustle-feature {
+          grid-template-columns: 1fr;
+          margin-top: 26px;
+        }
+
+        .slide-hustle-visual {
+          min-height: 0;
+          border-right: 0;
+          border-bottom: 2px solid var(--ink);
+        }
+
+        .slide-hustle-visual img {
+          min-height: 0;
+          aspect-ratio: 1;
+        }
+
+        .slide-hustle-story {
+          padding: 20px 16px;
+        }
+
+        .slide-hustle-story h2 {
+          margin-block: 14px 18px;
+          font-size: clamp(2.4rem, 13vw, 3.7rem);
+        }
+
+        .slide-hustle-metrics {
+          grid-template-columns: 1fr;
+          margin-top: 20px;
+          padding-top: 0;
         }
 
         .feed-header {
@@ -2306,7 +2359,7 @@
         }
 
         .contact-copy,
-        .contact-form {
+        .contact-actions-panel {
           padding: 20px 16px;
         }
 
@@ -2314,25 +2367,9 @@
           min-height: 270px;
         }
 
-        .contact-form {
-          grid-template-columns: 1fr;
-        }
-
-        .form-field,
-        .form-field-message,
-        .form-actions,
-        .form-status {
-          grid-column: 1;
-        }
-
-        .form-actions,
         .site-footer {
           align-items: stretch;
           flex-direction: column;
-        }
-
-        .submit-button {
-          width: 100%;
         }
 
       }
@@ -2456,40 +2493,34 @@
           <p>MonÉlu turns French parliamentary archives into a public, queryable data product.</p>
           <p>Writing about production data engineering, civic AI, and the architecture behind useful agents.</p>
         </div>
-      </section>
-
-      <section class="pro-cta mono" aria-label="Professional contact and CV">
-        <p class="pro-cta-copy">Available for data platform, Databricks, cloud migration, and GenAI data missions.</p>
-        <div class="cv-actions" aria-label="Download CV">
+        <div class="hero-pro-actions mono" aria-label="Professional actions">
+          <p class="hero-pro-intro">Available for data platform, Databricks, cloud migration, and GenAI data missions.</p>
           <a class="conversion-link conversion-link-primary" href="/walid-el-khoukh-cv-en.pdf" download data-analytics-event="CV Download" data-analytics-detail="english">
             Download CV
           </a>
-        </div>
-        <a
-          class="conversion-link conversion-link-contact"
-          href="#contact"
-          data-analytics-event="Contact Click"
-          data-analytics-detail="email"
-        >Contact me</a>
+          <a class="conversion-link conversion-link-contact" href="#experience">View experience</a>
         <a
           class="conversion-link conversion-link-social"
           href="https://www.linkedin.com/in/walid-elkhoukh"
           target="_blank"
           rel="noreferrer"
+          data-analytics-event="Contact Click"
+          data-analytics-detail="linkedin-hero"
         >LinkedIn</a>
+        </div>
       </section>
 
       <section class="ticker mono" aria-label="Moving AI Lab focus">
         <div class="ticker-track">
           <span>Claude Code / -87% tokens</span>
           <span>Slide-Hustle / 5 slides in 45 min</span>
-          <span>MonÉlu / 645 deputies</span>
-          <span>5,106 roll-call votes</span>
+          <span>MonÉlu / 646 deputies</span>
+          <span>5,404 roll-call votes</span>
           <span>797K+ vote positions</span>
           <span>Claude Code / -87% tokens</span>
           <span>Slide-Hustle / 5 slides in 45 min</span>
-          <span>MonÉlu / 645 deputies</span>
-          <span>5,106 roll-call votes</span>
+          <span>MonÉlu / 646 deputies</span>
+          <span>5,404 roll-call votes</span>
           <span>797K+ vote positions</span>
         </div>
       </section>
@@ -2525,6 +2556,26 @@
             <a class="project-link" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="MonElu Click" data-analytics-detail="open-product">Open product</a>
             <a class="project-link" href="/monelu/">Read case study</a>
             <a class="project-link" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">View source</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-hustle-feature" aria-labelledby="slide-hustle-title">
+        <figure class="slide-hustle-visual">
+          <img src="/assets/images/slide-hustle-cover.avif" alt="Slide generated by the Slide-Hustle pipeline from an Obsidian brief" width="900" height="900" loading="lazy" decoding="async" />
+        </figure>
+        <div class="slide-hustle-story">
+          <p class="section-kicker mono">AI Lab / Agent architecture</p>
+          <h2 id="slide-hustle-title" class="poster">Slide-Hustle</h2>
+          <p>An agentic publishing pipeline that turns a compact YAML brief into branded HTML/CSS slides, browser-rendered PNGs, and a ready-to-post PDF. The real optimization was architectural: keep the design system stable, send only the changing content, and stop paying tokens to rediscover the same interface.</p>
+          <div class="slide-hustle-metrics mono" aria-label="Slide-Hustle results">
+            <div class="project-metric"><strong>-87%</strong><small>Claude Code tokens</small></div>
+            <div class="project-metric"><strong>3.6K</strong><small>Tokens from 28.5K</small></div>
+            <div class="project-metric"><strong>45 min</strong><small>Five finished slides</small></div>
+          </div>
+          <div class="project-actions mono">
+            <a class="project-link" href="https://github.com/Walid-peach/slide-hustle" target="_blank" rel="noreferrer">View source</a>
+            <a class="project-link" href="https://medium.com/@walidelkhoukh99/i-cut-my-claude-code-token-usage-by-87-without-changing-a-single-prompt-0b7e14073d78" target="_blank" rel="noreferrer">Read the field note</a>
           </div>
         </div>
       </section>
@@ -2569,22 +2620,22 @@
           <article class="timeline-row">
             <p class="timeline-period">2025—Now</p>
             <p class="timeline-role">SOCOTEC / APOLLO</p>
-            <p class="timeline-copy">Building the Databricks layer for Atlas and SAP/S4HANA coexistence with Auto Loader, DLT, Delta, row-level security, Kafka, and Terraform.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">Atlas ↔ SAP coexistence.</strong> Building the Databricks layer for a multi-year ERP transition with Auto Loader, DLT, Delta, row-level security, Kafka, and Terraform.</p>
           </article>
           <article class="timeline-row">
             <p class="timeline-period">2024—2025</p>
             <p class="timeline-role">Platform modernization</p>
-            <p class="timeline-copy">Moved Airflow, Spark, and Kubernetes workloads to governed AWS and Databricks foundations using Unity Catalog, lineage, SCIM, and reproducible infrastructure.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">50+ pipelines modernized.</strong> Moved Airflow, Spark, and Kubernetes workloads to governed AWS and Databricks foundations using Unity Catalog, lineage, SCIM, and reproducible infrastructure.</p>
           </article>
           <article class="timeline-row">
             <p class="timeline-period">2023—2024</p>
             <p class="timeline-role">Finance analytics</p>
-            <p class="timeline-copy">Delivered governed finance reporting across 18 countries and 12 currencies with Airflow, PySpark, dbt, Delta Lake, Power BI, and country-level RLS.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">18 countries. 12 currencies.</strong> Delivered governed finance reporting with Airflow, PySpark, dbt, Delta Lake, Power BI, and country-level RLS.</p>
           </article>
           <article class="timeline-row">
             <p class="timeline-period">2021—2022</p>
             <p class="timeline-role">GCP + decision systems</p>
-            <p class="timeline-copy">Built BigQuery, Cloud SQL, and Superset logistics pipelines, reduced orchestration cost by roughly 80%, and shipped scoring APIs with Flask and PostgreSQL.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">~80% lower orchestration cost.</strong> Built BigQuery, Cloud SQL, and Superset logistics pipelines, then shipped scoring APIs with Flask and PostgreSQL.</p>
           </article>
         </div>
       </section>
@@ -2596,30 +2647,14 @@
           <p>Data platforms, Databricks migrations, civic AI, or a difficult system that needs a clear technical path.</p>
           <div class="contact-links mono">
             <a href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="Contact Click" data-analytics-detail="linkedin">LinkedIn</a>
-            <a href="mailto:contact@walidelkhoukh.com" data-analytics-event="Contact Click" data-analytics-detail="email-fallback">Email</a>
+            <a href="https://github.com/Walid-peach" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
-        <form class="contact-form mono" data-contact-form>
-          <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="hidden" name="startedAt" value="" />
-          <div class="form-field">
-            <label for="contact-name">Name</label>
-            <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="80" required />
-          </div>
-          <div class="form-field">
-            <label for="contact-email">Email</label>
-            <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="160" required />
-          </div>
-          <div class="form-field form-field-message">
-            <label for="contact-message">What are you building?</label>
-            <textarea id="contact-message" name="message" minlength="20" maxlength="3000" required></textarea>
-          </div>
-          <div class="form-actions">
-            <button class="submit-button" type="submit">Send message</button>
-            <p class="form-fallback">Prefer email? <a href="mailto:contact@walidelkhoukh.com">Write directly</a>.</p>
-          </div>
-          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
-        </form>
+        <div class="contact-actions-panel mono">
+          <a class="contact-action" href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="Contact Click" data-analytics-detail="linkedin-panel"><span>Start on LinkedIn</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-action" href="/walid-el-khoukh-cv-en.pdf" download data-analytics-event="CV Download" data-analytics-detail="english-contact"><span>Download English CV</span><span aria-hidden="true">↓</span></a>
+          <a class="contact-action" href="https://github.com/Walid-peach" target="_blank" rel="noreferrer"><span>Review my GitHub</span><span aria-hidden="true">↗</span></a>
+        </div>
       </section>
 
       <footer class="site-footer mono">
@@ -2654,11 +2689,9 @@
       const projectTagline = document.querySelector(".project-tagline");
       const projectCopy = document.querySelector(".project-copy");
       const projectMetricsWrap = document.querySelector(".project-metrics");
-      const projectMetrics = document.querySelectorAll(".project-metric");
-      const projectLinks = document.querySelectorAll(".project-link");
+      const projectMetrics = projectMetricsWrap.querySelectorAll(".project-metric");
+      const projectLinks = projectFeature.querySelectorAll(".project-link");
       const modeStatus = document.querySelector("#mode-status");
-      const contactForm = document.querySelector("[data-contact-form]");
-      const formStatus = document.querySelector("[data-form-status]");
       let modeTimer = 0;
       let toggleTimer = 0;
       let entranceTimer = 0;
@@ -2717,8 +2750,8 @@
           ticker: [
             "Claude Code / -87% tokens",
             "Slide-Hustle / 5 slides in 45 min",
-            "MonÉlu / 645 deputies",
-            "5,106 roll-call votes",
+            "MonÉlu / 646 deputies",
+            "5,404 roll-call votes",
             "797K+ vote positions",
           ],
           cards: [
@@ -2771,8 +2804,8 @@
             metricsLabel: "MonÉlu production data metrics",
             copy: "MonÉlu is an end-to-end data platform: static Assemblée Nationale ZIP exports are fetched, parsed, retried, and upserted into Supabase; dbt turns raw tables into tested marts; FastAPI serves a stateless API; GitHub Actions refreshes production and Vercel delivers the product.",
             metrics: [
-              { value: "645", label: "Deputies tracked" },
-              { value: "5,106", label: "Votes analyzed" },
+              { value: "646", label: "Deputies tracked" },
+              { value: "5,404", label: "Votes analyzed" },
               { value: "797,811", label: "Vote positions" },
             ],
           },
@@ -3003,34 +3036,6 @@
           detail: trackedLink.dataset.analyticsDetail || "unspecified",
           mode: document.body.dataset.mode === "lab" ? "perso" : "pro",
         });
-      });
-
-      contactForm.elements.startedAt.value = String(Date.now());
-      contactForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const submitButton = contactForm.querySelector("button[type='submit']");
-        const payload = Object.fromEntries(new FormData(contactForm));
-        submitButton.disabled = true;
-        submitButton.textContent = "Sending…";
-        formStatus.textContent = "Sending your message.";
-
-        try {
-          const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
-          if (!response.ok) throw new Error("Contact request failed");
-          contactForm.reset();
-          contactForm.elements.startedAt.value = String(Date.now());
-          formStatus.textContent = "Message sent. I’ll get back to you soon.";
-          trackPortfolioEvent("Contact Click", { detail: "form-success", mode: document.body.dataset.mode });
-        } catch (error) {
-          formStatus.textContent = "The form could not send right now. Please use the direct email link.";
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = "Send message";
-        }
       });
 
       renderAsciiPortrait();
