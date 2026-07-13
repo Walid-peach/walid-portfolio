@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MonÉlu — Étude de cas Data &amp; IA civique | Walid El Khoukh</title>
+    <meta name="description" content="Comment Walid El Khoukh a construit MonÉlu : une plateforme civique gouvernée combinant archives parlementaires, dbt, PostgreSQL, FastAPI, routage SQL et RAG sourcé." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://walidelkhoukh.com/fr/monelu/" />
+    <link rel="alternate" hreflang="en" href="https://walidelkhoukh.com/monelu/" />
+    <link rel="alternate" hreflang="fr" href="https://walidelkhoukh.com/fr/monelu/" />
+    <link rel="alternate" hreflang="x-default" href="https://walidelkhoukh.com/monelu/" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <meta name="theme-color" content="#d8d3bf" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Walid El Khoukh" />
+    <meta property="og:title" content="MonÉlu — Étude de cas Data &amp; IA civique" />
+    <meta property="og:description" content="Une plateforme d'intelligence civique gouvernée construite à partir des archives parlementaires françaises." />
+    <meta property="og:url" content="https://walidelkhoukh.com/fr/monelu/" />
+    <meta property="og:image" content="https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "MonÉlu — Étude de cas Data & IA civique",
+        "url": "https://walidelkhoukh.com/fr/monelu/",
+        "inLanguage": "fr-FR",
+        "description": "Étude d'architecture et d'ingénierie de MonÉlu, une plateforme data et IA civique gouvernée.",
+        "image": "https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png",
+        "author": {
+          "@type": "Person",
+          "name": "Walid El Khoukh",
+          "url": "https://walidelkhoukh.com/"
+        },
+        "about": ["Civic technology", "Data engineering", "Retrieval-augmented generation", "French National Assembly"]
+      }
+    </script>
+    <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <style>
+      :root{--paper:#d8d3bf;--ink:#080807;--red:#ff3825;--muted:#4f4b40;--line:rgba(8,8,7,.28)}
+      *{box-sizing:border-box}html{background:var(--paper);scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 1px 1px,rgba(8,8,7,.08) 1px,transparent 1px),var(--paper);background-size:24px 24px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}a{color:inherit}.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}.shell{width:min(1180px,calc(100% - 48px));margin:auto;padding:28px 0 52px}.topbar{display:flex;justify-content:space-between;gap:24px;align-items:center;padding-bottom:16px;border-bottom:2px solid var(--ink);font-size:.78rem;font-weight:900;text-transform:uppercase}.topbar div{display:flex;gap:22px;flex-wrap:wrap}.topbar a{text-decoration:none;border-bottom:2px solid transparent}.topbar a:hover,.topbar a:focus-visible{border-color:currentColor}.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);min-height:560px;border-bottom:2px solid var(--ink)}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:56px 34px 44px 0}.eyebrow{margin:0 0 26px;font-size:.76rem;font-weight:950;text-transform:uppercase}.hero h1{margin:0;font-size:clamp(5rem,13vw,10.5rem);line-height:.73;letter-spacing:0}.hero h1 span{display:block}.hero-lede{max-width:720px;margin:34px 0 0;font-size:clamp(1rem,1.7vw,1.35rem);font-weight:700;line-height:1.5}.hero-mark{display:flex;flex-direction:column;justify-content:space-between;padding:28px;background:var(--red);border-left:2px solid var(--ink)}.hero-mark strong{font-size:clamp(4rem,8vw,7rem);line-height:.8}.hero-mark p{margin:0;font-size:.76rem;font-weight:900;line-height:1.5;text-transform:uppercase}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{display:inline-flex;align-items:center;min-height:46px;padding:0 16px;border:2px solid var(--ink);font-size:.72rem;font-weight:950;text-decoration:none;text-transform:uppercase}.button-primary{background:var(--ink);color:var(--paper)}.button:hover{background:var(--red);color:var(--ink)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--ink)}.metric{padding:24px 16px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong,.metric span{display:block}.metric strong{font-size:clamp(1.7rem,3vw,3.1rem)}.metric span{margin-top:8px;color:var(--muted);font-size:.68rem;font-weight:900;text-transform:uppercase}.chapter{display:grid;grid-template-columns:minmax(180px,.42fr) minmax(0,1.58fr);gap:36px;padding:54px 0;border-bottom:2px solid var(--ink)}.chapter-label{margin:0;font-size:.72rem;font-weight:950;text-transform:uppercase}.chapter-body h2{margin:0 0 24px;font-size:clamp(2.5rem,5vw,5.2rem);line-height:.88}.chapter-body>p{max-width:780px;margin:0;font-size:1.05rem;font-weight:650;line-height:1.65}.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:34px;border:2px solid var(--ink)}.flow-item{position:relative;min-height:132px;padding:16px;border-right:2px solid var(--ink);background:rgba(255,255,255,.12)}.flow-item:last-child{border:0}.flow-item strong,.flow-item span{display:block}.flow-item strong{font-size:.78rem;text-transform:uppercase}.flow-item span{margin-top:24px;font-size:.7rem;line-height:1.45}.flow-item::after{content:"→";position:absolute;right:-15px;top:47px;z-index:2;padding:4px;background:var(--red);font-weight:950}.flow-item:last-child::after{display:none}.split{display:grid;grid-template-columns:1fr 1fr;margin-top:32px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}.split article{padding:24px}.split article:first-child{border-right:2px solid var(--ink)}.split h3{margin:0 0 14px;font-size:1.35rem}.split p{margin:0;font-size:.9rem;line-height:1.55}.closing{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;padding:54px 0}.closing h2{margin:0;max-width:800px;font-size:clamp(2.7rem,6vw,6.2rem);line-height:.86}.footer{display:flex;justify-content:space-between;gap:20px;padding-top:20px;border-top:2px solid var(--ink);font-size:.7rem;font-weight:900;text-transform:uppercase}a:focus-visible{outline:3px solid var(--red);outline-offset:4px}@media(max-width:780px){.shell{width:calc(100% - 28px);padding-top:18px}.hero{grid-template-columns:1fr;min-height:0}.hero-copy{padding:48px 0 34px}.hero-mark{min-height:260px;border-left:0;border-top:2px solid var(--ink)}.metrics{grid-template-columns:1fr 1fr}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.chapter{grid-template-columns:1fr;gap:18px;padding:38px 0}.flow{grid-template-columns:1fr}.flow-item{min-height:100px;border-right:0;border-bottom:2px solid var(--ink)}.flow-item::after{right:50%;top:auto;bottom:-15px;transform:rotate(90deg)}.split{grid-template-columns:1fr}.split article:first-child{border-right:0;border-bottom:2px solid var(--ink)}.closing{grid-template-columns:1fr}.footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar mono" aria-label="Case study navigation">
+        <a href="/">Walid El Khoukh</a>
+        <div><a href="#architecture">Architecture</a><a href="#ai">Couche IA</a><a href="/monelu/" lang="en" hreflang="en">EN</a></div>
+      </nav>
+
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow mono">Étude de cas / Data civique + IA</p>
+          <h1><span>MON</span><span>ÉLU</span></h1>
+          <p class="hero-lede">Une interface publique vers l'activité parlementaire française, construite à partir d'archives statiques et conçue pour montrer l'origine de chaque réponse.</p>
+          <div class="actions mono"><a class="button button-primary" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer">Ouvrir le produit</a><a class="button" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">Voir le code</a></div>
+        </div>
+        <aside class="hero-mark mono"><strong>01</strong><p>La preuve d'abord<br />Déterministe si possible<br />Sémantique si utile</p></aside>
+      </header>
+
+      <section class="metrics mono" aria-label="MonÉlu production metrics">
+        <div class="metric"><strong>645</strong><span>Députés suivis</span></div><div class="metric"><strong>5 106</strong><span>Scrutins analysés</span></div><div class="metric"><strong>797 811</strong><span>Positions de vote</span></div><div class="metric"><strong>3 741</strong><span>Fragments indexés</span></div>
+      </section>
+
+      <section class="chapter">
+        <p class="chapter-label mono">01 / Contrainte</p>
+        <div class="chapter-body"><h2>L'API n'existait pas.</h2><p>L'Assemblée nationale publie ses données ouvertes sous forme d'archives ZIP statiques plutôt que via une API REST stable. MonÉlu transforme ces exports irréguliers en un produit reproductible : récupérer, parser, valider, charger, modéliser, servir et rafraîchir sans perdre la provenance.</p></div>
+      </section>
+
+      <section id="architecture" class="chapter">
+        <p class="chapter-label mono">02 / Moteur data</p>
+        <div class="chapter-body">
+          <h2>De l'archive à la réponse fiable.</h2>
+          <p>Le pipeline sépare acquisition, transformation, service et interface. Les reprises et upserts idempotents protègent l'ingestion ; dbt teste la couche analytique ; FastAPI reste sans état ; GitHub Actions maintient la production à jour.</p>
+          <div class="flow mono" aria-label="Architecture data de MonÉlu"><div class="flow-item"><strong>Assemblée</strong><span>Exports ZIP statiques</span></div><div class="flow-item"><strong>Ingestion</strong><span>Parsing Python + reprises</span></div><div class="flow-item"><strong>PostgreSQL</strong><span>Supabase + pgvector</span></div><div class="flow-item"><strong>dbt + API</strong><span>Marts testés + FastAPI</span></div><div class="flow-item"><strong>Produit</strong><span>Interface web Vercel</span></div></div>
+        </div>
+      </section>
+
+      <section id="ai" class="chapter">
+        <p class="chapter-label mono">03 / Moteur IA</p>
+        <div class="chapter-body">
+          <h2>Router d'abord. Générer ensuite.</h2>
+          <p>MonÉlu ne demande pas à un modèle de langage d'improviser sur chaque question. Les questions déterministes passent par SQL. Les questions sémantiques récupèrent des preuves pertinentes via pgvector avant de générer une réponse en français.</p>
+          <div class="split"><article><h3 class="mono">Voie SQL</h3><p>Les comptages, classements, entités connues et comparaisons structurées utilisent PostgreSQL. La réponse est reproductible et sa source explicite.</p></article><article><h3 class="mono">Voie RAG</h3><p>Les questions ouvertes récupèrent des preuves indexées, exposent les passages disponibles et identifient le RAG comme source.</p></article></div>
+        </div>
+      </section>
+
+      <section class="chapter">
+        <p class="chapter-label mono">04 / Vision d'ingénierie</p>
+        <div class="chapter-body"><h2>La gouvernance fait partie de l'interface.</h2><p>La confiance ne vient pas d'une prose soignée. Elle vient d'une recherche observable, de modèles testés, d'un routage explicite et d'un produit qui distingue les faits de la base des synthèses générées. Un score d'évaluation par mots-clés supérieur à 0,80 fournit une référence mesurable pour la qualité de recherche.</p></div>
+      </section>
+
+      <section class="closing"><h2>La donnée publique devient utile quand son chemin reste visible.</h2><div class="actions mono"><a class="button button-primary" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer">Explorer MonÉlu</a><a class="button" href="/fr/#contact">Parler du projet</a></div></section>
+      <footer class="footer mono"><span>Walid El Khoukh / Paris</span><span><a href="/fr/">Portfolio</a> · <a href="https://github.com/Walid-peach/MonElu">GitHub</a></span></footer>
+    </main>
+  </body>
+</html>
