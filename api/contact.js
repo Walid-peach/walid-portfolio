@@ -62,7 +62,7 @@ module.exports = async function handler(request, response) {
     },
     body: JSON.stringify({
       from: "Walid Portfolio <portfolio@walidelkhoukh.com>",
-      to: [process.env.CONTACT_TO_EMAIL || "walidelkhoukh99@gmail.com"],
+      to: [process.env.CONTACT_TO_EMAIL || "contact@walidelkhoukh.com"],
       reply_to: normalizedEmail,
       subject: `Portfolio message from ${normalizedName}`,
       html: `<p><strong>From:</strong> ${escapeHtml(normalizedName)} (${escapeHtml(normalizedEmail)})</p><p>${escapeHtml(normalizedMessage).replace(/\n/g, "<br>")}</p>`,

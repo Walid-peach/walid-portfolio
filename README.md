@@ -20,7 +20,7 @@ The form uses the Vercel function at `/api/contact` and Resend. Before enabling 
 
 1. Verify `walidelkhoukh.com` as a sending domain in Resend.
 2. Add `RESEND_API_KEY` to the Vercel project's Production environment variables.
-3. Optionally add `CONTACT_TO_EMAIL`; it defaults to `walidelkhoukh99@gmail.com`.
+3. Optionally add `CONTACT_TO_EMAIL`; it defaults to `contact@walidelkhoukh.com`.
 4. Redeploy, then send one test message from the live site.
 
 Direct email and LinkedIn links remain available if the form service is unavailable.
