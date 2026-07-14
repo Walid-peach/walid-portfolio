@@ -2598,7 +2598,7 @@
         </div>
         <div class="contact-actions-panel mono">
           <a class="contact-action" href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="Contact Click" data-analytics-detail="linkedin-panel"><span>Commencer sur LinkedIn</span><span aria-hidden="true">↗</span></a>
-          <a class="contact-action" href="/walid-el-khoukh-cv-fr.pdf" download data-analytics-event="CV Download" data-analytics-detail="french-contact"><span>Télécharger le CV français</span><span aria-hidden="true">↓</span></a>
+          <a class="contact-action" href="https://x.com/vvalidelk" target="_blank" rel="noreferrer" data-mode-contact-action data-analytics-event="Contact Click" data-analytics-detail="x-contact"><span>Me suivre sur X</span><span aria-hidden="true">↗</span></a>
           <a class="contact-action" href="https://github.com/Walid-peach" target="_blank" rel="noreferrer"><span>Voir mon GitHub</span><span aria-hidden="true">↗</span></a>
         </div>
       </section>
@@ -2637,6 +2637,9 @@
       const projectMetricsWrap = document.querySelector(".project-metrics");
       const projectMetrics = projectMetricsWrap.querySelectorAll(".project-metric");
       const projectLinks = projectFeature.querySelectorAll(".project-link");
+      const modeContactAction = document.querySelector("[data-mode-contact-action]");
+      const modeContactLabel = modeContactAction.querySelector("span:first-child");
+      const modeContactIcon = modeContactAction.querySelector("span:last-child");
       const modeStatus = document.querySelector("#mode-status");
       let modeTimer = 0;
       let toggleTimer = 0;
@@ -2700,6 +2703,14 @@
             "5 404 scrutins",
             "797K+ vote positions",
           ],
+          contactAction: {
+            label: "Me suivre sur X",
+            href: "https://x.com/vvalidelk",
+            icon: "↗",
+            external: true,
+            analyticsEvent: "Contact Click",
+            analyticsDetail: "x-contact",
+          },
           cards: [
             {
               small: "New / 7 min read",
@@ -2774,6 +2785,14 @@
             "Unity Catalog / Terraform / RLS",
             "Airflow certified",
           ],
+          contactAction: {
+            label: "Télécharger le CV français",
+            href: "/walid-el-khoukh-cv-fr.pdf",
+            icon: "↓",
+            download: true,
+            analyticsEvent: "CV Download",
+            analyticsDetail: "french-contact",
+          },
           cards: [
             {
               small: "SOCOTEC / ERP transformation",
@@ -2933,6 +2952,20 @@
             line.textContent = content.blurbs[index];
           });
           setTicker(content.ticker);
+          modeContactAction.href = content.contactAction.href;
+          modeContactLabel.textContent = content.contactAction.label;
+          modeContactIcon.textContent = content.contactAction.icon;
+          modeContactAction.dataset.analyticsEvent = content.contactAction.analyticsEvent;
+          modeContactAction.dataset.analyticsDetail = content.contactAction.analyticsDetail;
+          if (content.contactAction.external) {
+            modeContactAction.target = "_blank";
+            modeContactAction.rel = "noreferrer";
+            modeContactAction.removeAttribute("download");
+          } else {
+            modeContactAction.removeAttribute("target");
+            modeContactAction.removeAttribute("rel");
+            modeContactAction.toggleAttribute("download", Boolean(content.contactAction.download));
+          }
           noteCards.forEach((card, index) => updateCard(card, content.cards[index]));
           modeButtons.forEach((button) => {
             const isActive = button.dataset.modeButton === mode;
