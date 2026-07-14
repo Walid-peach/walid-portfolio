@@ -850,16 +850,18 @@
         left: 0;
         bottom: 82px;
         display: flex;
-        width: 100%;
+        width: min(820px, calc(100% - 430px));
         gap: 12px;
         align-items: center;
+        flex-wrap: wrap;
         padding-top: 14px;
         border-top: 2px solid var(--ink);
       }
 
       .hero-pro-intro {
-        margin: 0 auto 0 0;
-        max-width: 520px;
+        flex: 1 0 100%;
+        margin: 0;
+        max-width: none;
         font-size: 0.72rem;
         font-weight: 900;
         line-height: 1.35;
@@ -1067,6 +1069,35 @@
         padding: 24px;
       }
 
+      .project-evidence {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 14px;
+        align-items: end;
+        margin: 18px 0 0;
+        border-top: 2px solid var(--ink);
+        border-bottom: 2px solid var(--ink);
+        background: var(--ink);
+      }
+
+      .project-evidence img {
+        display: block;
+        width: 100%;
+        height: 172px;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .project-evidence figcaption {
+        max-width: 148px;
+        padding: 14px 14px 14px 0;
+        color: var(--paper);
+        font-size: 0.66rem;
+        font-weight: 900;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
       .project-copy {
         margin: 0;
         max-width: 800px;
@@ -1254,7 +1285,7 @@
       .note-card {
         position: relative;
         display: flex;
-        min-height: 300px;
+        min-height: 240px;
         flex-direction: column;
         padding: 18px;
         border-top: 2px solid var(--ink);
@@ -1270,6 +1301,14 @@
 
       .note-card:last-child {
         border-right: 0;
+      }
+
+      body[data-mode="lab"] .lab-feed {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      body[data-mode="lab"] .note-card:nth-child(3) {
+        display: none;
       }
 
       .note-card::before {
@@ -1288,6 +1327,10 @@
 
       .note-card h2 {
         transition: transform 260ms var(--ease-out);
+      }
+
+      .note-card p {
+        display: none;
       }
 
       body[data-mode="lab"] .note-card:hover {
@@ -1813,8 +1856,18 @@
       }
 
       .timeline-outcome {
+        display: block;
+        margin-bottom: 6px;
         color: var(--red-dark);
+        font-size: 1.02rem;
         font-weight: 950;
+      }
+
+      .timeline-stack {
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 900;
+        text-transform: uppercase;
       }
 
       .contact-section {
@@ -2000,6 +2053,7 @@
         body[data-mode="pro"] .hero-pro-actions {
           position: relative;
           bottom: auto;
+          width: 100%;
           flex-wrap: wrap;
           margin-top: 4px;
         }
@@ -2240,6 +2294,20 @@
           line-height: 1.5;
         }
 
+        .project-evidence {
+          grid-template-columns: 1fr;
+        }
+
+        .project-evidence img {
+          height: auto;
+          aspect-ratio: 16 / 9;
+        }
+
+        .project-evidence figcaption {
+          max-width: none;
+          padding: 0 12px 12px;
+        }
+
         .project-metrics {
           grid-template-columns: 1fr;
           margin-top: 20px;
@@ -2320,6 +2388,10 @@
         .note-card:last-child {
           min-height: 0;
           padding: 20px 16px 22px;
+        }
+
+        body[data-mode="lab"] .lab-feed {
+          grid-template-columns: 1fr;
         }
 
         .note-card small {
@@ -2489,12 +2561,12 @@
         </div>
 
         <div class="lab-blurb mono">
-          <p class="dots">AI experiments by Walid</p>
-          <p>MonÉlu turns French parliamentary archives into a public, queryable data product.</p>
-          <p>Writing about production data engineering, civic AI, and the architecture behind useful agents.</p>
+          <p class="dots">I build useful AI products.</p>
+          <p>Civic intelligence · Agent workflows</p>
+          <p>I document the architecture.</p>
         </div>
         <div class="hero-pro-actions mono" aria-label="Professional actions">
-          <p class="hero-pro-intro">Available for data platform, Databricks, cloud migration, and GenAI data missions.</p>
+          <p class="hero-pro-intro">Data platforms · Databricks · Cloud migration · GenAI</p>
           <a class="conversion-link conversion-link-primary" href="/walid-el-khoukh-cv-en.pdf" download data-analytics-event="CV Download" data-analytics-detail="english">
             Download CV
           </a>
@@ -2542,11 +2614,12 @@
         </div>
         <div class="project-story">
           <p class="project-copy">
-            MonÉlu treats AI as a governed interface to public data: deterministic questions route to SQL;
-            semantic questions retrieve evidence from pgvector before a French-language answer is generated.
-            Confidence comes from retrieval quality; answers identify PostgreSQL or RAG as their data source,
-            and retrieved evidence is exposed when available.
+            Ask a civic question. MonÉlu chooses SQL or evidence-backed RAG, then shows where the answer came from.
           </p>
+          <figure class="project-evidence">
+            <img src="/assets/images/monelu-chat.avif" alt="MonÉlu civic AI chat interface" width="1280" height="720" loading="lazy" decoding="async" />
+            <figcaption class="mono">Live product / French civic intelligence</figcaption>
+          </figure>
           <div class="project-metrics mono" aria-label="MonÉlu AI metrics">
             <div class="project-metric"><strong>3,741</strong><small>Indexed chunks</small></div>
             <div class="project-metric"><strong>0.80+</strong><small>Keyword eval score</small></div>
@@ -2567,7 +2640,7 @@
         <div class="slide-hustle-story">
           <p class="section-kicker mono">AI Lab / Agent architecture</p>
           <h2 id="slide-hustle-title" class="poster">Slide-Hustle</h2>
-          <p>An agentic publishing pipeline that turns a compact YAML brief into branded HTML/CSS slides, browser-rendered PNGs, and a ready-to-post PDF. The real optimization was architectural: keep the design system stable, send only the changing content, and stop paying tokens to rediscover the same interface.</p>
+          <p>Obsidian brief in. Branded carousel out. Stable templates cut Claude Code usage from 28.5K to 3.6K tokens.</p>
           <div class="slide-hustle-metrics mono" aria-label="Slide-Hustle results">
             <div class="project-metric"><strong>-87%</strong><small>Claude Code tokens</small></div>
             <div class="project-metric"><strong>3.6K</strong><small>Tokens from 28.5K</small></div>
@@ -2583,7 +2656,7 @@
       <header class="feed-header">
         <div>
           <p class="feed-kicker mono">Latest writing / 02</p>
-          <h2 class="feed-title poster">Field notes from the build</h2>
+          <h2 class="feed-title poster">Notes from production</h2>
         </div>
         <a class="feed-profile mono" href="https://medium.com/@walidelkhoukh99" target="_blank" rel="noreferrer">
           All stories on Medium
@@ -2620,22 +2693,22 @@
           <article class="timeline-row">
             <p class="timeline-period">2025—Now</p>
             <p class="timeline-role">SOCOTEC / APOLLO</p>
-            <p class="timeline-copy"><strong class="timeline-outcome">Atlas ↔ SAP coexistence.</strong> Building the Databricks layer for a multi-year ERP transition with Auto Loader, DLT, Delta, row-level security, Kafka, and Terraform.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">Atlas ↔ SAP coexistence</strong><span class="timeline-stack">Databricks · DLT · Delta · Kafka · Terraform</span></p>
           </article>
           <article class="timeline-row">
             <p class="timeline-period">2024—2025</p>
             <p class="timeline-role">Platform modernization</p>
-            <p class="timeline-copy"><strong class="timeline-outcome">50+ pipelines modernized.</strong> Moved Airflow, Spark, and Kubernetes workloads to governed AWS and Databricks foundations using Unity Catalog, lineage, SCIM, and reproducible infrastructure.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">50+ pipelines modernized</strong><span class="timeline-stack">AWS · Databricks · Unity Catalog · Terraform</span></p>
           </article>
           <article class="timeline-row">
             <p class="timeline-period">2023—2024</p>
             <p class="timeline-role">Finance analytics</p>
-            <p class="timeline-copy"><strong class="timeline-outcome">18 countries. 12 currencies.</strong> Delivered governed finance reporting with Airflow, PySpark, dbt, Delta Lake, Power BI, and country-level RLS.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">18 countries · 12 currencies</strong><span class="timeline-stack">PySpark · dbt · Delta Lake · Power BI · RLS</span></p>
           </article>
           <article class="timeline-row">
             <p class="timeline-period">2021—2022</p>
             <p class="timeline-role">GCP + decision systems</p>
-            <p class="timeline-copy"><strong class="timeline-outcome">~80% lower orchestration cost.</strong> Built BigQuery, Cloud SQL, and Superset logistics pipelines, then shipped scoring APIs with Flask and PostgreSQL.</p>
+            <p class="timeline-copy"><strong class="timeline-outcome">~80% lower orchestration cost</strong><span class="timeline-stack">BigQuery · Cloud SQL · Superset · Flask</span></p>
           </article>
         </div>
       </section>
@@ -2643,8 +2716,7 @@
       <section id="contact" class="contact-section" aria-labelledby="contact-title">
         <div class="contact-copy">
           <p class="section-kicker mono">A useful conversation starts here</p>
-          <h2 id="contact-title" class="poster">Let’s build something trusted.</h2>
-          <p>Data platforms, Databricks migrations, civic AI, or a difficult system that needs a clear technical path.</p>
+          <h2 id="contact-title" class="poster">Build something trusted.</h2>
           <div class="contact-links mono">
             <a href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="Contact Click" data-analytics-detail="linkedin">LinkedIn</a>
             <a href="https://github.com/Walid-peach" target="_blank" rel="noreferrer">GitHub</a>
@@ -2729,7 +2801,7 @@
             title: "MonÉlu",
             tagline: "Evidence-first civic intelligence",
             metricsLabel: "MonÉlu AI metrics",
-            copy: "MonÉlu treats AI as a governed interface to public data: deterministic questions route to SQL; semantic questions retrieve evidence from pgvector before a French-language answer is generated. Confidence comes from retrieval quality; answers identify PostgreSQL or RAG as their data source, and retrieved evidence is exposed when available.",
+            copy: "Ask a civic question. MonÉlu chooses SQL or evidence-backed RAG, then shows where the answer came from.",
             metrics: [
               { value: "3,741", label: "Indexed chunks" },
               { value: "0.80+", label: "Keyword eval score" },
@@ -2738,14 +2810,14 @@
           },
           feed: {
             kicker: "Latest writing / 02",
-            title: "Field notes from the build",
+            title: "Notes from production",
             linkLabel: "All stories on Medium",
             href: "https://medium.com/@walidelkhoukh99",
           },
           blurbs: [
-            "AI experiments by Walid",
-            "MonÉlu turns French parliamentary archives into a public, queryable data product.",
-            "Writing about production data engineering, civic AI, and the architecture behind useful agents.",
+            "I build useful AI products.",
+            "Civic intelligence · Agent workflows",
+            "I document the architecture.",
           ],
           ticker: [
             "Claude Code / -87% tokens",
@@ -2802,7 +2874,7 @@
             title: "MonÉlu",
             tagline: "FastAPI / dbt / PostgreSQL",
             metricsLabel: "MonÉlu production data metrics",
-            copy: "MonÉlu is an end-to-end data platform: static Assemblée Nationale ZIP exports are fetched, parsed, retried, and upserted into Supabase; dbt turns raw tables into tested marts; FastAPI serves a stateless API; GitHub Actions refreshes production and Vercel delivers the product.",
+            copy: "Assembly archives → tested dbt marts → FastAPI → a public product refreshed every day.",
             metrics: [
               { value: "646", label: "Deputies tracked" },
               { value: "5,404", label: "Votes analyzed" },
@@ -2811,14 +2883,14 @@
           },
           feed: {
             kicker: "Selected experience / 03",
-            title: "From source systems to trusted decisions",
+            title: "Selected systems",
             linkLabel: "View professional profile",
             href: "https://www.linkedin.com/in/walid-elkhoukh",
           },
           blurbs: [
-            "Cloud Data Engineer · Lakehouse, BI & GenAI",
-            "4+ years modernizing data platforms across AWS, GCP, and Databricks.",
-            "I connect ingestion, governance, and analytics to decisions people can trust.",
+            "Cloud Data Engineer · Paris",
+            "Governed cloud data platforms.",
+            "AWS · GCP · Databricks",
           ],
           ticker: [
             "Atlas + SAP / S4HANA",
@@ -2831,21 +2903,21 @@
           cards: [
             {
               small: "SOCOTEC / ERP transformation",
-              title: "APOLLO: Atlas to SAP / S4HANA",
+              title: "Atlas → SAP / S4HANA",
               body: "Built the Databricks data layer that lets Atlas and SAP coexist during a multi-year ERP migration: Auto Loader and DLT ingestion, shared Commerce models, quality controls, RLS, Terraform, Databricks Apps, and Kafka delivery.",
               cta: "View professional profile",
               href: "https://www.linkedin.com/in/walid-elkhoukh",
             },
             {
               small: "SOCOTEC / Platform modernization",
-              title: "From Airflow + Kubernetes to Databricks",
+              title: "50+ pipelines → Databricks",
               body: "Modernized an on-premise Spark platform into governed AWS and Databricks workflows. Refactored PySpark and SQL pipelines, introduced Unity Catalog, lineage, SCIM, IAM, cluster policies, and reproducible infrastructure, then supported adoption across US and UK teams.",
               cta: "View professional profile",
               href: "https://www.linkedin.com/in/walid-elkhoukh",
             },
             {
               small: "SOCOTEC / Finance analytics",
-              title: "One Finance View Across 18 Countries",
+              title: "18 countries · One finance view",
               body: "Led the data delivery for group finance reporting across 18 countries and 12 currencies. Airflow, PySpark, SQL, dbt, Delta Lake, Kyriba exchange rates, Power BI, and country-level RLS replaced fragmented manual reporting with governed local-currency and euro views.",
               cta: "View professional profile",
               href: "https://www.linkedin.com/in/walid-elkhoukh",
