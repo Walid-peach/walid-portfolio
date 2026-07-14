@@ -101,6 +101,14 @@
         --red-dark: #da2c1f;
         --line: rgba(8, 8, 7, 0.36);
         --hairline: rgba(8, 8, 7, 0.17);
+        --font-display: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+        --font-body: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+        --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        --type-body: 1rem;
+        --type-body-large: clamp(1rem, 1.25vw, 1.14rem);
+        --type-label: 0.72rem;
+        --type-h2: clamp(2.35rem, 4.2vw, 4.4rem);
+        --type-h3: clamp(1.4rem, 1.9vw, 2.1rem);
         --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         --ease-spring: cubic-bezier(0.2, 1.45, 0.32, 1);
       }
@@ -123,8 +131,7 @@
           radial-gradient(circle at 1px 1px, rgba(8, 8, 7, 0.08) 1px, transparent 1px),
           var(--paper);
         background-size: 24px 24px, auto;
-        font-family:
-          "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+        font-family: var(--font-body);
         transition:
           color 320ms ease,
           background-color 320ms ease;
@@ -204,13 +211,11 @@
       }
 
       .mono {
-        font-family:
-          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-family: var(--font-mono);
       }
 
       .poster {
-        font-family:
-          "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+        font-family: var(--font-display);
         font-weight: 560;
         letter-spacing: 0;
       }
@@ -1070,41 +1075,13 @@
         padding: 24px;
       }
 
-      .project-evidence {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 14px;
-        align-items: end;
-        margin: 18px 0 0;
-        border-top: 2px solid var(--ink);
-        border-bottom: 2px solid var(--ink);
-        background: var(--ink);
-      }
-
-      .project-evidence img {
-        display: block;
-        width: 100%;
-        height: 172px;
-        object-fit: cover;
-        object-position: top center;
-      }
-
-      .project-evidence figcaption {
-        max-width: 148px;
-        padding: 14px 14px 14px 0;
-        color: var(--paper);
-        font-size: 0.66rem;
-        font-weight: 900;
-        line-height: 1.35;
-        text-transform: uppercase;
-      }
-
       .project-copy {
         margin: 0;
         max-width: 800px;
-        font-size: clamp(1rem, 1.45vw, 1.3rem);
+        font-family: var(--font-body);
+        font-size: var(--type-body-large);
         font-weight: 720;
-        line-height: 1.48;
+        line-height: 1.5;
       }
 
       .project-metrics {
@@ -1214,14 +1191,15 @@
       .slide-hustle-story h2 {
         margin: 16px 0 22px;
         max-width: 720px;
-        font-size: clamp(2.6rem, 5.4vw, 5.8rem);
+        font-size: var(--type-h2);
         line-height: 0.87;
       }
 
       .slide-hustle-story > p:not(.section-kicker) {
         margin: 0;
         max-width: 720px;
-        font-size: clamp(0.96rem, 1.35vw, 1.18rem);
+        font-family: var(--font-body);
+        font-size: var(--type-body-large);
         font-weight: 700;
         line-height: 1.52;
       }
@@ -1253,7 +1231,7 @@
       .feed-title {
         margin: 0;
         max-width: 780px;
-        font-size: clamp(2rem, 4.2vw, 4.6rem);
+        font-size: var(--type-h2);
         line-height: 0.88;
       }
 
@@ -1370,8 +1348,9 @@
       .note-card h2 {
         margin: 0 0 12px;
         max-width: 390px;
-        font-size: clamp(1.35rem, 1.95vw, 2.2rem);
-        line-height: 0.96;
+        font-family: var(--font-display);
+        font-size: var(--type-h3);
+        line-height: 1;
       }
 
       .note-card p {
@@ -1819,7 +1798,7 @@
 
       .section-intro h2 {
         max-width: 820px;
-        font-size: clamp(2rem, 4.2vw, 4.4rem);
+        font-size: var(--type-h2);
         line-height: 0.9;
       }
 
@@ -1860,6 +1839,7 @@
         display: block;
         margin-bottom: 6px;
         color: var(--red-dark);
+        font-family: var(--font-body);
         font-size: 1.02rem;
         font-weight: 950;
       }
@@ -1891,8 +1871,8 @@
 
       .contact-copy h2 {
         margin: 22px 0;
-        font-size: clamp(2.7rem, 5.4vw, 5.7rem);
-        line-height: 0.84;
+        font-size: var(--type-h2);
+        line-height: 0.9;
       }
 
       .contact-copy > p:not(.section-kicker) {
@@ -2295,20 +2275,6 @@
           line-height: 1.5;
         }
 
-        .project-evidence {
-          grid-template-columns: 1fr;
-        }
-
-        .project-evidence img {
-          height: auto;
-          aspect-ratio: 16 / 9;
-        }
-
-        .project-evidence figcaption {
-          max-width: none;
-          padding: 0 12px 12px;
-        }
-
         .project-metrics {
           grid-template-columns: 1fr;
           margin-top: 20px;
@@ -2617,10 +2583,6 @@
           <p class="project-copy">
             Posez une question civique. MonÉlu choisit SQL ou un RAG sourcé, puis montre l'origine de la réponse.
           </p>
-          <figure class="project-evidence">
-            <img src="/assets/images/monelu-chat.avif" alt="Interface de chat IA civique de MonÉlu" width="1280" height="720" loading="lazy" decoding="async" />
-            <figcaption class="mono">Produit en ligne / Intelligence civique française</figcaption>
-          </figure>
           <div class="project-metrics mono" aria-label="MonÉlu AI metrics">
             <div class="project-metric"><strong>3,741</strong><small>Indexed chunks</small></div>
             <div class="project-metric"><strong>0.80+</strong><small>Keyword eval score</small></div>
