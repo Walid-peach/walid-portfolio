@@ -1,0 +1,70 @@
+name: Notify IndexNow
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+      github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for the verification key
+        env:
+          INDEXNOW_KEY: 63ab343801e221b87408d0e2920a2b3b
+        run: |
+          for attempt in {1..20}; do
+            deployed_key="$(curl --fail --silent --show-error \
+              "https://walidelkhoukh.com/${INDEXNOW_KEY}.txt" || true)"
+            if [[ "${deployed_key}" == "${INDEXNOW_KEY}" ]]; then
+              exit 0
+            fi
+            sleep 15
+          done
+
+          echo "The IndexNow verification key was not available on production."
+          exit 1
+
+      - name: Submit canonical URLs
+        env:
+          INDEXNOW_KEY: 63ab343801e221b87408d0e2920a2b3b
+        run: |
+          response_file="$(mktemp)"
+          status_code="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --request POST \
+            --header "Content-Type: application/json; charset=utf-8" \
+            --data @- \
+            "https://api.indexnow.org/indexnow" <<JSON
+          {
+            "host": "walidelkhoukh.com",
+            "key": "${INDEXNOW_KEY}",
+            "keyLocation": "https://walidelkhoukh.com/${INDEXNOW_KEY}.txt",
+            "urlList": [
+              "https://walidelkhoukh.com/",
+              "https://walidelkhoukh.com/fr/",
+              "https://walidelkhoukh.com/monelu/",
+              "https://walidelkhoukh.com/fr/monelu/"
+            ]
+          }
+          JSON
+          )"
+
+          cat "${response_file}"
+          if [[ "${status_code}" != "200" && "${status_code}" != "202" ]]; then
+            echo "IndexNow returned HTTP ${status_code}."
+            exit 1
+          fi
+
+          echo "IndexNow accepted the canonical URLs with HTTP ${status_code}."
