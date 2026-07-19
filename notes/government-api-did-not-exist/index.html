@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Government API Did Not Exist — Walid El Khoukh</title>
+    <meta name="description" content="Seven practical data-engineering lessons from turning static French parliamentary archives into a reliable production pipeline." />
+    <meta name="robots" content="index, follow, max-image-preview:large" /><link rel="canonical" href="https://walidelkhoukh.com/notes/government-api-did-not-exist/" />
+    <link rel="alternate" type="application/rss+xml" title="Walid El Khoukh Field Notes" href="/feed.xml" /><link rel="stylesheet" href="/assets/editorial.css" /><link rel="stylesheet" href="/assets/analytics.css" />
+    <meta property="og:type" content="article" /><meta property="og:title" content="The Government API Did Not Exist" /><meta property="og:description" content="Seven production lessons from a public-data pipeline." />
+    <meta property="og:url" content="https://walidelkhoukh.com/notes/government-api-did-not-exist/" /><meta property="og:image" content="https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:creator" content="@vvalidelk" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"TechArticle","headline":"The Government API Did Not Exist","description":"Seven data engineering lessons from ingesting static French parliamentary archives.","url":"https://walidelkhoukh.com/notes/government-api-did-not-exist/","datePublished":"2026-04-09","dateModified":"2026-07-20","inLanguage":"en","author":{"@type":"Person","@id":"https://walidelkhoukh.com/#walid-el-khoukh","name":"Walid El Khoukh"},"image":"https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png","keywords":["data engineering","public data","ETL","PostgreSQL","MonÉlu"]}
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script><script defer src="/assets/analytics.js"></script>
+  </head>
+  <body>
+    <header class="site-header"><a class="site-mark" href="/">Walid / Lab</a><nav class="site-nav" aria-label="Primary"><a href="/notes/">All notes</a><a href="/monelu/">MonÉlu</a></nav></header>
+    <main class="page-shell"><article>
+      <p class="eyebrow">Public data / 02</p><h1>The government API did not exist.</h1>
+      <p class="lead">The endpoint was documented. Production returned 404. The real source was a collection of static ZIP archives, and that discovery changed the entire pipeline.</p>
+      <div class="meta-row"><span>Walid El Khoukh</span><time datetime="2026-04-09">09 Apr 2026</time><span>10 min read</span></div>
+      <div class="metric-strip" role="group" aria-label="Results"><div class="metric"><strong>6K</strong><span>rows in the first test</span></div><div class="metric"><strong>16m</strong><span>row-by-row insert</span></div><div class="metric"><strong>8s</strong><span>batched insert</span></div></div>
+      <div class="article-body">
+        <h2>Verify the source first</h2>
+        <p>The Assemblée nationale documentation pointed to <code>/api/v2/</code>, but the endpoint no longer served the expected data. The durable source was downloadable archives. Before designing transformations, I learned to prove that the source exists, is current, and can be retrieved repeatedly.</p>
+        <h2>Seven production lessons</h2>
+        <ol>
+          <li><strong>Documentation is evidence, not availability.</strong> Run a small retrieval test before building around an interface.</li>
+          <li><strong>Network round trips dominate naive inserts.</strong> At roughly 160 ms per request, inserting 6,000 rows individually took 16 minutes. Batching reduced it to eight seconds.</li>
+          <li><strong>Long-lived connections are not automatically reliable.</strong> A connection dropped around row 470,000. Short, bounded transactions were easier to retry.</li>
+          <li><strong>Local database behavior can hide hosted limits.</strong> PostgreSQL WAL growth exceeded a managed 1 GB storage tier. Reproducible ingestion made recovery possible.</li>
+          <li><strong>Mechanical fixes need tests.</strong> A broad search-and-replace accidentally made a retry wrapper call itself recursively.</li>
+          <li><strong>Production networking has its own topology.</strong> A direct Supabase connection on port 5432 was blocked while the pooler on 6543 worked.</li>
+          <li><strong>Scripts deserve explicit orchestration.</strong> Running standalone stages as subprocesses preserved isolation and clearer failure boundaries.</li>
+        </ol>
+        <div class="callout"><strong>The common cause:</strong> I developed locally and assumed production would behave the same. Reliable data systems make environmental assumptions visible and testable.</div>
+        <h2>Why this mattered for MonÉlu</h2>
+        <p>MonÉlu needs traceable parliamentary evidence, not plausible text. The ingestion system therefore treats official records as reproducible inputs, preserves source identifiers, and keeps retrieval separate from answer generation.</p>
+        <div class="button-row"><a class="button button--primary" href="/monelu/" data-analytics-event="monelu_clicked" data-analytics-detail="government-api-article">Explore MonÉlu</a><a class="button" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">View source</a></div>
+        <p><small>Adapted from the <a href="https://medium.com/@walidelkhoukh99/i-tried-to-call-a-government-api-it-didnt-exist-1a3d393a684b">original Medium publication</a>.</small></p>
+      </div>
+    </article></main>
+    <footer class="site-footer"><span>Walid El Khoukh · Paris</span><span><a href="/notes/">Notes</a> · <a href="/privacy/">Privacy</a></span></footer>
+  </body>
+</html>

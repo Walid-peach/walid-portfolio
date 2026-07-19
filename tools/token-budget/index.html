@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Agent Token Budget Estimator — Walid El Khoukh</title>
+    <meta name="description" content="A free, private estimator for comparing repeated AI agent workflows with full regeneration versus reusable templates and structured context." />
+    <meta name="robots" content="index, follow, max-image-preview:large" /><link rel="canonical" href="https://walidelkhoukh.com/tools/token-budget/" />
+    <link rel="stylesheet" href="/assets/editorial.css" /><link rel="stylesheet" href="/assets/analytics.css" />
+    <meta property="og:type" content="website" /><meta property="og:title" content="AI Agent Token Budget Estimator" /><meta property="og:description" content="See how reusable context and isolated revisions can change a repeated agent workflow." /><meta property="og:url" content="https://walidelkhoukh.com/tools/token-budget/" /><meta property="og:image" content="https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png" />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:creator" content="@vvalidelk" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebApplication","name":"AI Agent Token Budget Estimator","url":"https://walidelkhoukh.com/tools/token-budget/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://walidelkhoukh.com/#walid-el-khoukh","name":"Walid El Khoukh"},"description":"A directional estimator for repeated AI agent workflow token usage."}
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script><script defer src="/assets/analytics.js"></script>
+  </head>
+  <body>
+    <header class="site-header"><a class="site-mark" href="/">Walid / Lab</a><nav class="site-nav" aria-label="Primary"><a href="/notes/">Notes</a><a href="/">Portfolio</a></nav></header>
+    <main class="page-shell">
+      <p class="eyebrow">Free tool / local only</p><h1>Estimate an agent's token budget.</h1>
+      <p class="lead">Compare a workflow that rebuilds everything with one that keeps stable knowledge in reusable templates. Your inputs stay in this browser.</p>
+      <div class="tool-grid">
+        <form class="tool-panel" id="token-form">
+          <h2>Workflow shape</h2>
+          <div class="field"><label for="task">Task type</label><select id="task"><option value="1">Content generation</option><option value="1.1">UI / component generation</option><option value="1.25">Data analysis</option><option value="1.35">Agent workflow</option></select></div>
+          <div class="field"><label for="context">Reusable context</label><input id="context" type="number" min="0" max="100" value="12" inputmode="decimal" /><small>Approximate KB of rules, examples, schemas, or brand context.</small></div>
+          <div class="field"><label for="outputs">Output units</label><input id="outputs" type="number" min="1" max="30" value="5" inputmode="numeric" /><small>Screens, slides, files, reports, or equivalent units.</small></div>
+          <div class="field"><label for="revisions">Revision rounds</label><input id="revisions" type="number" min="0" max="12" value="3" inputmode="numeric" /></div>
+          <div class="field"><span id="mode-label">Architecture</span><div class="segment" role="group" aria-labelledby="mode-label"><button type="button" data-mode="rebuild" aria-pressed="false">Rebuild all</button><button type="button" data-mode="structured" aria-pressed="true">Stable system</button></div></div>
+          <button class="button button--primary" type="submit">Generate estimate</button>
+        </form>
+        <section class="tool-panel result-panel" aria-live="polite" aria-labelledby="result-heading">
+          <h2 id="result-heading">Directional estimate</h2><strong class="result-number" id="result-number">3.6K</strong><span class="result-label">estimated tokens per complete workflow</span>
+          <p class="result-delta" id="result-delta">About 87% below full regeneration.</p>
+          <ul class="result-list" id="result-list"><li>Externalize stable instructions.</li><li>Use structured input.</li><li>Revise only the affected unit.</li></ul>
+          <p class="tool-disclaimer">This is an architecture comparison, not a model billing forecast. Actual usage varies by model, tokenizer, tools, caching, and output length.</p>
+        </section>
+      </div>
+      <div class="article-body"><h2>Why this exists</h2><p>A five-slide Slide-Hustle run fell from roughly 28.5K to 3.6K tokens after stable CSS, brand rules, templates, and structured briefs were moved outside the conversation.</p><div class="button-row"><a class="button" href="/notes/claude-code-token-optimization/" data-analytics-event="note_opened" data-analytics-detail="token-tool">Read the architecture</a></div></div>
+    </main>
+    <footer class="site-footer"><span>Built by Walid El Khoukh</span><span><a href="/privacy/">Privacy</a></span></footer>
+    <script>
+      const form = document.querySelector("#token-form");
+      const modeButtons = [...document.querySelectorAll("[data-mode]")];
+      let mode = "structured";
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || min));
+      const compact = (value) => value >= 1000 ? `${(value / 1000).toFixed(value >= 10000 ? 1 : 2)}K` : Math.round(value).toString();
+
+      function calculate() {
+        const factor = Number(document.querySelector("#task").value);
+        const context = clamp(document.querySelector("#context").value, 0, 100);
+        const outputs = clamp(document.querySelector("#outputs").value, 1, 30);
+        const revisions = clamp(document.querySelector("#revisions").value, 0, 12);
+        const baseline = (1200 + context * 180 + outputs * 900 + revisions * (context * 120 + outputs * 600)) * factor;
+        const structured = (900 + context * 45 + outputs * 420 + revisions * (outputs * 160 + 180)) * factor;
+        const estimate = mode === "structured" ? structured : baseline;
+        const reduction = Math.max(0, Math.round((1 - structured / baseline) * 100));
+
+        document.querySelector("#result-number").textContent = compact(estimate);
+        document.querySelector("#result-delta").textContent = mode === "structured"
+          ? `About ${reduction}% below full regeneration.`
+          : `A stable system could reduce this estimate by about ${reduction}%.`;
+        document.querySelector("#result-list").innerHTML = mode === "structured"
+          ? "<li>Externalize stable instructions.</li><li>Use structured input.</li><li>Revise only the affected unit.</li>"
+          : "<li>Repeated context is paid for every round.</li><li>Corrections regenerate unaffected work.</li><li>Conversation history grows over time.</li>";
+        return { estimate: Math.round(estimate), reduction, mode };
+      }
+
+      modeButtons.forEach((button) => button.addEventListener("click", () => {
+        mode = button.dataset.mode;
+        modeButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        calculate();
+      }));
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const result = calculate();
+        window.portfolioAnalytics?.track("token_estimate_generated", { detail: `${result.mode}:${result.reduction}` });
+      });
+
+      form.addEventListener("input", calculate);
+      calculate();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Walid El Khoukh — Field Notes</title>
+    <link>https://walidelkhoukh.com/notes/</link>
+    <description>Practical notes on AI agents, token efficiency, cloud data platforms, and public-data systems.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0200</lastBuildDate>
+    <atom:link href="https://walidelkhoukh.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item><title>How I Cut Claude Code Token Use by 87%</title><link>https://walidelkhoukh.com/notes/claude-code-token-optimization/</link><guid isPermaLink="true">https://walidelkhoukh.com/notes/claude-code-token-optimization/</guid><pubDate>Wed, 01 Jul 2026 00:00:00 +0200</pubDate><description>The architecture change mattered more than the prompt.</description></item>
+    <item><title>The Government API Did Not Exist</title><link>https://walidelkhoukh.com/notes/government-api-did-not-exist/</link><guid isPermaLink="true">https://walidelkhoukh.com/notes/government-api-did-not-exist/</guid><pubDate>Thu, 09 Apr 2026 00:00:00 +0200</pubDate><description>Seven production lessons from turning static archives into a reliable data pipeline.</description></item>
+  </channel>
+</rss>

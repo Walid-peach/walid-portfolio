@@ -1,0 +1,24 @@
+# Walid El Khoukh
+
+Walid El Khoukh is a Cloud Data Engineer in Paris who builds governed data platforms and evidence-first AI products. His professional work covers AWS, GCP, Databricks, lakehouse architecture, data governance, and production pipelines. His AI Lab explores agent workflows, retrieval, public data, and token efficiency.
+
+## Primary pages
+
+- Portfolio: https://walidelkhoukh.com/
+- French portfolio: https://walidelkhoukh.com/fr/
+- Notes: https://walidelkhoukh.com/notes/
+- MonÉlu AI and data case study: https://walidelkhoukh.com/monelu/
+- Token budget estimator: https://walidelkhoukh.com/tools/token-budget/
+
+## Selected notes
+
+- How I Cut Claude Code Token Use by 87%: https://walidelkhoukh.com/notes/claude-code-token-optimization/
+- The Government API Did Not Exist: https://walidelkhoukh.com/notes/government-api-did-not-exist/
+
+## Identity
+
+- LinkedIn: https://www.linkedin.com/in/walid-elkhoukh
+- GitHub: https://github.com/Walid-peach
+- Medium: https://medium.com/@walidelkhoukh99
+- X: https://x.com/vvalidelk
+

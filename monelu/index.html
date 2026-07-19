@@ -12,6 +12,8 @@
     <link rel="alternate" hreflang="x-default" href="https://walidelkhoukh.com/monelu/" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Walid El Khoukh Field Notes" href="/feed.xml" />
+    <link rel="stylesheet" href="/assets/analytics.css" />
     <meta name="theme-color" content="#d8d3bf" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Walid El Khoukh" />
@@ -29,6 +31,8 @@
         "url": "https://walidelkhoukh.com/monelu/",
         "description": "Architecture and engineering case study for MonÉlu, a governed civic data and AI platform.",
         "image": "https://walidelkhoukh.com/assets/images/walid-el-khoukh-social.png",
+        "datePublished": "2026-07-13",
+        "dateModified": "2026-07-20",
         "author": {
           "@type": "Person",
           "name": "Walid El Khoukh",
@@ -57,7 +61,7 @@
           <p class="eyebrow mono">Case study / Civic data + AI</p>
           <h1><span>MON</span><span>ÉLU</span></h1>
           <p class="hero-lede">A public interface to French parliamentary activity, built from static archives and designed to show where every answer comes from.</p>
-          <div class="actions mono"><a class="button button-primary" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer">Open product</a><a class="button" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">View source</a></div>
+          <div class="actions mono"><a class="button button-primary" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="monelu_clicked" data-analytics-detail="case-hero">Open product</a><a class="button" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">View source</a></div>
         </div>
         <aside class="hero-mark mono"><strong>01</strong><p>Evidence first<br />Deterministic when possible<br />Semantic when useful</p></aside>
       </header>
@@ -81,7 +85,7 @@
         <div class="chapter-body">
           <h2>From archive to trusted answer.</h2>
           <p>The pipeline separates acquisition, transformation, serving, and interface concerns. Retries and idempotent upserts protect ingestion; dbt tests the analytical layer; FastAPI remains stateless; scheduled GitHub Actions keep production current.</p>
-          <div class="flow mono" aria-label="MonÉlu data architecture"><div class="flow-item"><strong>Assemblée</strong><span>Static ZIP exports</span></div><div class="flow-item"><strong>Ingestion</strong><span>Python parsing + retries</span></div><div class="flow-item"><strong>PostgreSQL</strong><span>Supabase + pgvector</span></div><div class="flow-item"><strong>dbt + API</strong><span>Tested marts + FastAPI</span></div><div class="flow-item"><strong>Product</strong><span>Vercel web interface</span></div></div>
+          <div class="flow mono" role="group" aria-label="MonÉlu data architecture"><div class="flow-item"><strong>Assemblée</strong><span>Static ZIP exports</span></div><div class="flow-item"><strong>Ingestion</strong><span>Python parsing + retries</span></div><div class="flow-item"><strong>PostgreSQL</strong><span>Supabase + pgvector</span></div><div class="flow-item"><strong>dbt + API</strong><span>Tested marts + FastAPI</span></div><div class="flow-item"><strong>Product</strong><span>Vercel web interface</span></div></div>
         </div>
       </section>
 
@@ -104,8 +108,9 @@
         <div class="chapter-body"><h2>Built across the whole path.</h2><p>I designed and shipped the ingestion, dbt models, FastAPI layer, SQL/RAG routing, evaluation baseline, and web product. The goal was not a demo chatbot; it was a public system whose data path can be inspected.</p><div class="facts"><article class="fact"><h3 class="mono">My role</h3><p>Product architecture, data engineering, AI retrieval, API design, deployment, and interface delivery.</p></article><article class="fact"><h3 class="mono">Trade-off</h3><p>Scheduled batch fits the Assembly's ZIP publishing model. Supabase and Railway keep operations lean while preserving clear service boundaries.</p></article><article class="fact"><h3 class="mono">Outcome</h3><p>A live bilingual product with tested marts, explicit answer routing, daily refreshes, and measurable retrieval quality.</p></article></div></div>
       </section>
 
-      <section class="closing"><h2>Public data becomes useful when its path stays visible.</h2><div class="actions mono"><a class="button button-primary" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer">Explore MonÉlu</a><a class="button" href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer">Discuss the build</a></div></section>
-      <footer class="footer mono"><span>Walid El Khoukh / Paris</span><span><a href="/">Portfolio</a> · <a href="https://github.com/Walid-peach/MonElu">GitHub</a></span></footer>
+      <section class="closing"><h2>Public data becomes useful when its path stays visible.</h2><div class="actions mono"><a class="button button-primary" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="monelu_clicked" data-analytics-detail="case-closing">Explore MonÉlu</a><a class="button" href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="contact_clicked" data-analytics-detail="monelu-case">Discuss the build</a></div></section>
+      <footer class="footer mono"><span>Walid El Khoukh / Paris</span><span><a href="/">Portfolio</a> · <a href="/notes/government-api-did-not-exist/">Build note</a> · <a href="/privacy/">Privacy</a></span></footer>
     </main>
+    <script defer src="/assets/analytics.js"></script>
   </body>
 </html>

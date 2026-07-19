@@ -16,6 +16,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="Walid El Khoukh Field Notes" href="/feed.xml" />
+    <link rel="stylesheet" href="/assets/analytics.css" />
     <meta name="theme-color" content="#d8d3bf" />
 
     <meta property="og:type" content="profile" />
@@ -846,8 +848,21 @@
         white-space: nowrap;
       }
 
-      .hero-pro-actions {
+      .hero-pro-actions,
+      .hero-lab-actions {
         display: none;
+      }
+
+      body[data-mode="lab"] .hero-lab-actions {
+        position: absolute;
+        left: 0;
+        bottom: 82px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-top: 14px;
+        border-top: 2px solid var(--ink);
       }
 
       body[data-mode="pro"] .hero-pro-actions {
@@ -1984,6 +1999,13 @@
           margin-top: 4px;
         }
 
+        body[data-mode="lab"] .hero-lab-actions {
+          position: relative;
+          bottom: auto;
+          width: 100%;
+          margin-top: 4px;
+        }
+
         .hero-pro-intro {
           width: 100%;
           max-width: none;
@@ -2184,6 +2206,16 @@
           gap: 8px;
         }
 
+        body[data-mode="lab"] .hero-lab-actions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
+
+        .hero-lab-actions .conversion-link:last-child {
+          grid-column: 1 / -1;
+        }
+
         .hero-pro-intro {
           grid-column: 1 / -1;
           margin-bottom: 4px;
@@ -2375,9 +2407,9 @@
           </button>
         </div>
         <div class="nav-links">
-          <a href="#monelu-project" data-nav-key="first" data-analytics-event="MonElu Click" data-analytics-detail="navigation">MonÉlu</a>
-          <a href="#writing" data-nav-key="second">Writing</a>
-          <a href="https://medium.com/@walidelkhoukh99" target="_blank" rel="noreferrer" data-nav-key="third">Medium</a>
+          <a href="#monelu-project" data-nav-key="first" data-analytics-event="monelu_clicked" data-analytics-detail="navigation">MonÉlu</a>
+          <a href="/notes/" data-nav-key="second">Notes</a>
+          <a href="/tools/token-budget/" data-nav-key="third" data-analytics-event="token_estimator_opened" data-analytics-detail="navigation">Token tool</a>
           <a class="lab-nav-only" href="https://x.com/vvalidelk" target="_blank" rel="noreferrer" aria-label="Walid on X">X</a>
           <a class="language-link" href="/fr/" lang="fr" hreflang="fr" aria-label="Voir le portfolio en français">FR</a>
         </div>
@@ -2438,13 +2470,18 @@
         </div>
 
         <div class="lab-blurb mono">
-          <p class="dots">I build useful AI products.</p>
-          <p>Civic intelligence · Agent workflows</p>
-          <p>I document the architecture.</p>
+          <p class="dots">I build evidence-first AI products.</p>
+          <p>Agent workflows · Civic intelligence</p>
+          <p>I publish the architecture behind them.</p>
         </div>
-        <div class="hero-pro-actions mono" aria-label="Professional actions">
-          <p class="hero-pro-intro">Data platforms · Databricks · Cloud migration · GenAI</p>
-          <a class="conversion-link conversion-link-primary" href="/walid-el-khoukh-cv-en.pdf" download data-analytics-event="CV Download" data-analytics-detail="english">
+        <div class="hero-lab-actions mono" role="group" aria-label="AI Lab actions">
+          <a class="conversion-link conversion-link-primary" href="#monelu-project" data-analytics-event="monelu_clicked" data-analytics-detail="hero">Explore MonÉlu</a>
+          <a class="conversion-link" href="/notes/">Read build notes</a>
+          <a class="conversion-link" href="/tools/token-budget/" data-analytics-event="token_estimator_opened" data-analytics-detail="hero">Token estimator</a>
+        </div>
+        <div class="hero-pro-actions mono" role="group" aria-label="Professional actions">
+          <p class="hero-pro-intro">Cloud Data Engineer in Paris building governed data platforms with AWS, GCP, and Databricks.</p>
+          <a class="conversion-link conversion-link-primary" href="/walid-el-khoukh-cv-en.pdf" download data-analytics-event="cv_downloaded" data-analytics-detail="english">
             Download CV
           </a>
           <a class="conversion-link conversion-link-contact" href="#experience">View experience</a>
@@ -2453,7 +2490,7 @@
           href="https://www.linkedin.com/in/walid-elkhoukh"
           target="_blank"
           rel="noreferrer"
-          data-analytics-event="Contact Click"
+          data-analytics-event="contact_clicked"
           data-analytics-detail="linkedin-hero"
         >LinkedIn</a>
         </div>
@@ -2481,7 +2518,7 @@
           target="_blank"
           rel="noreferrer"
           aria-label="Open the MonÉlu civic intelligence platform"
-          data-analytics-event="MonElu Click"
+          data-analytics-event="monelu_clicked"
           data-analytics-detail="feature"
         ></a>
         <div class="project-mark">
@@ -2493,13 +2530,13 @@
           <p class="project-copy">
             Ask a civic question. MonÉlu chooses SQL or evidence-backed RAG, then shows where the answer came from.
           </p>
-          <div class="project-metrics mono" aria-label="MonÉlu AI metrics">
+          <div class="project-metrics mono" role="group" aria-label="MonÉlu AI metrics">
             <div class="project-metric"><strong>3,741</strong><small>Indexed chunks</small></div>
             <div class="project-metric"><strong>0.80+</strong><small>Keyword eval score</small></div>
             <div class="project-metric"><strong>SQL + RAG</strong><small>Query routing</small></div>
           </div>
           <div class="project-actions mono">
-            <a class="project-link" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="MonElu Click" data-analytics-detail="open-product">Open product</a>
+            <a class="project-link" href="https://mon-elu.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="monelu_clicked" data-analytics-detail="open-product">Open product</a>
             <a class="project-link" href="/monelu/">Read case study</a>
             <a class="project-link" href="https://github.com/Walid-peach/MonElu" target="_blank" rel="noreferrer">View source</a>
           </div>
@@ -2514,14 +2551,14 @@
         </div>
         <div class="project-story">
           <p class="project-copy">Slide-Hustle turns an Obsidian brief into five branded slides in 45 minutes while cutting Claude Code usage from 28.5K to 3.6K tokens.</p>
-          <div class="project-metrics mono" aria-label="Slide-Hustle results">
+          <div class="project-metrics mono" role="group" aria-label="Slide-Hustle results">
             <div class="project-metric"><strong>-87%</strong><small>Claude Code tokens</small></div>
             <div class="project-metric"><strong>3.6K</strong><small>Tokens from 28.5K</small></div>
             <div class="project-metric"><strong>45 min</strong><small>Five finished slides</small></div>
           </div>
           <div class="project-actions mono">
             <a class="project-link" href="https://github.com/Walid-peach/slide-hustle" target="_blank" rel="noreferrer">View source</a>
-            <a class="project-link" href="https://medium.com/@walidelkhoukh99/i-cut-my-claude-code-token-usage-by-87-without-changing-a-single-prompt-0b7e14073d78" target="_blank" rel="noreferrer">Read the field note</a>
+            <a class="project-link" href="/notes/claude-code-token-optimization/" data-analytics-event="note_opened" data-analytics-detail="slide-hustle">Read the field note</a>
           </div>
         </div>
       </section>
@@ -2531,29 +2568,29 @@
           <p class="feed-kicker mono">Latest writing / 02</p>
           <h2 class="feed-title poster">Notes from production</h2>
         </div>
-        <a class="feed-profile mono" href="https://medium.com/@walidelkhoukh99" target="_blank" rel="noreferrer">
-          All stories on Medium
+        <a class="feed-profile mono" href="/notes/">
+          All field notes
         </a>
       </header>
 
       <section id="writing" class="lab-feed" aria-label="AI Lab writing">
-        <a class="note-card" href="https://medium.com/@walidelkhoukh99/i-cut-my-claude-code-token-usage-by-87-without-changing-a-single-prompt-0b7e14073d78" target="_blank" rel="noreferrer">
+        <a class="note-card" href="/notes/claude-code-token-optimization/" data-analytics-event="note_opened" data-analytics-detail="token-optimization">
           <small class="mono">New / 7 min read</small>
           <h2 class="poster">I Cut My Claude Code Token Usage by 87%, Without Changing a Single Prompt</h2>
           <p>How building Slide-Hustle revealed that the bottleneck was never the prompt. It was the architecture.</p>
-          <span class="card-cta mono">Read on Medium</span>
+          <span class="card-cta mono">Read field note</span>
         </a>
-        <a class="note-card" href="https://medium.com/@walidelkhoukh99/i-tried-to-call-a-government-api-it-didnt-exist-1a3d393a684b" target="_blank" rel="noreferrer">
+        <a class="note-card" href="/notes/government-api-did-not-exist/" data-analytics-event="note_opened" data-analytics-detail="government-api">
           <small class="mono">Apr 09, 2026 / 10 min read</small>
           <h2 class="poster">I Tried to Call a Government API. It Didn’t Exist.</h2>
           <p>Seven production bugs from building a civic data pipeline on French parliamentary data, and what each one taught me.</p>
-          <span class="card-cta mono">Read on Medium</span>
+          <span class="card-cta mono">Read field note</span>
         </a>
-        <a id="notes" class="note-card" href="https://medium.com/@walidelkhoukh99" target="_blank" rel="noreferrer">
-          <small class="mono">Medium / 02 stories</small>
-          <h2 class="poster">Field Notes from the Build</h2>
-          <p>Cloud data engineering, MonÉlu, agent architecture, and the lessons that survived production.</p>
-          <span class="card-cta mono">Visit Medium profile</span>
+        <a id="notes" class="note-card" href="/tools/token-budget/" data-analytics-event="token_estimator_opened" data-analytics-detail="writing-card">
+          <small class="mono">Free tool / local only</small>
+          <h2 class="poster">Estimate an Agent's Token Budget</h2>
+          <p>Compare full regeneration with reusable context and isolated revisions.</p>
+          <span class="card-cta mono">Open estimator</span>
         </a>
       </section>
 
@@ -2591,20 +2628,20 @@
           <p class="section-kicker mono">A useful conversation starts here</p>
           <h2 id="contact-title" class="poster">Build something trusted.</h2>
           <div class="contact-links mono">
-            <a href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="Contact Click" data-analytics-detail="linkedin">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="contact_clicked" data-analytics-detail="linkedin">LinkedIn</a>
             <a href="https://github.com/Walid-peach" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
         <div class="contact-actions-panel mono">
-          <a class="contact-action" href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="Contact Click" data-analytics-detail="linkedin-panel"><span>Start on LinkedIn</span><span aria-hidden="true">↗</span></a>
-          <a class="contact-action" href="https://x.com/vvalidelk" target="_blank" rel="noreferrer" data-mode-contact-action data-analytics-event="Contact Click" data-analytics-detail="x-contact"><span>Follow on X</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-action" href="https://www.linkedin.com/in/walid-elkhoukh" target="_blank" rel="noreferrer" data-analytics-event="contact_clicked" data-analytics-detail="linkedin-panel"><span>Start on LinkedIn</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-action" href="https://x.com/vvalidelk" target="_blank" rel="noreferrer" data-mode-contact-action data-analytics-event="contact_clicked" data-analytics-detail="x-contact"><span>Follow on X</span><span aria-hidden="true">↗</span></a>
           <a class="contact-action" href="https://github.com/Walid-peach" target="_blank" rel="noreferrer"><span>Review my GitHub</span><span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
       <footer class="site-footer mono">
         <span>Walid El Khoukh / Paris</span>
-        <span><a href="/monelu/">MonÉlu case study</a> · <a href="/fr/" lang="fr" hreflang="fr">Français</a></span>
+        <span><a href="/notes/">Notes</a> · <a href="/privacy/">Privacy</a> · <a href="/fr/" lang="fr" hreflang="fr">Français</a></span>
       </footer>
     </main>
 
@@ -2647,9 +2684,8 @@
       let asciiLoading = false;
 
       const trackPortfolioEvent = (name, data = {}) => {
-        const isLocalPreview = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
-        if (isLocalPreview) return;
-        window.va("event", { name, data });
+        if (window.portfolioAnalytics) window.portfolioAnalytics.track(name, data);
+        else (window.portfolioEventQueue = window.portfolioEventQueue || []).push({ name, data });
       };
 
       const modes = {
@@ -2660,8 +2696,8 @@
           shadow: "LAB\nENGINE",
           nav: [
             { label: "MonÉlu", href: "#monelu-project" },
-            { label: "Writing", href: "#writing" },
-            { label: "Medium", href: "https://medium.com/@walidelkhoukh99", external: true },
+            { label: "Notes", href: "/notes/" },
+            { label: "Token tool", href: "/tools/token-budget/" },
           ],
           portrait: {
             src: "/assets/images/walid-ai-lab-640.avif",
@@ -2687,13 +2723,13 @@
           feed: {
             kicker: "Latest writing / 02",
             title: "Notes from production",
-            linkLabel: "All stories on Medium",
-            href: "https://medium.com/@walidelkhoukh99",
+            linkLabel: "All field notes",
+            href: "/notes/",
           },
           blurbs: [
-            "I build useful AI products.",
-            "Civic intelligence · Agent workflows",
-            "I document the architecture.",
+            "I build evidence-first AI products.",
+            "Agent workflows · Civic intelligence",
+            "I publish the architecture behind them.",
           ],
           ticker: [
             "Claude Code / -87% tokens",
@@ -2707,7 +2743,7 @@
             href: "https://x.com/vvalidelk",
             icon: "↗",
             external: true,
-            analyticsEvent: "Contact Click",
+            analyticsEvent: "contact_clicked",
             analyticsDetail: "x-contact",
           },
           cards: [
@@ -2715,22 +2751,25 @@
               small: "New / 7 min read",
               title: "I Cut My Claude Code Token Usage by 87%, Without Changing a Single Prompt",
               body: "How building Slide-Hustle revealed that the bottleneck was never the prompt. It was the architecture.",
-              cta: "Read on Medium",
-              href: "https://medium.com/@walidelkhoukh99/i-cut-my-claude-code-token-usage-by-87-without-changing-a-single-prompt-0b7e14073d78",
+              cta: "Read field note",
+              href: "/notes/claude-code-token-optimization/",
+              analyticsEvent: "note_opened",
             },
             {
               small: "Apr 09, 2026 / 10 min read",
               title: "I Tried to Call a Government API. It Didn’t Exist.",
               body: "Seven production bugs from building a civic data pipeline on French parliamentary data, and what each one taught me.",
-              cta: "Read on Medium",
-              href: "https://medium.com/@walidelkhoukh99/i-tried-to-call-a-government-api-it-didnt-exist-1a3d393a684b",
+              cta: "Read field note",
+              href: "/notes/government-api-did-not-exist/",
+              analyticsEvent: "note_opened",
             },
             {
-              small: "Medium / 02 stories",
-              title: "Field Notes from the Build",
-              body: "Cloud data engineering, MonÉlu, agent architecture, and the lessons that survived production.",
-              cta: "Visit Medium profile",
-              href: "https://medium.com/@walidelkhoukh99",
+              small: "Free tool / local only",
+              title: "Estimate an Agent's Token Budget",
+              body: "Compare full regeneration with reusable context and isolated revisions.",
+              cta: "Open estimator",
+              href: "/tools/token-budget/",
+              analyticsEvent: "token_estimator_opened",
             },
           ],
         },
@@ -2773,8 +2812,8 @@
           },
           blurbs: [
             "Cloud Data Engineer · Paris",
-            "Governed cloud data platforms.",
-            "AWS · GCP · Databricks",
+            "Governed platforms on AWS, GCP & Databricks.",
+            "From ingestion to production.",
           ],
           ticker: [
             "Atlas + SAP / S4HANA",
@@ -2789,7 +2828,7 @@
             href: "/walid-el-khoukh-cv-en.pdf",
             icon: "↓",
             download: true,
-            analyticsEvent: "CV Download",
+            analyticsEvent: "cv_downloaded",
             analyticsDetail: "english-contact",
           },
           cards: [
@@ -2834,8 +2873,14 @@
         card.querySelector("p").textContent = content.body;
         card.querySelector(".card-cta").textContent = content.cta;
         card.href = content.href;
-        card.target = "_blank";
-        card.rel = "noreferrer";
+        card.dataset.analyticsEvent = content.analyticsEvent || "contact_clicked";
+        if (content.href.startsWith("http")) {
+          card.target = "_blank";
+          card.rel = "noreferrer";
+        } else {
+          card.removeAttribute("target");
+          card.removeAttribute("rel");
+        }
       };
 
       const renderAsciiPortrait = () => {
@@ -2994,7 +3039,7 @@
           window.clearTimeout(toggleTimer);
           modeToggle.classList.add("is-changing");
           modeToggle.setAttribute("aria-busy", "true");
-          trackPortfolioEvent("Mode View", {
+          trackPortfolioEvent("mode_viewed", {
             mode: button.dataset.modeButton === "lab" ? "perso" : "pro",
             source: "switch",
           });
@@ -3006,19 +3051,10 @@
         });
       });
 
-      document.addEventListener("click", (event) => {
-        if (!(event.target instanceof Element)) return;
-        const trackedLink = event.target.closest("[data-analytics-event]");
-        if (!trackedLink) return;
-        trackPortfolioEvent(trackedLink.dataset.analyticsEvent, {
-          detail: trackedLink.dataset.analyticsDetail || "unspecified",
-          mode: document.body.dataset.mode === "lab" ? "perso" : "pro",
-        });
-      });
-
       renderAsciiPortrait();
       applyMode("lab", false);
-      trackPortfolioEvent("Mode View", { mode: "perso", source: "initial" });
+      trackPortfolioEvent("mode_viewed", { mode: "perso", source: "initial" });
     </script>
+    <script defer src="/assets/analytics.js"></script>
   </body>
 </html>
