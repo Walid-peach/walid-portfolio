@@ -2391,6 +2391,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="/assets/portfolio-v2.css" />
   </head>
   <body data-mode="lab">
     <a class="skip-link mono" href="#main-content">Skip to content</a>
@@ -2417,26 +2418,37 @@
 
       <section class="poster-hero" aria-labelledby="poster-title">
         <div class="title-lockup">
+          <p class="hero-eyebrow mono">From public-interest AI to infrastructure that holds.</p>
           <div class="stamp mono">
             <span>AI LAB JOURNAL</span>
           </div>
           <div class="red-slab" aria-hidden="true"></div>
-          <p class="title-small mono">THE</p>
-          <h1 id="poster-title" class="massive-title poster" data-shadow="LAB&#10;ENGINE">
-            <span class="line">LAB</span>
-            <span class="line">ENGINE</span>
+          <p class="title-small mono">BUILDER / ENGINEER</p>
+          <h1 id="poster-title" class="massive-title poster" data-shadow="WALID&#10;EL KHOUKH">
+            <span class="line">WALID</span>
+            <span class="line">EL KHOUKH</span>
           </h1>
+          <div class="identity-strands">
+            <article class="identity-strand" data-strand="lab">
+              <h2 class="mono">AI LAB</h2>
+              <p>Useful AI for public-interest questions.</p>
+            </article>
+            <article class="identity-strand" data-strand="pro">
+              <h2 class="mono">DATA ENGINEERING</h2>
+              <p>Dependable cloud data platforms teams can trust.</p>
+            </article>
+          </div>
         </div>
 
         <div class="hero-art">
           <figure class="portrait-wrap">
             <img
-              src="/assets/images/walid-ai-lab-640.avif"
-              srcset="/assets/images/walid-ai-lab-640.avif 640w, /assets/images/walid-ai-lab-960.avif 960w"
+              src="/assets/images/walid-perso-editorial-640.avif"
+              srcset="/assets/images/walid-perso-editorial-640.avif 640w, /assets/images/walid-perso-editorial-960.avif 960w"
               sizes="(max-width: 620px) 290px, (max-width: 940px) 340px, 392px"
-              alt="Illustrated AI Lab portrait of Walid EL KHOUKH"
+              alt="Editorial AI Lab portrait of Walid EL KHOUKH"
               width="960"
-              height="960"
+              height="1440"
               fetchpriority="high"
               decoding="async"
             />
@@ -2494,6 +2506,67 @@
           data-analytics-detail="linkedin-hero"
         >LinkedIn</a>
         </div>
+      </section>
+
+      <section id="build-log" class="build-log" aria-labelledby="build-log-title">
+        <header class="build-log-header">
+          <div>
+            <p class="build-log-kicker mono">GitHub / Selected activity</p>
+            <h2 id="build-log-title" class="poster">Build log</h2>
+          </div>
+          <p class="build-log-intro mono">A year of activity, with the commits that changed the work pulled into focus.</p>
+          <a class="build-log-profile mono" href="https://github.com/Walid-peach" target="_blank" rel="noreferrer">Open GitHub</a>
+        </header>
+
+        <div class="build-log-stage" data-build-log>
+          <aside class="repository-index" aria-label="Choose a repository">
+            <button class="repository-button is-active" type="button" data-repository="monelu" aria-pressed="true">
+              <span class="repository-name mono">MonÉlu</span>
+              <span class="repository-description">Civic data + public questions</span>
+            </button>
+            <button class="repository-button" type="button" data-repository="slide-hustle" aria-pressed="false">
+              <span class="repository-name mono">Slide Hustle</span>
+              <span class="repository-description">AI-assisted slide craft</span>
+            </button>
+            <button class="repository-button" type="button" data-repository="portfolio" aria-pressed="false">
+              <span class="repository-name mono">Portfolio</span>
+              <span class="repository-description">This site, built in public</span>
+            </button>
+          </aside>
+
+          <div class="activity-story">
+            <div class="activity-summary mono">
+              <span>1,579 contributions / last year</span>
+              <span>Aug 2025 — Jul 2026</span>
+            </div>
+            <div class="activity-plot" aria-label="A year of GitHub activity with selected repository commits">
+              <div class="activity-months mono" aria-hidden="true">
+                <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span>
+                <span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+              </div>
+              <div class="contribution-grid" aria-hidden="true" data-contribution-grid></div>
+              <div class="commit-lanes" data-commit-lanes></div>
+              <div class="commit-playhead" aria-hidden="true" data-commit-playhead><span></span></div>
+            </div>
+
+            <article class="commit-detail" aria-live="polite" data-commit-detail>
+              <div class="commit-detail-meta mono">
+                <span data-detail-repository>MonÉlu</span>
+                <span data-detail-date>Jul 29, 2026</span>
+              </div>
+              <div class="commit-detail-copy">
+                <h3 data-detail-title>Redesign the navigation around Explorer and À propos</h3>
+                <p data-detail-description>A clearer information architecture, click-driven menus, mobile parity, keyboard focus management, and interaction tests.</p>
+              </div>
+              <div class="commit-detail-link mono">
+                <span data-detail-sha>580533b</span>
+                <a data-detail-url href="https://github.com/Walid-peach/MonElu/commit/580533be6fc99fc73778586dc6eee817ebee82a6" target="_blank" rel="noreferrer">View commit</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <p class="build-log-note mono">The calendar is the rhythm. The selected commits tell the story.</p>
       </section>
 
       <section class="ticker mono" aria-label="Moving AI Lab focus">
@@ -2690,19 +2763,19 @@
 
       const modes = {
         lab: {
-          wordmark: "Walid",
+          wordmark: "Walid EL KHOUKH",
           stamp: "AI LAB JOURNAL",
-          title: ["LAB", "ENGINE"],
-          shadow: "LAB\nENGINE",
+          title: ["WALID", "EL KHOUKH"],
+          shadow: "WALID\nEL KHOUKH",
           nav: [
             { label: "MonÉlu", href: "#monelu-project" },
             { label: "Notes", href: "/notes/" },
             { label: "Token tool", href: "/tools/token-budget/" },
           ],
           portrait: {
-            src: "/assets/images/walid-ai-lab-640.avif",
-            srcset: "/assets/images/walid-ai-lab-640.avif 640w, /assets/images/walid-ai-lab-960.avif 960w",
-            alt: "Illustrated AI Lab portrait of Walid EL KHOUKH",
+            src: "/assets/images/walid-perso-editorial-640.avif",
+            srcset: "/assets/images/walid-perso-editorial-640.avif 640w, /assets/images/walid-perso-editorial-960.avif 960w",
+            alt: "Editorial AI Lab portrait of Walid EL KHOUKH",
           },
           caption: ["Walid", "AI LAB"],
           tickerLabel: "Moving AI Lab focus",
@@ -2776,8 +2849,8 @@
         pro: {
           wordmark: "Walid EL KHOUKH",
           stamp: "DATA ENGINEER",
-          title: ["DATA", "ENGINE"],
-          shadow: "DATA\nENGINE",
+          title: ["WALID", "EL KHOUKH"],
+          shadow: "WALID\nEL KHOUKH",
           nav: [
             { label: "MonÉlu", href: "#monelu-project" },
             { label: "Experience", href: "#experience" },
@@ -3055,6 +3128,7 @@
       applyMode("lab", false);
       trackPortfolioEvent("mode_viewed", { mode: "perso", source: "initial" });
     </script>
+    <script defer src="/assets/build-log.js"></script>
     <script defer src="/assets/analytics.js"></script>
   </body>
 </html>

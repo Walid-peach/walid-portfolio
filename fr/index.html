@@ -2392,6 +2392,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="/assets/portfolio-v2.css" />
   </head>
   <body data-mode="lab">
     <a class="skip-link mono" href="#main-content">Aller au contenu</a>
@@ -2418,26 +2419,37 @@
 
       <section class="poster-hero" aria-labelledby="poster-title">
         <div class="title-lockup">
+          <p class="hero-eyebrow mono">De l’IA d’intérêt public à l’infrastructure qui tient.</p>
           <div class="stamp mono">
             <span>AI LAB JOURNAL</span>
           </div>
           <div class="red-slab" aria-hidden="true"></div>
-          <p class="title-small mono">THE</p>
-          <h1 id="poster-title" class="massive-title poster" data-shadow="LAB&#10;ENGINE">
-            <span class="line">LAB</span>
-            <span class="line">ENGINE</span>
+          <p class="title-small mono">BUILDER / ENGINEER</p>
+          <h1 id="poster-title" class="massive-title poster" data-shadow="WALID&#10;EL KHOUKH">
+            <span class="line">WALID</span>
+            <span class="line">EL KHOUKH</span>
           </h1>
+          <div class="identity-strands">
+            <article class="identity-strand" data-strand="lab">
+              <h2 class="mono">AI LAB</h2>
+              <p>Une IA utile pour les questions d’intérêt public.</p>
+            </article>
+            <article class="identity-strand" data-strand="pro">
+              <h2 class="mono">DATA ENGINEERING</h2>
+              <p>Des plateformes data cloud fiables pour les équipes.</p>
+            </article>
+          </div>
         </div>
 
         <div class="hero-art">
           <figure class="portrait-wrap">
             <img
-              src="/assets/images/walid-ai-lab-640.avif"
-              srcset="/assets/images/walid-ai-lab-640.avif 640w, /assets/images/walid-ai-lab-960.avif 960w"
+              src="/assets/images/walid-perso-editorial-640.avif"
+              srcset="/assets/images/walid-perso-editorial-640.avif 640w, /assets/images/walid-perso-editorial-960.avif 960w"
               sizes="(max-width: 620px) 290px, (max-width: 940px) 340px, 392px"
-              alt="Illustrated AI Lab portrait of Walid EL KHOUKH"
+              alt="Portrait éditorial AI Lab de Walid EL KHOUKH"
               width="960"
-              height="960"
+              height="1440"
               fetchpriority="high"
               decoding="async"
             />
@@ -2495,6 +2507,67 @@
           data-analytics-detail="linkedin-hero"
         >LinkedIn</a>
         </div>
+      </section>
+
+      <section id="build-log" class="build-log" aria-labelledby="build-log-title">
+        <header class="build-log-header">
+          <div>
+            <p class="build-log-kicker mono">GitHub / Activité sélectionnée</p>
+            <h2 id="build-log-title" class="poster">Build log</h2>
+          </div>
+          <p class="build-log-intro mono">Une année d’activité, avec les commits qui ont fait évoluer le travail mis au premier plan.</p>
+          <a class="build-log-profile mono" href="https://github.com/Walid-peach" target="_blank" rel="noreferrer">Ouvrir GitHub</a>
+        </header>
+
+        <div class="build-log-stage" data-build-log>
+          <aside class="repository-index" aria-label="Choisir un dépôt">
+            <button class="repository-button is-active" type="button" data-repository="monelu" aria-pressed="true">
+              <span class="repository-name mono">MonÉlu</span>
+              <span class="repository-description">Données civiques + questions publiques</span>
+            </button>
+            <button class="repository-button" type="button" data-repository="slide-hustle" aria-pressed="false">
+              <span class="repository-name mono">Slide Hustle</span>
+              <span class="repository-description">Création de slides assistée par IA</span>
+            </button>
+            <button class="repository-button" type="button" data-repository="portfolio" aria-pressed="false">
+              <span class="repository-name mono">Portfolio</span>
+              <span class="repository-description">Ce site, construit en public</span>
+            </button>
+          </aside>
+
+          <div class="activity-story">
+            <div class="activity-summary mono">
+              <span>1 579 contributions / année écoulée</span>
+              <span>Août 2025 — Juil. 2026</span>
+            </div>
+            <div class="activity-plot" aria-label="Une année d’activité GitHub avec une sélection de commits">
+              <div class="activity-months mono" aria-hidden="true">
+                <span>Aoû</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Déc</span><span>Jan</span>
+                <span>Fév</span><span>Mar</span><span>Avr</span><span>Mai</span><span>Juin</span><span>Juil</span>
+              </div>
+              <div class="contribution-grid" aria-hidden="true" data-contribution-grid></div>
+              <div class="commit-lanes" data-commit-lanes></div>
+              <div class="commit-playhead" aria-hidden="true" data-commit-playhead><span></span></div>
+            </div>
+
+            <article class="commit-detail" aria-live="polite" data-commit-detail>
+              <div class="commit-detail-meta mono">
+                <span data-detail-repository>MonÉlu</span>
+                <span data-detail-date>29 juil. 2026</span>
+              </div>
+              <div class="commit-detail-copy">
+                <h3 data-detail-title>Repenser la navigation Explorer et À propos</h3>
+                <p data-detail-description>Une architecture plus claire, des menus au clic, la parité mobile, la gestion du focus clavier et des tests d’interaction.</p>
+              </div>
+              <div class="commit-detail-link mono">
+                <span data-detail-sha>580533b</span>
+                <a data-detail-url href="https://github.com/Walid-peach/MonElu/commit/580533be6fc99fc73778586dc6eee817ebee82a6" target="_blank" rel="noreferrer">Voir le commit</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <p class="build-log-note mono">Le calendrier donne le rythme. Les commits sélectionnés racontent l’histoire.</p>
       </section>
 
       <section class="ticker mono" aria-label="Moving AI Lab focus">
@@ -2691,19 +2764,19 @@
 
       const modes = {
         lab: {
-          wordmark: "Walid",
+          wordmark: "Walid EL KHOUKH",
           stamp: "AI LAB JOURNAL",
-          title: ["LAB", "ENGINE"],
-          shadow: "LAB\nENGINE",
+          title: ["WALID", "EL KHOUKH"],
+          shadow: "WALID\nEL KHOUKH",
           nav: [
             { label: "MonÉlu", href: "#monelu-project" },
             { label: "Notes", href: "/notes/" },
             { label: "Outil tokens", href: "/tools/token-budget/" },
           ],
           portrait: {
-            src: "/assets/images/walid-ai-lab-640.avif",
-            srcset: "/assets/images/walid-ai-lab-640.avif 640w, /assets/images/walid-ai-lab-960.avif 960w",
-            alt: "Illustrated AI Lab portrait of Walid EL KHOUKH",
+            src: "/assets/images/walid-perso-editorial-640.avif",
+            srcset: "/assets/images/walid-perso-editorial-640.avif 640w, /assets/images/walid-perso-editorial-960.avif 960w",
+            alt: "Portrait éditorial AI Lab de Walid EL KHOUKH",
           },
           caption: ["Walid", "AI LAB"],
           tickerLabel: "Moving AI Lab focus",
@@ -2777,8 +2850,8 @@
         pro: {
           wordmark: "Walid EL KHOUKH",
           stamp: "DATA ENGINEER",
-          title: ["DATA", "ENGINE"],
-          shadow: "DATA\nENGINE",
+          title: ["WALID", "EL KHOUKH"],
+          shadow: "WALID\nEL KHOUKH",
           nav: [
             { label: "MonÉlu", href: "#monelu-project" },
             { label: "Experience", href: "#experience" },
@@ -3056,6 +3129,7 @@
       applyMode("lab", false);
       trackPortfolioEvent("mode_viewed", { mode: "perso", source: "initial" });
     </script>
+    <script defer src="/assets/build-log.js"></script>
     <script defer src="/assets/analytics.js"></script>
   </body>
 </html>
