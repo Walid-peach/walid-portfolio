@@ -1,59 +1,49 @@
-# Portfolio redesign — option 1 design QA
+# Portfolio — option 2 data-lineage image QA
 
 ## Evidence
 
-- Source visual truth: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/source-option-1.png`
-- Browser-rendered desktop implementation: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-option-1-desktop.png`
-- Full-view comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/source-vs-implementation-option-1.png`
-- Mobile implementation: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-option-1-mobile-pro.png`
-- Source pixels: 1536 × 1024.
-- Desktop CSS viewport: 1536 × 1024. The in-app browser returned a 2293 × 1528 stage capture; the active 1536 × 1024 viewport region was cropped and normalized to 1536 × 1024 for equal-size comparison.
-- Mobile CSS viewport: 389 × 843, checked against a 390 × 844 normalized evidence capture.
-- State: English, Pro selected, page loaded, motion settled. Mobile evidence includes the visible keyboard-focus treatment on the selected Pro control.
+- Source visual truth: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/source-option-2-lineage.png`
+- Browser-rendered desktop implementation: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-option-2-lineage-fullpage.jpg`
+- Browser-rendered mobile implementation: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-option-2-lineage-mobile.jpg`
+- Focused source-versus-implementation comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/source-vs-implementation-option-2-lineage.png`
+- Source pixels: 1585 × 992.
+- Desktop browser stage: 2292 × 1528 CSS pixels at device scale 0.67; the full-page implementation capture is 3421 × 3784 pixels.
+- Mobile browser stage: 582 × 1260 CSS pixels at device scale 0.67; the implementation capture is 869 × 1879 pixels.
+- Focused comparison: the source was center-cropped to the live image container ratio and normalized beside a 778 × 582 browser-rendered region.
+- State: English, Pro selected, image loaded, motion settled.
 
 ## Findings
 
 - No actionable P0/P1/P2 issues remain.
-- The implementation preserves the selected concept's editorial hierarchy: centered mode control, two-line governed-data statement, warm paper surface, restrained vermilion accent, formal portrait, thin rules, focused CTAs, and a three-column selected-work story.
-- The live project and experience copy replaces the mockup's generic placeholder wording with evidence already present in the portfolio. This is an intentional content-quality improvement, not visual drift.
-- P3: the source's circular `DATA ENGINEER` stamp and decorative hand-drawn underline are omitted. Their absence makes the production layout calmer and avoids introducing decorative image assets that add no information.
-- P3: the portrait is slightly squarer and the selected-work image slightly wider than the mockup so both crops remain stable across responsive widths.
+- The new image communicates data engineering more directly than the previous bridge: complex source nodes converge through a vermilion governance checkpoint and become an ordered data grid.
+- The focal checkpoint remains visible in the desktop and mobile crops, while the left-to-right transformation still reads at project-card size.
+- The asset stays consistent with the portfolio’s warm paper, near-black, and vermilion editorial system without introducing dashboard, server-rack, code, or cloud-icon clichés.
 
 ## Required fidelity surfaces
 
-- Fonts and typography: the implementation uses a system neo-grotesk stack for the hero and controls plus Georgia for editorial project and section titles. Weight, line height, letter spacing, two-line hero wrapping, small mono labels, and mobile wrapping match the intended hierarchy. The selected-work title was reduced during QA to a two-line desktop measure.
-- Spacing and layout rhythm: the 1400 px shell, 86 px masthead, 701 px start of selected work, asymmetrical hero grid, portrait offset, button spacing, rules, and project columns closely track the source. Mobile stacks actions and imagery without horizontal overflow.
-- Colors and visual tokens: warm ivory `#f2eee5`, near-black `#11110f`, and vermilion `#e6432f` are consistently mapped to page, type, active mode, CTAs, and image accents. Contrast remains high.
-- Image quality and asset fidelity: the existing 640/960 AVIF portrait sources remain responsive. The project bridge is a dedicated 1800 × 1126 raster asset generated from the selected mockup's art direction, with no placeholder, CSS drawing, or stretched sprite.
-- Copy and content: the hero, project facts, experience, CV links, contact paths, Perso content, and French localization use real portfolio evidence. English and French SEO copy remains accurate and claims are not inflated.
+- Fonts and typography: unchanged. The project heading, facts, caption, and supporting copy preserve the established editorial hierarchy and readable line lengths.
+- Spacing and layout rhythm: unchanged. The image retains the existing project-grid placement, 390 px desktop height, responsive mobile ordering, border, and caption spacing.
+- Colors and visual tokens: the source’s ivory, near-black, and vermilion map cleanly to the portfolio tokens and maintain the intended restrained contrast.
+- Image quality and asset fidelity: the selected ImageGen source is delivered as an optimized 425 KB JPEG at 1585 × 992. The image loads at its declared intrinsic dimensions with no stretching, placeholder, halo, or missing asset.
+- Copy and content: English and French alternative text now describe data lineage, governance, and the transformation from complex sources to structured output. No unrelated copy changed.
 
-## Functional and SEO verification
+## Functional verification
 
-- Perso and Pro controls update `aria-pressed`, reveal the correct static content panel, and keep the homepage title unchanged.
-- English Pro downloads `/walid-el-khoukh-cv-en.pdf`; French Pro downloads `/walid-el-khoukh-cv-fr.pdf`.
-- Desktop and 389 px mobile widths report no horizontal overflow in both Pro and Perso modes.
-- English and French titles, canonicals, reciprocal hreflang links, Open Graph, X cards, and `WebSite` + `ProfilePage` + `Person` JSON-LD are present in the initial HTML.
-- The token estimator responded after changing output units from 5 to 7, updating the estimate to 8.28K.
-- Shared analytics and consent code is preserved unchanged; Vercel Analytics, Clarity Consent V2, privacy links, and stable event attributes remain in place.
-- Browser console errors: none on the verified English and French homepages.
-- `html-validate`, `xmllint`, JavaScript syntax checks, and `git diff --check`: passed.
+- The browser loaded `/assets/images/data-lineage-editorial.jpg` at its natural 1585 × 992 dimensions.
+- Desktop and mobile checks reported zero horizontal overflow.
+- Perso and Pro controls still update `aria-pressed`, reveal the correct panel, and keep the document title stable.
+- Browser console errors: none.
+- English remains Pro by default; the selected-work image is lazy-loaded and asynchronously decoded.
 
 ## Comparison history
 
-1. Initial implementation findings:
-   - P1: the hero headline wrapped to four lines instead of the source's two-line statement.
-   - P2: the bridge image inherited an excessive intrinsic height, pushing project copy below the visible comparison frame.
-   - P2: the selected-work title was too large and wrapped across four lines.
-2. Fixes made:
-   - Added explicit hero line grouping and tuned the display scale.
-   - Added an explicit responsive image height and `object-fit: cover`.
-   - Tuned portrait aspect ratio, hero height, project title size, and selected-work vertical position.
-3. Post-fix evidence:
-   - The 1536 × 1024 implementation now starts selected work at 701 px, has a two-line hero, a two-line project title, the intended three-column composition, and no overflow.
-   - The 390 × 844 mobile evidence shows readable heading wraps, full-width CTAs, a visible focus state, and no horizontal overflow.
+1. Previous state: an architectural bridge metaphor suggested infrastructure but did not identify data engineering clearly enough.
+2. User selection: option 2, a data-lineage and governance composition.
+3. Implementation: replaced the bridge asset, updated the semantic filename, corrected intrinsic dimensions, and localized the descriptive alternative text.
+4. Post-change evidence: focused and full-page browser captures show the selected composition preserved in the existing desktop and mobile project layouts with no P0/P1/P2 mismatch.
 
 ## Follow-up polish
 
-- Optional P3: add a small generated stamp asset only if the stronger poster-like personality is preferred over the current quieter editorial treatment.
+- Optional P3: a future art-direction pass could increase the right-side destination grid slightly if an even stronger “trusted output” emphasis is desired.
 
 final result: passed
