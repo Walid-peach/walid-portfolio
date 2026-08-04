@@ -228,6 +228,9 @@
         if (Math.abs(distance) < 44) return;
         suppressClick = true;
         select(activeIndex + (distance < 0 ? 1 : -1));
+        window.setTimeout(() => {
+          suppressClick = false;
+        }, 0);
       });
 
       viewport.addEventListener("pointercancel", () => {
