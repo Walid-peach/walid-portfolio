@@ -153,11 +153,13 @@
       };
 
       books.forEach((book, index) => {
-        book.addEventListener("click", () => {
+        book.addEventListener("click", (event) => {
           if (suppressClick) {
             suppressClick = false;
             return;
           }
+
+          if (finePointer.matches && event.detail > 0) return;
           if (index === activeIndex) toggleInspect();
           else select(index);
         });
@@ -175,24 +177,29 @@
           } else if (event.key === "End") {
             event.preventDefault();
             select(books.length - 1, { focus: true });
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            if (index !== activeIndex) select(index, { focus: true });
+            else toggleInspect();
           }
         });
 
-        if (!reducedMotion.matches && finePointer.matches) {
-          book.addEventListener("pointermove", (event) => {
-            if (index !== activeIndex || inspected) return;
-            const bounds = book.getBoundingClientRect();
-            const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-            const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
-            book.style.setProperty("--tilt-x", `${y * -4}deg`);
-            book.style.setProperty("--tilt-y", `${x * 6}deg`);
-          });
+        book.addEventListener("pointermove", (event) => {
+          if (!finePointer.matches) return;
+          if (index !== activeIndex) select(index);
+          if (reducedMotion.matches || inspected) return;
 
-          book.addEventListener("pointerleave", () => {
-            book.style.setProperty("--tilt-x", "0deg");
-            book.style.setProperty("--tilt-y", "0deg");
-          });
-        }
+          const bounds = book.getBoundingClientRect();
+          const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+          const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+          book.style.setProperty("--tilt-x", `${y * -4}deg`);
+          book.style.setProperty("--tilt-y", `${x * 6}deg`);
+        });
+
+        book.addEventListener("pointerleave", () => {
+          book.style.setProperty("--tilt-x", "0deg");
+          book.style.setProperty("--tilt-y", "0deg");
+        });
       });
 
       previous.addEventListener("click", () => select(activeIndex - 1));
