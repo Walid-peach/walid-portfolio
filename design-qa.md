@@ -1,55 +1,56 @@
-# Portfolio — MonÉlu civic architecture visual QA
+# Portfolio — interactive Pro systems shelf design QA
 
 ## Evidence
 
-- Source visual truth: `/Users/walidelkhoukh/.codex/generated_images/019fc958-c310-7da3-aa7c-954394205b83/exec-a79352eb-1afc-464e-bb79-73402b7b88ea.png`
-- Optimized implementation asset: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/assets/images/monelu-civic-architecture.jpg`
-- Browser-rendered implementation: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-monelu-civic-architecture-desktop.png`
-- Full-view comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/source-vs-monelu-civic-architecture.png`
-- Source pixels: 1536 × 1024 PNG.
-- Implementation asset: 1536 × 1024 JPEG, approximately 504 KB.
-- Desktop browser capture: 1910 × 1074 pixels at a measured 1910 × 1075 CSS viewport and device pixel ratio 1.34.
-- Desktop rendered image slot: 521 × 390 CSS pixels; natural dimensions 1536 × 1024.
-- Mobile check: 390 × 844 requested browser viewport; responsive stage measured 582 × 1260 CSS pixels, rendered image 554 × 360 CSS pixels, and zero horizontal overflow.
-- State: English and French homepages with Perso selected and the MonÉlu project visible.
+- Interaction reference: `https://x.com/dahbiahmed/status/2084346264326451289?s=46`
+- Live reference site: `https://dahbiahmed.com/`
+- Reference cursor portrait frame: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-x-cursor-portrait.png`
+- Reference 3D shelf frame: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-x-3d-shelf.png`
+- Reference live shelf: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-live-bookshelf.png`
+- Implemented shelf, selected state: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-pro-systems-shelf.png`
+- Implemented shelf, inspected state: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-pro-systems-shelf-inspected.png`
+- Side-by-side visual comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-pro-shelf.jpg`
+- Desktop browser viewport: 1910 × 1075 CSS pixels at device pixel ratio 1.34.
+- Compact check: 390 × 844 requested browser viewport, reported as 582 × 1260 CSS pixels by the browser surface; one-column responsive shelf measured 554 pixels wide with zero horizontal overflow.
+
+## Design translation
+
+- The reference contributes two interaction ideas: a portrait that responds subtly to the pointer and a shelf where objects can be selected, pulled forward, and rotated.
+- The implementation deliberately keeps the portfolio’s warm ivory, near-black, and vermilion editorial language instead of reproducing the reference site’s dark interface.
+- Books become professional case files for platform modernization, ERP coexistence, and global finance analytics. The visual interaction therefore reinforces Walid’s data-engineering positioning rather than behaving as decoration.
+- Two new portrait editorial covers were generated as real raster assets, then compressed from approximately 2.3 MB PNG sources to 396 KB and 420 KB JPEGs for production use. The first case reuses the existing governed-lineage artwork.
 
 ## Findings
 
-- No actionable P0/P1/P2 differences remain.
-- The selected visual is reproduced as the real raster asset rather than approximated with CSS, SVG, or placeholder elements.
-- At portfolio-card size, the Palais Bourbon façade remains immediately recognizable and the curved parliamentary seats remain legible as the primary civic-data metaphor.
-- The existing `object-fit: cover` crop removes only peripheral network detail; the façade, hemicycle, red axis, and ordered grid remain visible.
-- The image now reads as editorial civic architecture rather than a product screenshot, matching the user-selected direction.
+- No actionable P0/P1/P2 visual or functional differences remain.
+- Desktop composition preserves a clear hierarchy: section proposition, tactile shelf, selected case, measurable outcome, and technical stack.
+- The selected case is visibly larger, elevated, and given depth; adjacent cases remain recognizable without competing with it.
+- Inspecting a case completes a 180-degree rotation and reveals a compact outcome-focused back cover. Returning restores the generated editorial cover.
+- The compact layout switches to one column, removes the inherited detail-panel height, preserves a 40-pixel shelf-to-detail gap, and keeps controls at comfortable widths.
 
-## Required fidelity surfaces
+## Accessibility and progressive enhancement
 
-- Fonts and typography: surrounding portfolio typography, weights, wrapping, and captions are unchanged. The image contains no generated text that could conflict with the page hierarchy.
-- Spacing and layout rhythm: the asset fills the existing 521 × 390 desktop slot and responsive 554 × 360 mobile slot without changing the project grid, section spacing, or caption alignment.
-- Colors and visual tokens: warm ivory, near-black linework, pale graphite, and the restrained vermilion axis match the portfolio and the existing modern data-platform artwork.
-- Image quality and asset fidelity: the optimized 1536 × 1024 JPEG keeps architectural linework and chair nodes sharp at rendered size, loads successfully in both languages, and replaces the previous 266 KB UI mockup with a 504 KB lazy-loaded image.
-- Copy and content: project copy, facts, actions, URLs, and captions remain unchanged. English and French alternative text describe the Assemblée nationale façade, hemicycle, and governed data lines.
+- All three cases are real buttons inside a named listbox, expose `aria-selected`, and maintain a roving tab stop.
+- Previous, next, and inspect controls retain visible focus states and meaningful accessible names.
+- Arrow Left/Right, Home, End, Enter, Space, and Escape are supported. Browser verification confirmed Arrow Right moves both selection and focus from case 01 to case 02.
+- Selection changes are announced through an `aria-live` status region in English and French.
+- All case details remain semantic HTML in the document, so the measurable outcomes and stack are indexable without relying on a canvas or WebGL scene.
+- Pointer-driven portrait and cover tilt are disabled for coarse pointers and `prefers-reduced-motion`; the shelf remains fully usable without motion.
 
 ## Functional verification
 
-- Pro and Perso controls were switched in the browser; Perso retains `aria-pressed="true"` and exposes the MonÉlu section.
-- English and French pages load `/assets/images/monelu-civic-architecture.jpg` at natural dimensions 1536 × 1024.
-- Broken-image checks returned none in desktop, mobile, English, and French states.
-- Desktop and mobile checks returned zero horizontal overflow.
-- Browser `pageerror` and console-event checks returned no events during navigation.
+- English selection test: case 02 updated the selected option, counter, and detail heading to “Keep commerce moving while the core changes.”
+- Inspect test: `aria-pressed` changed to `true`, the control label changed to “Return,” and the selected case rotated to its outcome side.
+- French page exposes three localized case panels, a localized selection label, and the “Inspecter” control.
+- Compact Pro image check loaded all four relevant assets successfully with non-zero natural dimensions.
+- Browser console logs returned no errors during English, French, selection, inspection, and keyboard checks.
+- `node --check assets/portfolio-v3.js` and `git diff --check` passed.
 
-## Focused comparison
+## Intentional differences from the reference
 
-- The combined source-versus-live image is sufficient for the key fidelity decision because the only changed surface is the project raster asset. The full source remains readable beside its complete live card context; no additional typography or control close-up was needed.
-
-## Comparison history
-
-1. Previous implementation: a generated editorial treatment of the MonÉlu interface still read as a product screenshot.
-2. User-selected source: combined the frontal Palais Bourbon exterior, empty parliamentary seating, data-network linework, and a central vermilion governance axis.
-3. Implementation: replaced the screenshot-derived asset in English and French, localized alternative text, and removed the superseded image.
-4. Post-build comparison: no P0/P1/P2 mismatch was found; no corrective visual iteration was required.
-
-## Follow-up polish
-
-- Optional P3: a future responsive `<picture>` derivative could reduce transfer size further on very narrow screens.
+- The portfolio uses three professional systems rather than a personal reading list.
+- Typography, color, spacing, borders, and controls follow the established portfolio design system.
+- The interaction uses semantic DOM and CSS 3D transforms rather than a WebGL scene, keeping the content lightweight, accessible, and SEO-readable.
+- Mobile retains selection and inspection but removes pointer tilt and exaggerated perspective.
 
 final result: passed
