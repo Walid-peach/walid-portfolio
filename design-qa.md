@@ -116,4 +116,16 @@
 9. The nine production JPEGs were renamed to the cache-safe `walid-warm-gaze-*` family, the HTML preload and gaze base were updated in English and French, the stylesheet cache key advanced to `v=6`, and the grayscale filter was removed.
 10. Final browser QA compared the selected static preview to the production hero, inspected the focused source/render crop, confirmed all nine frame requests returned HTTP 200, and found no P0/P1/P2 mismatch.
 
+## Perso Photo Tetris integration
+
+- The English and French Perso heroes now assemble the full AI Lab poster from 36 tetrominoes. Every piece begins above its destination and stays in that column, so it cannot pass through already landed blocks.
+- Replay and the `0.20x`–`1.25x` Pace/Rythme slider remain compact below the poster. Browser testing confirmed the live `1.25x` value, replay behavior, and quote progression.
+- The quote strip rotates through localized playful lines about gravity, the rat race, race conditions, and jet lag without creating an overly chatty live region.
+- The semantic fallback image remains available before JavaScript and to assistive technology. Reduced-motion users receive the exact completed poster with animation controls disabled.
+- Fresh English and French reloads produced no new browser console errors.
+- Compact QA rendered the component at 330 pixels inside a 390-pixel viewport with no horizontal overflow.
+- French QA confirmed the localized controls, status, and quote copy.
+- Full HTML/XML validation, JavaScript syntax checks, and `git diff --check` passed after integration.
+- The final accelerated run reached `Portrait complete.` at `1.25x`, retained the stable English title, and reported equal `scrollWidth` and viewport width.
+
 final result: passed
