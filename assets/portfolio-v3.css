@@ -402,6 +402,93 @@ button {
   filter: none;
 }
 
+.lab-tetris {
+  display: flex;
+  flex-direction: column;
+}
+
+.lab-tetris .lab-logo-frame {
+  order: 1;
+}
+
+.lab-tetris figcaption {
+  order: 2;
+}
+
+.tetris-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tetris-controls {
+  display: grid;
+  grid-template-columns: minmax(112px, 0.36fr) minmax(0, 1fr);
+  margin-top: 12px;
+  border: 1px solid var(--ink);
+  font-family: var(--mono);
+  order: 3;
+}
+
+.tetris-replay {
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 0;
+  border-right: 1px solid var(--ink);
+  color: #fffaf1;
+  background: var(--accent);
+  font: 850 0.68rem/1 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease;
+}
+
+.tetris-replay:hover {
+  background: var(--accent-dark);
+}
+
+.tetris-replay:disabled {
+  cursor: default;
+  opacity: 0.58;
+}
+
+.tetris-pace {
+  display: grid;
+  grid-template-columns: auto minmax(82px, 1fr);
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+  padding: 9px 12px;
+  font-size: 0.66rem;
+  font-weight: 760;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tetris-pace [data-tetris-rate] {
+  color: var(--accent-dark);
+}
+
+.tetris-pace input {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.tetris-quote {
+  min-height: 2.9em;
+  margin: 10px 0 0;
+  padding: 8px 0 0 12px;
+  border-top: 1px solid var(--hairline);
+  border-left: 4px solid var(--accent);
+  color: var(--muted);
+  font: 760 0.68rem/1.45 var(--mono);
+  order: 4;
+}
+
 .portrait-figure figcaption {
   display: flex;
   justify-content: space-between;
@@ -1072,6 +1159,19 @@ button {
   .portrait-figure::before {
     left: -14px;
     width: 52px;
+  }
+
+  .tetris-controls {
+    grid-template-columns: minmax(96px, 0.34fr) minmax(0, 1fr);
+  }
+
+  .tetris-pace {
+    gap: 8px;
+    padding-inline: 10px;
+  }
+
+  .tetris-quote {
+    min-height: 3.4em;
   }
 
   .section {

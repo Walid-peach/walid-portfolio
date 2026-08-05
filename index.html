@@ -19,7 +19,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" as="image" href="/assets/images/portrait-gaze/walid-warm-gaze-center.jpg" type="image/jpeg" fetchpriority="high" />
     <link rel="stylesheet" href="/assets/analytics.css" />
-    <link rel="stylesheet" href="/assets/portfolio-v3.css?v=6" />
+    <link rel="stylesheet" href="/assets/portfolio-v3.css?v=7" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:locale" content="en_US" />
@@ -266,10 +266,20 @@
             </div>
             <p class="proof-line"><span>Civic intelligence / RAG / agent craft</span><span class="proof-dot" aria-hidden="true"></span></p>
           </div>
-          <figure class="portrait-figure">
-            <div class="portrait-frame lab-logo-frame">
-              <img src="/assets/images/walid-ai-lab-logo-poster.jpg" alt="Walid AI Lab logo" width="1254" height="1254" loading="lazy" decoding="async" />
+          <figure class="portrait-figure lab-tetris" data-photo-tetris>
+            <div class="portrait-frame lab-logo-frame" data-tetris-frame>
+              <img src="/assets/images/walid-ai-lab-logo-poster.jpg" alt="Walid AI Lab portrait logo" width="1254" height="1254" loading="lazy" decoding="async" />
+              <canvas class="tetris-canvas" data-tetris-canvas aria-hidden="true"></canvas>
             </div>
+            <div class="tetris-controls" role="group" aria-label="Photo Tetris controls">
+              <button class="tetris-replay" type="button" data-tetris-replay>Replay</button>
+              <label class="tetris-pace">
+                <span>Pace <span data-tetris-rate>0.45×</span></span>
+                <input type="range" min="0.2" max="1.25" step="0.05" value="0.45" data-tetris-pace aria-label="Photo Tetris animation pace" />
+              </label>
+            </div>
+            <p class="tetris-quote" data-tetris-quote>“Gravity already clocked in.”</p>
+            <p class="sr-only" data-tetris-status aria-live="polite">Photo Tetris ready.</p>
             <figcaption><span>Walid AI Lab</span><span>Builder / Engineer</span></figcaption>
           </figure>
         </section>
@@ -330,7 +340,8 @@
       </div>
     </footer>
 
-    <script defer src="/assets/portfolio-v3.js?v=gaze-follow-2"></script>
+    <script defer src="/assets/portfolio-v3.js?v=tetris-1"></script>
+    <script defer src="/assets/photo-tetris.js?v=1"></script>
     <script defer src="/assets/analytics.js"></script>
   </body>
 </html>
