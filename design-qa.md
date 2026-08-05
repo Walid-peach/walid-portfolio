@@ -1,4 +1,4 @@
-# Portfolio — interactive Pro systems shelf and cursor portrait design QA
+# Portfolio — interactive Pro systems shelf and casual cursor portrait design QA
 
 ## Evidence
 
@@ -21,6 +21,10 @@
 - Browser-rendered neutral hero: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-center.png` (1910 × 1074 pixels at a 1910 × 1075 CSS viewport).
 - Focused browser crops: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-left-focus.jpg`, `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-up-focus.jpg`, and `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-down-focus.jpg` (each 440 × 455 pixels, matching the rendered portrait component).
 - Combined behavior and asset comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-gaze.png` (1910 × 1074 pixels). The source and implementation frames are normalized into matching visual cells; the nine production frames are shown together beneath them.
+- Selected casual source truth: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-casual-quarter-zip.jpg` (960 × 960 pixels, navy fine-knit quarter-zip).
+- Browser-rendered casual Pro hero: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-casual-gaze-desktop.png` (1910 × 1074 pixels at a 1910 × 1075 CSS viewport).
+- Current same-state focused comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-casual-gaze.png` (920 × 463 pixels). Both cells use the same 440 × 423 crop; the implementation intentionally applies the portfolio's grayscale and contrast treatment.
+- Compact Pro check: the browser surface reported a 582 × 1260 CSS viewport for the requested 390 × 844 override; the portrait loaded at 960 × 960 natural pixels and the page retained zero horizontal overflow.
 
 ## Design translation
 
@@ -28,7 +32,7 @@
 - The implementation deliberately keeps the portfolio’s warm ivory, near-black, and vermilion editorial language instead of reproducing the reference site’s dark interface.
 - Books become professional case files for platform modernization, ERP coexistence, and global finance analytics. The visual interaction therefore reinforces Walid’s data-engineering positioning rather than behaving as decoration.
 - Two new portrait editorial covers were generated as real raster assets, then compressed from approximately 2.3 MB PNG sources to 396 KB and 420 KB JPEGs for production use. The first case reuses the existing governed-lineage artwork.
-- The cursor portrait uses the original professional headshot as the neutral center plus eight identity-preserving generated directions. All nine frames share a 960 × 960 crop and are compressed to approximately 1.2 MB total.
+- The cursor portrait now uses the user's selected casual navy quarter-zip portrait as the neutral center plus eight identity-preserving generated directions. All nine production frames share a 960 × 960 crop and total approximately 1.6 MB.
 
 ## Findings
 
@@ -39,7 +43,7 @@
 - Moving the cursor across a different cover now updates the selected book, counter, case heading, copy, and facts immediately. A desktop pointer click on a cover no longer drives selection or inspection.
 - The compact layout switches to one column, removes the inherited detail-panel height, preserves a 40-pixel shelf-to-detail gap, and keeps controls at comfortable widths.
 - The portrait now follows the cursor across the full Pro viewport through a nine-state direction grid. Left, up, down, right, and all four diagonal states change the head angle and eye gaze rather than merely tilting a flat image.
-- Source-vs-implementation comparison confirms the three directly supplied reference states—left, up, and down—are represented clearly. The identity, suit, glasses, beard, white backdrop, grayscale treatment, and portfolio crop remain consistent across the set.
+- Source-vs-implementation comparison confirms the selected casual identity and wardrobe survive the production crop and grayscale treatment. The navy quarter-zip, glasses, beard, white backdrop, and portfolio framing remain consistent across the set.
 - The 120 ms two-layer crossfade removes loading flashes, while a restrained 2.5-pixel parallax and sub-1.1-degree frame tilt add depth without changing the editorial composition.
 
 ## Cursor portrait fidelity surfaces
@@ -71,8 +75,9 @@
 - French page exposes three localized case panels, a localized selection label, and the “Inspecter” control.
 - Compact Pro image check loaded all four relevant assets successfully with non-zero natural dimensions.
 - Browser console logs returned no errors during English, French, selection, inspection, and keyboard checks.
-- `node --check assets/portfolio-v3.js` and `git diff --check` passed.
+- Full HTML validation, XML validation, `node --check` for both shared scripts, and `git diff --check` passed. The validator's native-element preference is disabled for the intentional custom ARIA region/listbox used by the 3D case shelf.
 - Cursor matrix test moved the real browser pointer through all nine target regions. Every expected value matched `data-gaze-direction`, and every visible layer loaded the corresponding 960 × 960 frame.
+- The regenerated casual matrix passed the same nine-region test: center, four cardinals, and four diagonals each loaded the expected navy quarter-zip asset.
 - English neutral, left, up, and down states were captured from the rendered page. The French page loaded the up-right frame, retained the localized title, and had zero horizontal overflow.
 - Switching to Perso reset the hidden Pro portrait from `down-right` to `center`; the AI Lab logo retained natural dimensions and computed opacity `1`.
 - The desktop hero retained zero horizontal overflow, the neutral portrait loaded at 960 × 960 natural pixels, and browser error logs were empty.
@@ -97,5 +102,8 @@
 2. A nine-frame identity-preserving set was generated from the existing professional portrait. The exact source portrait was retained as the center state to avoid neutral-state identity drift.
 3. The hero was upgraded to two stacked image layers, page-wide pointer mapping, a three-by-three direction grid, preloading, and a 120 ms crossfade.
 4. Visual QA compared left, up, and down states directly with the user-provided frames, then reviewed all nine assets together. No P0/P1/P2 visual or functional issue remained.
+5. The user selected the casual navy quarter-zip direction. That exact image became the new neutral frame, and eight new gaze directions were generated from it while preserving identity, wardrobe, lighting, and white studio background.
+6. The production assets were resized to 960 × 960 JPEGs at quality 84 and replaced in place, so the existing crossfade and cursor mapping required no behavioral rewrite.
+7. Post-replacement browser QA exercised all nine cursor regions on English and the up-right state on French, checked desktop and compact overflow, confirmed stable titles, and found no console errors.
 
 final result: passed
