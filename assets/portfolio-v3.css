@@ -345,7 +345,7 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center 19%;
-  filter: grayscale(1) contrast(1.08);
+  filter: none;
 }
 
 .portrait-figure[data-reactive-portrait] .portrait-frame img {

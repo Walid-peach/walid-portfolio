@@ -1,4 +1,4 @@
-# Portfolio — interactive Pro systems shelf and casual cursor portrait design QA
+# Portfolio — interactive Pro systems shelf and warm-paper cursor portrait design QA
 
 ## Evidence
 
@@ -23,7 +23,12 @@
 - Combined behavior and asset comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-gaze.png` (1910 × 1074 pixels). The source and implementation frames are normalized into matching visual cells; the nine production frames are shown together beneath them.
 - Selected casual source truth: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-casual-quarter-zip.jpg` (960 × 960 pixels, navy fine-knit quarter-zip).
 - Browser-rendered casual Pro hero: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-casual-gaze-desktop.png` (1910 × 1074 pixels at a 1910 × 1075 CSS viewport).
-- Current same-state focused comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-casual-gaze.png` (920 × 463 pixels). Both cells use the same 440 × 423 crop; the implementation intentionally applies the portfolio's grayscale and contrast treatment.
+- Previous grayscale comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-casual-gaze.png` (920 × 463 pixels), retained as iteration history.
+- Selected warm-paper source truth: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-warm-paper-center.jpg` (1254 × 1254 pixels).
+- Browser-rendered warm-paper Pro hero: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-warm-paper-gaze-desktop.png` (1212 × 1152 capture from a 1910 × 1075 CSS viewport; the Codex browser surface scaled the visual capture).
+- Full-view comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/source-preview-vs-production-warm-paper-gaze.jpg` (2448 × 1198 pixels). The static option-01 preview and production page were padded to matching 1212 × 1152 cells before comparison.
+- Current same-state focused comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-warm-paper-gaze.jpg` (848 × 444 pixels). Both cells use the same 408 × 392 hero crop.
+- Production nine-frame matrix: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-warm-paper-gaze-matrix.jpg` (900 × 990 pixels).
 - Compact Pro check: the browser surface reported a 582 × 1260 CSS viewport for the requested 390 × 844 override; the portrait loaded at 960 × 960 natural pixels and the page retained zero horizontal overflow.
 
 ## Design translation
@@ -32,7 +37,7 @@
 - The implementation deliberately keeps the portfolio’s warm ivory, near-black, and vermilion editorial language instead of reproducing the reference site’s dark interface.
 - Books become professional case files for platform modernization, ERP coexistence, and global finance analytics. The visual interaction therefore reinforces Walid’s data-engineering positioning rather than behaving as decoration.
 - Two new portrait editorial covers were generated as real raster assets, then compressed from approximately 2.3 MB PNG sources to 396 KB and 420 KB JPEGs for production use. The first case reuses the existing governed-lineage artwork.
-- The cursor portrait now uses the user's selected casual navy quarter-zip portrait as the neutral center plus eight identity-preserving generated directions. All nine production frames share a 960 × 960 crop and total approximately 1.6 MB.
+- The cursor portrait now uses the user's selected warm-paper, navy quarter-zip portrait as the neutral center plus eight identity-preserving generated directions. All nine production frames share a 960 × 960 crop and total approximately 1.6 MB.
 
 ## Findings
 
@@ -43,15 +48,15 @@
 - Moving the cursor across a different cover now updates the selected book, counter, case heading, copy, and facts immediately. A desktop pointer click on a cover no longer drives selection or inspection.
 - The compact layout switches to one column, removes the inherited detail-panel height, preserves a 40-pixel shelf-to-detail gap, and keeps controls at comfortable widths.
 - The portrait now follows the cursor across the full Pro viewport through a nine-state direction grid. Left, up, down, right, and all four diagonal states change the head angle and eye gaze rather than merely tilting a flat image.
-- Source-vs-implementation comparison confirms the selected casual identity and wardrobe survive the production crop and grayscale treatment. The navy quarter-zip, glasses, beard, white backdrop, and portfolio framing remain consistent across the set.
+- Source-vs-implementation comparison confirms the selected identity, navy quarter-zip, tortoiseshell glasses, warm-paper backdrop, and natural color treatment survive the production crop. The page no longer applies a grayscale filter.
 - The 120 ms two-layer crossfade removes loading flashes, while a restrained 2.5-pixel parallax and sub-1.1-degree frame tilt add depth without changing the editorial composition.
 
 ## Cursor portrait fidelity surfaces
 
 - **Fonts and typography:** no type styles, wrapping, weights, or copy changed. The hero hierarchy and figcaption remain aligned with the existing editorial system.
 - **Spacing and layout rhythm:** the portrait stays in the existing 440 × 455 rendered slot; its border, vermilion offset block, caption line, hero grid, and surrounding whitespace are unchanged.
-- **Colors and visual tokens:** the warm paper, near-black, and vermilion tokens remain unchanged. Every directional asset receives the same grayscale and contrast treatment as the original portrait.
-- **Image quality and asset fidelity:** each production frame is 960 × 960 and renders above the component’s CSS size. No stretching, transparent halos, placeholder assets, or CSS-drawn substitutes are present.
+- **Colors and visual tokens:** the warm paper, near-black, and vermilion tokens remain unchanged. The portrait now keeps its natural skin, navy knit, tortoiseshell glasses, and warm-ivory backdrop without a CSS color filter.
+- **Image quality and asset fidelity:** each production frame is 960 × 960 and renders above the component’s CSS size. All nine frames share the selected wardrobe, background, lighting, and editorial crop; no stretching, transparent halos, placeholder assets, or CSS-drawn substitutes are present.
 - **Copy and content:** English and French hero text, alternative text, navigation, CV links, and SEO metadata remain unchanged. The second crossfade layer is decorative and hidden from assistive technology.
 
 ## Accessibility and progressive enhancement
@@ -81,6 +86,8 @@
 - English neutral, left, up, and down states were captured from the rendered page. The French page loaded the up-right frame, retained the localized title, and had zero horizontal overflow.
 - Switching to Perso reset the hidden Pro portrait from `down-right` to `center`; the AI Lab logo retained natural dimensions and computed opacity `1`.
 - The desktop hero retained zero horizontal overflow, the neutral portrait loaded at 960 × 960 natural pixels, and browser error logs were empty.
+- The warm-paper production route loaded the versioned stylesheet with computed `filter: none`, the renamed neutral asset at 960 × 960, and zero horizontal overflow.
+- The local server returned HTTP 200 for the neutral frame and all eight directional `walid-warm-gaze-*` preloads. The only local 404 was the expected Vercel Insights endpoint, which is not available under a plain static server.
 
 ## Intentional differences from the reference
 
@@ -105,5 +112,8 @@
 5. The user selected the casual navy quarter-zip direction. That exact image became the new neutral frame, and eight new gaze directions were generated from it while preserving identity, wardrobe, lighting, and white studio background.
 6. The production assets were resized to 960 × 960 JPEGs at quality 84 and replaced in place, so the existing crossfade and cursor mapping required no behavioral rewrite.
 7. Post-replacement browser QA exercised all nine cursor regions on English and the up-right state on French, checked desktop and compact overflow, confirmed stable titles, and found no console errors.
+8. The user selected color option 01. That exact warm-paper portrait became the new neutral source, and eight matching directional frames were regenerated with identity, wardrobe, crop, lighting, and backdrop locked.
+9. The nine production JPEGs were renamed to the cache-safe `walid-warm-gaze-*` family, the HTML preload and gaze base were updated in English and French, the stylesheet cache key advanced to `v=6`, and the grayscale filter was removed.
+10. Final browser QA compared the selected static preview to the production hero, inspected the focused source/render crop, confirmed all nine frame requests returned HTTP 200, and found no P0/P1/P2 mismatch.
 
 final result: passed
