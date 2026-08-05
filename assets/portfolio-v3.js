@@ -45,6 +45,10 @@
       mode: nextMode === "lab" ? "perso" : "pro",
       source,
     });
+
+    document.dispatchEvent(new CustomEvent("portfolio:modechange", {
+      detail: { mode: nextMode, source },
+    }));
   };
 
   modeButtons.forEach((button) => {
