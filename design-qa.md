@@ -1,4 +1,4 @@
-# Portfolio — interactive Pro systems shelf design QA
+# Portfolio — interactive Pro systems shelf and cursor portrait design QA
 
 ## Evidence
 
@@ -15,6 +15,12 @@
 - Hover revision comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-hover-selection.jpg`; both captures were normalized to 1038 pixels high with an ivory canvas and a 32-pixel divider. This is intentionally a before/after interaction comparison rather than a same-state fidelity comparison; the existing same-state comparison above remains the visual-fidelity source.
 - Desktop browser viewport: 1910 × 1075 CSS pixels at device pixel ratio 1.34.
 - Compact check: 390 × 844 requested browser viewport, reported as 582 × 1260 CSS pixels by the browser surface; one-column responsive shelf measured 554 pixels wide with zero horizontal overflow.
+- Cursor portrait source truth, left: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-gaze-left.png` (524 × 326 pixels).
+- Cursor portrait source truth, up: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-gaze-up.png` (478 × 344 pixels).
+- Cursor portrait source truth, down: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-gaze-down.png` (558 × 410 pixels).
+- Browser-rendered neutral hero: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-center.png` (1910 × 1074 pixels at a 1910 × 1075 CSS viewport).
+- Focused browser crops: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-left-focus.jpg`, `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-up-focus.jpg`, and `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/implementation-gaze-down-focus.jpg` (each 440 × 455 pixels, matching the rendered portrait component).
+- Combined behavior and asset comparison: `/Users/walidelkhoukh/Desktop/Career/walid-portfolio/design-qa-evidence/reference-vs-implementation-gaze.png` (1910 × 1074 pixels). The source and implementation frames are normalized into matching visual cells; the nine production frames are shown together beneath them.
 
 ## Design translation
 
@@ -22,6 +28,7 @@
 - The implementation deliberately keeps the portfolio’s warm ivory, near-black, and vermilion editorial language instead of reproducing the reference site’s dark interface.
 - Books become professional case files for platform modernization, ERP coexistence, and global finance analytics. The visual interaction therefore reinforces Walid’s data-engineering positioning rather than behaving as decoration.
 - Two new portrait editorial covers were generated as real raster assets, then compressed from approximately 2.3 MB PNG sources to 396 KB and 420 KB JPEGs for production use. The first case reuses the existing governed-lineage artwork.
+- The cursor portrait uses the original professional headshot as the neutral center plus eight identity-preserving generated directions. All nine frames share a 960 × 960 crop and are compressed to approximately 1.2 MB total.
 
 ## Findings
 
@@ -31,6 +38,17 @@
 - Inspecting a case completes a 180-degree rotation and reveals a compact outcome-focused back cover. Returning restores the generated editorial cover.
 - Moving the cursor across a different cover now updates the selected book, counter, case heading, copy, and facts immediately. A desktop pointer click on a cover no longer drives selection or inspection.
 - The compact layout switches to one column, removes the inherited detail-panel height, preserves a 40-pixel shelf-to-detail gap, and keeps controls at comfortable widths.
+- The portrait now follows the cursor across the full Pro viewport through a nine-state direction grid. Left, up, down, right, and all four diagonal states change the head angle and eye gaze rather than merely tilting a flat image.
+- Source-vs-implementation comparison confirms the three directly supplied reference states—left, up, and down—are represented clearly. The identity, suit, glasses, beard, white backdrop, grayscale treatment, and portfolio crop remain consistent across the set.
+- The 120 ms two-layer crossfade removes loading flashes, while a restrained 2.5-pixel parallax and sub-1.1-degree frame tilt add depth without changing the editorial composition.
+
+## Cursor portrait fidelity surfaces
+
+- **Fonts and typography:** no type styles, wrapping, weights, or copy changed. The hero hierarchy and figcaption remain aligned with the existing editorial system.
+- **Spacing and layout rhythm:** the portrait stays in the existing 440 × 455 rendered slot; its border, vermilion offset block, caption line, hero grid, and surrounding whitespace are unchanged.
+- **Colors and visual tokens:** the warm paper, near-black, and vermilion tokens remain unchanged. Every directional asset receives the same grayscale and contrast treatment as the original portrait.
+- **Image quality and asset fidelity:** each production frame is 960 × 960 and renders above the component’s CSS size. No stretching, transparent halos, placeholder assets, or CSS-drawn substitutes are present.
+- **Copy and content:** English and French hero text, alternative text, navigation, CV links, and SEO metadata remain unchanged. The second crossfade layer is decorative and hidden from assistive technology.
 
 ## Accessibility and progressive enhancement
 
@@ -41,6 +59,7 @@
 - Selection changes are announced through an `aria-live` status region in English and French.
 - All case details remain semantic HTML in the document, so the measurable outcomes and stack are indexable without relying on a canvas or WebGL scene.
 - Pointer-driven portrait and cover tilt are disabled for coarse pointers and `prefers-reduced-motion`; the shelf remains fully usable without motion.
+- Coarse pointers and reduced-motion users keep the neutral center portrait; no cursor tracking, crossfade loop, or parallax is initialized for those preferences.
 
 ## Functional verification
 
@@ -53,6 +72,10 @@
 - Compact Pro image check loaded all four relevant assets successfully with non-zero natural dimensions.
 - Browser console logs returned no errors during English, French, selection, inspection, and keyboard checks.
 - `node --check assets/portfolio-v3.js` and `git diff --check` passed.
+- Cursor matrix test moved the real browser pointer through all nine target regions. Every expected value matched `data-gaze-direction`, and every visible layer loaded the corresponding 960 × 960 frame.
+- English neutral, left, up, and down states were captured from the rendered page. The French page loaded the up-right frame, retained the localized title, and had zero horizontal overflow.
+- Switching to Perso reset the hidden Pro portrait from `down-right` to `center`; the AI Lab logo retained natural dimensions and computed opacity `1`.
+- The desktop hero retained zero horizontal overflow, the neutral portrait loaded at 960 × 960 natural pixels, and browser error logs were empty.
 
 ## Intentional differences from the reference
 
@@ -67,5 +90,12 @@
 2. First implementation used entry-based selection; browser pointer automation did not produce a reliable state change on the moving-width shelf.
 3. The fix moved selection into the existing per-cover pointer-move path, before motion-specific tilt logic. This makes selection immediate, retains reduced-motion compatibility, and avoids relying on image clicks.
 4. Post-fix browser evidence shows cases 02 and 03 selecting from cursor movement alone, with no console errors and keyboard inspection preserved.
+
+## Cursor portrait iteration history
+
+1. The earlier implementation only translated and tilted one flat portrait, which did not satisfy the reference’s head-and-eye tracking behavior.
+2. A nine-frame identity-preserving set was generated from the existing professional portrait. The exact source portrait was retained as the center state to avoid neutral-state identity drift.
+3. The hero was upgraded to two stacked image layers, page-wide pointer mapping, a three-by-three direction grid, preloading, and a 120 ms crossfade.
+4. Visual QA compared left, up, and down states directly with the user-provided frames, then reviewed all nine assets together. No P0/P1/P2 visual or functional issue remained.
 
 final result: passed

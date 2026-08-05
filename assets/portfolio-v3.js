@@ -58,28 +58,113 @@
     if (reducedMotion.matches || !finePointer.matches) return;
 
     document.querySelectorAll("[data-reactive-portrait]").forEach((portrait) => {
+      const gazeBase = portrait.dataset.gazeBase;
+      const layers = Array.from(portrait.querySelectorAll("[data-gaze-layer]"));
+      if (!gazeBase || layers.length !== 2) return;
+
+      const directions = [
+        "center",
+        "up-left",
+        "up",
+        "up-right",
+        "left",
+        "right",
+        "down-left",
+        "down",
+        "down-right",
+      ];
+      const sources = Object.fromEntries(
+        directions.map((direction) => [direction, `${gazeBase}-${direction}.jpg`]),
+      );
+      const preloadDirections = () => {
+        directions.slice(1).forEach((direction) => {
+          const image = new Image();
+          image.src = sources[direction];
+        });
+      };
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(preloadDirections, { timeout: 1500 });
+      } else {
+        window.addEventListener("load", () => window.setTimeout(preloadDirections, 250), { once: true });
+      }
+
+      let activeLayer = 0;
+      let activeDirection = "center";
+      let requestedDirection = "center";
+      let requestId = 0;
+      let pointerFrame = 0;
+
+      const setDirection = (direction) => {
+        if (!sources[direction] || direction === requestedDirection) return;
+        requestedDirection = direction;
+        const nextLayerIndex = activeLayer === 0 ? 1 : 0;
+        const nextLayer = layers[nextLayerIndex];
+        const currentRequest = ++requestId;
+
+        const reveal = () => {
+          if (currentRequest !== requestId) return;
+          layers[activeLayer].classList.remove("is-visible");
+          nextLayer.classList.add("is-visible");
+          activeLayer = nextLayerIndex;
+          activeDirection = direction;
+          portrait.dataset.gazeDirection = direction;
+        };
+
+        nextLayer.src = sources[direction];
+        if (nextLayer.complete) window.requestAnimationFrame(reveal);
+        else nextLayer.addEventListener("load", reveal, { once: true });
+      };
+
       const resetPortrait = () => {
+        if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+        pointerFrame = 0;
         portrait.classList.remove("is-tracking");
         portrait.style.setProperty("--portrait-x", "0px");
         portrait.style.setProperty("--portrait-y", "0px");
         portrait.style.setProperty("--portrait-rx", "0deg");
         portrait.style.setProperty("--portrait-ry", "0deg");
+        if (activeDirection !== "center" || requestedDirection !== "center") setDirection("center");
       };
 
-      portrait.addEventListener("pointermove", (event) => {
-        const bounds = portrait.getBoundingClientRect();
-        const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-        const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+      window.addEventListener("pointermove", (event) => {
+        if (body.dataset.mode !== "pro") return;
+        if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
 
-        portrait.classList.add("is-tracking");
-        portrait.style.setProperty("--portrait-x", `${x * 5}px`);
-        portrait.style.setProperty("--portrait-y", `${y * 4}px`);
-        portrait.style.setProperty("--portrait-rx", `${y * -1.8}deg`);
-        portrait.style.setProperty("--portrait-ry", `${x * 2.2}deg`);
+        pointerFrame = window.requestAnimationFrame(() => {
+          const bounds = portrait.getBoundingClientRect();
+          const centerX = bounds.left + bounds.width / 2;
+          const centerY = bounds.top + bounds.height / 2;
+          const deltaX = event.clientX - centerX;
+          const deltaY = event.clientY - centerY;
+          const horizontalThreshold = Math.max(54, bounds.width * 0.16);
+          const verticalThreshold = Math.max(48, bounds.height * 0.14);
+          const horizontal = deltaX < -horizontalThreshold
+            ? "left"
+            : deltaX > horizontalThreshold ? "right" : "";
+          const vertical = deltaY < -verticalThreshold
+            ? "up"
+            : deltaY > verticalThreshold ? "down" : "";
+          const direction = [vertical, horizontal].filter(Boolean).join("-") || "center";
+          const normalizedX = Math.max(-1, Math.min(1, deltaX / (window.innerWidth * 0.5)));
+          const normalizedY = Math.max(-1, Math.min(1, deltaY / (window.innerHeight * 0.5)));
+
+          setDirection(direction);
+          portrait.classList.add("is-tracking");
+          portrait.style.setProperty("--portrait-x", `${normalizedX * 2.5}px`);
+          portrait.style.setProperty("--portrait-y", `${normalizedY * 2}px`);
+          portrait.style.setProperty("--portrait-rx", `${normalizedY * -0.8}deg`);
+          portrait.style.setProperty("--portrait-ry", `${normalizedX * 1.1}deg`);
+          pointerFrame = 0;
+        });
       });
 
-      portrait.addEventListener("pointerleave", resetPortrait);
-      portrait.addEventListener("pointercancel", resetPortrait);
+      document.documentElement.addEventListener("pointerleave", resetPortrait);
+      window.addEventListener("blur", resetPortrait);
+      modeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (button.dataset.modeButton !== "pro") resetPortrait();
+        });
+      });
     });
   };
 

@@ -333,6 +333,7 @@ button {
 }
 
 .portrait-frame {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--ink);
   background: #ece9e2;
@@ -345,6 +346,17 @@ button {
   object-fit: cover;
   object-position: center 19%;
   filter: grayscale(1) contrast(1.08);
+}
+
+.portrait-figure[data-reactive-portrait] .portrait-frame img {
+  position: absolute;
+  inset: 0;
+  object-position: center;
+  opacity: 0;
+}
+
+.portrait-figure[data-reactive-portrait] .portrait-frame img.is-visible {
+  opacity: 1;
 }
 
 .portrait-figure[data-reactive-portrait] {
@@ -367,7 +379,7 @@ button {
   width: calc(100% + 18px);
   height: calc(100% + 18px);
   transform: translate(calc(var(--portrait-x) - 9px), calc(var(--portrait-y) - 9px)) scale(1.025);
-  transition: transform 520ms var(--ease);
+  transition: opacity 120ms ease, transform 520ms var(--ease);
   will-change: transform;
 }
 
@@ -377,7 +389,7 @@ button {
 }
 
 .portrait-figure[data-reactive-portrait].is-tracking .portrait-frame img {
-  transition-duration: 90ms;
+  transition: opacity 120ms ease, transform 90ms var(--ease);
 }
 
 .lab-logo-frame {

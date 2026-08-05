@@ -17,9 +17,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preload" as="image" href="/assets/images/walid-professional-960.avif" type="image/avif" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/images/portrait-gaze/walid-gaze-center.jpg" type="image/jpeg" fetchpriority="high" />
     <link rel="stylesheet" href="/assets/analytics.css" />
-    <link rel="stylesheet" href="/assets/portfolio-v3.css?v=4" />
+    <link rel="stylesheet" href="/assets/portfolio-v3.css?v=5" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:locale" content="en_US" />
@@ -146,9 +146,10 @@
             </div>
             <p class="proof-line"><span>Trusted delivery across data platforms</span><span class="proof-dot" aria-hidden="true"></span></p>
           </div>
-          <figure class="portrait-figure" data-reactive-portrait>
+          <figure class="portrait-figure" data-reactive-portrait data-gaze-base="/assets/images/portrait-gaze/walid-gaze" data-gaze-direction="center">
             <div class="portrait-frame">
-              <img src="/assets/images/walid-professional-960.avif" srcset="/assets/images/walid-professional-640.avif 640w, /assets/images/walid-professional-960.avif 960w" sizes="(max-width: 760px) 84vw, 490px" alt="Portrait of Walid El Khoukh" width="960" height="1440" fetchpriority="high" decoding="async" />
+              <img class="portrait-gaze-layer is-visible" data-gaze-layer="0" src="/assets/images/portrait-gaze/walid-gaze-center.jpg" alt="Portrait of Walid El Khoukh" width="960" height="960" fetchpriority="high" decoding="async" />
+              <img class="portrait-gaze-layer" data-gaze-layer="1" src="/assets/images/portrait-gaze/walid-gaze-center.jpg" alt="" aria-hidden="true" width="960" height="960" decoding="async" />
             </div>
             <figcaption><span>Walid El Khoukh</span><span>Data Engineer</span></figcaption>
           </figure>
@@ -329,7 +330,7 @@
       </div>
     </footer>
 
-    <script defer src="/assets/portfolio-v3.js?v=hover"></script>
+    <script defer src="/assets/portfolio-v3.js?v=gaze-follow-2"></script>
     <script defer src="/assets/analytics.js"></script>
   </body>
 </html>
