@@ -55,6 +55,14 @@ This file applies to the entire repository. Frontend visuals, layout, copy, and 
 - Verify that the longest labels fit, Walid's displayed name does not wrap unintentionally, and no element causes horizontal scrolling.
 - Use native links for navigation and buttons for actions or mode controls.
 
+## Perso Photo Tetris
+
+- Keep the Perso hero poster progressively enhanced: the descriptive static image is the fallback, while the canvas animation assembles it from 36 collision-safe tetrominoes that fall vertically in their destination columns.
+- Keep only the compact Replay and Pace controls below the poster. Pace ranges from `0.20x` to `1.25x` and defaults to `0.45x`.
+- Keep the playful race-themed quote strip localized in English and French.
+- Under `prefers-reduced-motion`, render the completed poster without falling motion and disable the animation controls.
+- Do not alter the Pro hero when evolving the Perso animation.
+
 ## New Page Checklist
 
 1. Add complete metadata and an absolute canonical.
