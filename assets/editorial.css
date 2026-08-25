@@ -225,7 +225,14 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.8rem); line-height: 1.1; }
 
 @media (max-width: 720px) {
   .site-header { align-items: flex-start; padding: 20px 0; }
+  .site-mark, .site-nav a, .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
   .site-nav { justify-content: flex-end; gap: 12px; }
+  .site-nav a { padding-inline: 4px; }
+  .site-footer a { padding-block: 8px; }
   .page-shell { padding-top: 44px; }
   .metric-strip { grid-template-columns: 1fr; }
   .metric { min-height: 0; border-right: 0; border-bottom: 2px solid var(--ink); }

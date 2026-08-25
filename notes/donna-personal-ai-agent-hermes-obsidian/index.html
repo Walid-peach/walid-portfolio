@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>How I Built Donna, My Personal AI Agent — Walid El Khoukh</title>
-    <meta name="description" content="How I built Donna with Hermes Agent, Discord, Obsidian, specialist agents, durable memory, real tools, scheduled workflows, and explicit permission boundaries." />
+    <title>How I Built Donna with Hermes and Obsidian — Walid El Khoukh</title>
+    <meta name="description" content="How I built Donna, a personal AI agent that runs continuously with Hermes Agent, Obsidian, durable memory, real tools, specialist agents, and explicit limits." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://walidelkhoukh.com/notes/donna-personal-ai-agent-hermes-obsidian/" />
     <link rel="alternate" type="application/rss+xml" title="Walid El Khoukh Field Notes" href="/feed.xml" />
@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="/assets/analytics.css" />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="How I Built Donna, My Personal AI Agent" />
-    <meta property="og:description" content="A personal AI agent that runs continuously with durable memory, real tools, specialist agents, and explicit limits." />
+    <meta property="og:title" content="How I Built Donna, My Personal AI Agent, with Hermes and Obsidian" />
+    <meta property="og:description" content="A personal AI agent that runs 24/7 on its own machine, with durable memory, real tools, and explicit limits." />
     <meta property="og:url" content="https://walidelkhoukh.com/notes/donna-personal-ai-agent-hermes-obsidian/" />
     <meta property="og:image" content="https://walidelkhoukh.com/assets/images/donna-hermes-obsidian-architecture.png" />
     <meta property="og:image:width" content="1024" />
@@ -21,8 +21,8 @@
     <meta property="og:image:alt" content="Hermes Agent, Obsidian, and Claude combining into a second-brain system above an Obsidian knowledge graph" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@vvalidelk" />
-    <meta name="twitter:title" content="How I Built Donna, My Personal AI Agent" />
-    <meta name="twitter:description" content="The architecture, operating rules, memory, tools, and limits behind my personal AI execution system." />
+    <meta name="twitter:title" content="How I Built Donna, My Personal AI Agent, with Hermes and Obsidian" />
+    <meta name="twitter:description" content="A personal AI agent that runs 24/7 on its own machine, with durable memory, real tools, and explicit limits." />
     <meta name="twitter:image" content="https://walidelkhoukh.com/assets/images/donna-hermes-obsidian-architecture.png" />
     <meta name="twitter:image:alt" content="Hermes Agent, Obsidian, and Claude combining into a second-brain system above an Obsidian knowledge graph" />
 
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "How I Built Donna, My Personal AI Agent, with Hermes and Obsidian",
-        "description": "The architecture and operating rules behind a personal AI agent with durable memory, real tools, specialist agents, and explicit permission boundaries.",
+        "description": "A personal AI agent that runs 24/7 on its own machine, with durable memory, real tools, and explicit limits.",
         "url": "https://walidelkhoukh.com/notes/donna-personal-ai-agent-hermes-obsidian/",
         "datePublished": "2026-08-25",
         "dateModified": "2026-08-25",
@@ -57,26 +57,30 @@
     <main class="page-shell">
       <article>
         <p class="eyebrow">Personal AI systems / 03</p>
-        <h1>How I built Donna, my personal AI agent.</h1>
-        <p class="lead">For more than 100 days, I have been turning a chatbot into a personal execution system that preserves context, acts within controlled boundaries, and closes loops.</p>
+        <h1>How I Built Donna, My Personal AI Agent, with Hermes and Obsidian</h1>
+        <p class="lead">A personal AI agent that runs 24/7 on its own machine, with durable memory, real tools, and explicit limits.</p>
         <div class="meta-row"><span>Walid El Khoukh</span><time datetime="2026-08-25">25 Aug 2026</time><span>7 min read</span></div>
 
         <figure class="article-figure">
           <img src="/assets/images/donna-hermes-obsidian-architecture.png" alt="Hermes Agent, Obsidian, and Claude combining into a second-brain system above an Obsidian knowledge graph" width="1024" height="819" decoding="async" />
-          <figcaption>Hermes orchestrates, Obsidian preserves durable state, and the model supplies reasoning.</figcaption>
         </figure>
 
         <div class="article-body">
-          <p>I named her after Donna Paulsen from <em>Suits</em>. I was not trying to reproduce a television character. I wanted a clear role: a partner who understands context, anticipates needs, coordinates the right people, and tells me when an idea is not worth pursuing yet.</p>
-          <p>The first version still behaved like a chatbot. I asked a question, received an answer, and the conversation ended. The quality of the answer was rarely the main problem. The problem was everything left open afterward: decisions never recorded, ideas with no next action, deadlines that disappeared, and work reported as complete without evidence.</p>
-          <p>So I changed the question. Instead of asking how to get better answers, I started asking how to build a system that preserves context, acts within controlled boundaries, and actually closes loops.</p>
-          <blockquote>The best AI agent does more than answer questions. It closes loops.</blockquote>
+          <p>For more than 100 days, I have been building Donna, my personal AI agent and Chief of Agents.</p>
+          <p>I named her after Donna Paulsen from <em>Suits</em>. I was not trying to reproduce a television character. I wanted to start with a clear role: a partner who understands context, anticipates needs, coordinates the right people, and tells me when an idea is not worth pursuing yet.</p>
+          <p>The first version still behaved like a chatbot. I asked a question, received an answer, and then the conversation ended. The quality of the answer was rarely the main problem. The problem was everything left open afterward: a decision that was never recorded, an idea with no next action, a deadline that disappeared, or work reported as complete without evidence.</p>
+          <p>So I changed the question.</p>
+          <p>Instead of asking, “How can I get better answers?”, I started asking, “How can I build a system that preserves context, acts within controlled boundaries, and actually closes loops?”</p>
+          <p>This article explains Donna’s current architecture, the technical choices behind it, the limits I imposed, and the mistakes that shaped the system.</p>
+          <blockquote><em>The best AI agent does more than answer questions. It closes loops.</em></blockquote>
 
           <h2>What Donna is today</h2>
-          <p>Donna runs on a private VPS with Ubuntu 24.04, separate from my personal computer. The machine runs the Hermes gateway, local tools, scheduled jobs, and the agent processes I use.</p>
-          <p>Donna is not a model trained specifically for me. She is a system built around a general-purpose model, with an identity, operating rules, memory, tools, reusable skills, and execution surfaces. Switching to a stronger model may improve individual answers. It does not automatically solve continuity, permissions, storage, scheduling, or verification.</p>
+          <p>Donna runs on a machine separate from my personal computer: a private VPS running Ubuntu 24.04. It is not an impressive infrastructure diagram, but it is enough to run the Hermes gateway, local tools, scheduled jobs, and the agent processes I use.</p>
+          <p>Donna is not a model trained specifically for me. She is a system built around a general-purpose model, with an identity, operating rules, memory, tools, reusable skills, and execution surfaces.</p>
+          <p>That distinction matters. Switching to a stronger model may improve individual answers. It does not automatically solve continuity, permissions, storage, scheduling, or verification.</p>
 
           <h2>The architecture</h2>
+          <p>Here is the simplified flow:</p>
           <pre><code>Walid
   │
   ▼
@@ -84,14 +88,15 @@ Discord
   │
   ▼
 Hermes Agent
-  ├── identity and operating rules
+  ├── Donna's identity and operating rules
   ├── persistent memory
   ├── sessions and context
   ├── local and web tools
   ├── reusable skills
   ├── scheduled jobs
-  └── specialist agents
-          ├── Benjamin: implementation and testing
+  └── delegation to specialist agents
+          │
+          ├── Benjamin, implementation and testing
           ├── research and review agents
           └── capture, memory, and content roles
   │
@@ -101,7 +106,8 @@ and execution evidence</code></pre>
           <p>I use this architecture as a small personal operating system. Discord receives requests. Hermes interprets the context and orchestrates tools. Obsidian preserves durable state. Specialist agents perform delegated work. Scheduled jobs maintain a rhythm even when I do not start a conversation myself.</p>
 
           <h2>1. Discord as the operational interface</h2>
-          <p>Discord is Donna’s main interface, but I do not use it as one endless conversation. I separated the system into stable contexts:</p>
+          <p>Discord is Donna’s main interface, but I do not use it as one endless conversation.</p>
+          <p>I separated the system into stable contexts:</p>
           <ul>
             <li>a space for priorities, decisions, and approvals;</li>
             <li>a capture inbox for links, ideas, screenshots, and voice notes;</li>
@@ -109,46 +115,66 @@ and execution evidence</code></pre>
             <li>a publishing area for LinkedIn, Medium, and Substack;</li>
             <li>a briefings area for automated output.</li>
           </ul>
-          <p>Threads isolate a specific project, decision, or deliverable. Discord remains a conversational surface, not the source of truth. When a decision must survive beyond a session, Donna stores it in Obsidian or in the relevant project repository.</p>
+          <p>Threads then isolate a specific project, decision, or deliverable. This keeps contexts separate without requiring a permanent bot or agent for every subject.</p>
+          <p>Discord remains a conversational surface. It is not the source of truth. When a decision must survive beyond a session, Donna stores it in Obsidian or in the relevant project repository.</p>
 
           <h2>2. Hermes as the orchestration layer</h2>
-          <p>Hermes Agent is the operational core. It connects the model to files, the terminal, browsers, Git repositories, scheduled jobs, messaging tools, and delegated agents.</p>
+          <p>Hermes Agent is the operational core of the system. It connects the model to files, the terminal, browsers, Git repositories, scheduled jobs, messaging tools, and delegated agents.</p>
+          <p>In my setup, Hermes provides several capabilities I did not want to rebuild from scratch.</p>
 
           <h3>A persistent identity</h3>
-          <p>Donna acts as Chief of Agents, not as a universal secretary. Her job is to decide what matters, choose the right specialist, define a bounded mandate, request approval when necessary, and inspect the evidence before reporting that work is complete.</p>
+          <p>Donna has an explicit role. She acts as Chief of Agents, not as a universal secretary. Her job is to decide what matters, choose the right specialist, define a bounded mandate, request approval when necessary, and inspect the evidence before reporting that work is complete.</p>
+          <p>Her personality is inspired by Donna Paulsen in the later seasons of <em>Suits</em>: perceptive, confident, loyal, candid, and able to coordinate people without becoming passive. I adapted those traits to the practical work of managing projects and AI agents.</p>
 
           <h3>Persistent memory, with limits</h3>
-          <p>Hermes stores a compact set of stable facts about my preferences, environment, and operating rules. I do not ask it to remember everything. Large global memory eventually becomes noisy, contradictory, and expensive. Project decisions, learning notes, plans, and execution history belong in dedicated files.</p>
+          <p>Hermes stores a compact set of stable facts about my preferences, environment, and operating rules. This prevents me from repeating the same instructions in every session.</p>
+          <p>I do not ask it to remember everything. A large global memory eventually becomes noisy, contradictory, and expensive. I reserve it for durable facts. Project decisions, learning notes, plans, and execution history belong in dedicated files.</p>
 
           <h3>Skills loaded when needed</h3>
-          <p>Reusable workflows are stored as skills. A skill contains the procedure, guardrails, useful commands, and verification steps for a category of work. I use them to capture sources in Obsidian, turn media into learning notes, operate GitHub workflows, review code, prepare briefings, maintain documents, and orchestrate development agents.</p>
-          <div class="callout"><strong>The goal:</strong> stop rewriting an entire workflow inside every prompt. The model still applies judgment, but the operating procedure becomes durable and versioned.</div>
+          <p>Reusable workflows are stored as skills. A skill contains the procedure, guardrails, useful commands, and verification steps for a category of work.</p>
+          <p>I use skills to:</p>
+          <ul>
+            <li>capture sources in Obsidian;</li>
+            <li>turn a video or article into a learning note;</li>
+            <li>operate GitHub workflows;</li>
+            <li>review code;</li>
+            <li>prepare briefings;</li>
+            <li>create and maintain documents;</li>
+            <li>orchestrate development agents.</li>
+          </ul>
+          <p>The goal is to stop rewriting the entire workflow inside every prompt. The model still applies judgment, but the operating procedure becomes durable and versioned.</p>
 
           <h3>Tools with real effects</h3>
-          <p>Donna can read and write files, run commands, inspect Git, search previous sessions, launch agents, drive a browser, and manage scheduled jobs. That makes the system useful, but it also creates risk. An agent that can act needs more precise boundaries than a chatbot that only generates text.</p>
+          <p>Donna can read and write files, run commands, inspect Git, search previous sessions, launch agents, drive a browser, and manage scheduled jobs.</p>
+          <p>That makes the system useful, but it also creates risk. An agent that can act needs more precise boundaries than a chatbot that only generates text.</p>
 
           <h2>3. Obsidian as durable memory</h2>
-          <p>I do not use Obsidian as a magical vector database. It is a collection of readable Markdown files, organized around my work and versioned with Git. The private vault is synchronized between my Mac, GitHub, and the VPS. Donna can read approved areas and create or update files according to explicit rules.</p>
+          <p>I do not use Obsidian as a magical vector database. It is a collection of readable Markdown files, organized around my work and versioned with Git.</p>
+          <p>The private vault is synchronized between my Mac, GitHub, and the VPS. Donna can read approved areas and create or update files according to explicit rules.</p>
+          <p>The relevant structure currently looks like this:</p>
           <pre><code>AI_Assistant/
   context.md
   assistant_rules.md
   agents.md
   ideas.md
   priorities.md
-  Execution/
-    00 Dashboard.md</code></pre>
-          <p>Each area has a distinct responsibility. Context explains why the system exists. Assistant rules define permissions. Agent descriptions establish roles. Ideas remain structured. Execution notes hold active initiatives, success criteria, and next actions. The dashboard keeps open loops visible.</p>
-          <p>The graph looks interesting, but its value does not come from the number of links. Its value is that a decision, project, source, and next action can remain connected without being trapped inside one provider’s chat history.</p>
+  Execution</code></pre>
+          <p>Each file or folder has a distinct responsibility:</p>
+          <ul>
+            <li><code>context.md</code> explains why the system exists and what it should prioritize;</li>
+            <li><code>assistant_rules.md</code> defines its permissions;</li>
+            <li><code>agents.md</code> describes Donna and the specialist roles;</li>
+            <li><code>ideas.md</code> stores structured ideas;</li>
+            <li><code>Execution/</code> holds active initiatives, success criteria, and next actions;</li>
+            <li>the dashboard keeps open loops visible;</li>
+            <li>daily notes preserve important decisions and lessons.</li>
+          </ul>
+          <p>The Obsidian graph looks interesting, but its value does not come from the number of links. Its value is that a decision, project, source, and next action can remain connected without being trapped inside one provider’s chat history.</p>
 
           <h2>4. A complete loop, from idea to closure</h2>
-          <p>Consider a simple request: “Donna, I have a project idea. I want to decide by Friday whether I should build it.” The system should not produce a ten-page plan and disappear. The expected loop is concrete:</p>
-          <ol>
-            <li>capture the idea with its decision deadline and success criteria;</li>
-            <li>create an execution note with one clear next action;</li>
-            <li>delegate bounded research or technical validation where useful;</li>
-            <li>surface evidence, risks, and the decision needed before Friday;</li>
-            <li>record the decision and either start the work or close the loop.</li>
-          </ol>
+          <p>Consider a simple request:</p>
+          <blockquote><em>“Donna, I have a project idea. I want to decide by Friday whether I should build it.”</em></blockquote>
+          <p>The system should not produce a ten-page plan and disappear. The expected loop is more concrete.</p>
 
           <h2>5. Donna does not work alone</h2>
           <p>Donna is the interface and coordination layer. The same agent context does not perform every task.</p>
@@ -159,15 +185,23 @@ and execution evidence</code></pre>
           <h3>Alex and independent reviewers</h3>
           <p>For some decisions and reviews, I use a separate agent to challenge the plan or inspect a change from another angle. This reduces the risk of an agent validating its own proposal through conversational momentum.</p>
           <h3>Claude Code and Codex</h3>
-          <p>Claude Code and Codex are specialist execution tools in my environment. They are not Donna’s central memory. Depending on the project, they can implement, analyze, or review code under a defined mandate. A single conversation that changes tone is not necessarily a multi-agent system. In my architecture, specialists can have separate contexts, permissions, and workspaces.</p>
+          <p>Claude Code and Codex are specialist execution tools in my environment. They are not Donna’s central memory. Depending on the project, they can implement, analyze, or review code under a defined mandate.</p>
+          <p>This distinction matters. A single conversation that changes tone is not necessarily a multi-agent system. In my architecture, specialists can have separate contexts, permissions, and workspaces.</p>
 
           <h2>6. How to reproduce a minimal version</h2>
-          <p>I would not recommend starting with the entire architecture. A useful first version needs only five elements.</p>
+          <p>I would not recommend starting with this entire architecture. A useful first version needs only five elements.</p>
           <h3>A machine that remains available</h3>
-          <p>A small VPS is enough. Install Hermes Agent, configure the gateway service, and verify its state before adding automation. Credentials must remain in the proper secret store, never inside Obsidian, a prompt, or a Git repository.</p>
+          <p>A small VPS is enough. Install Hermes Agent, configure the gateway service, and verify its state before adding automation.</p>
+          <p>Useful starting commands:</p>
+          <pre><code>hermes setup
+hermes model
+hermes doctor
+hermes status --all</code></pre>
+          <p>Credentials must remain in the proper secret store. Do not put a Discord token or API key inside Obsidian, a prompt, or a Git repository.</p>
           <h3>One conversational interface</h3>
           <p>Connect Discord or Telegram first, not five platforms. Validate the basic flow: receive a message, answer it, read a file, perform one action, and verify the result.</p>
           <h3>Three control files</h3>
+          <p>Start with:</p>
           <pre><code>context.md
 assistant_rules.md
 priorities.md</code></pre>
@@ -189,16 +223,18 @@ priorities.md</code></pre>
             <li>independent verification;</li>
             <li>consistent closure of state.</li>
           </ul>
-          <p>Donna became useful when I stopped treating her as a chat window and started designing her as a personal execution system. The project is still imperfect. That is precisely why it is worth documenting.</p>
+          <p>Donna became useful when I stopped treating her as a chat window and started designing her as a personal execution system.</p>
+          <p>In the next articles, I will share what she has retained, the workflows we built, the mistakes that cost me time, and how I coordinate several agents without losing control.</p>
+          <p>The project is still imperfect. That is precisely why it is worth documenting.</p>
 
           <h2>Resources</h2>
           <ul>
-            <li><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">Hermes Agent on GitHub</a></li>
-            <li><a href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noreferrer">Hermes Agent documentation</a></li>
-            <li><a href="https://obsidian.md" target="_blank" rel="noreferrer">Obsidian</a></li>
+            <li>Hermes Agent: <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noreferrer">https://github.com/NousResearch/hermes-agent</a></li>
+            <li>Hermes Agent documentation: <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noreferrer">https://hermes-agent.nousresearch.com/docs</a></li>
+            <li>Obsidian: <a href="https://obsidian.md" target="_blank" rel="noreferrer">https://obsidian.md</a></li>
           </ul>
-          <p><em>Disclosure: Donna helped me gather the technical evidence, structure the draft, and check it against the real configuration. The editorial angle, architecture decisions, and publication approval remain mine.</em></p>
-          <p><small>Adapted from the <a href="https://medium.com/@walidelkhoukh99/how-i-built-donna-my-personal-ai-agent-with-hermes-and-obsidian-61d4c844a284" target="_blank" rel="noreferrer">original Medium publication</a>.</small></p>
+          <p><em>Disclosure: Donna helped me gather the technical evidence, structure this draft, and check it against the real configuration. The editorial angle, architecture decisions, and publication approval remain mine.</em></p>
+          <p><small>Also published on <a href="https://medium.com/@walidelkhoukh99/how-i-built-donna-my-personal-ai-agent-with-hermes-and-obsidian-61d4c844a284" target="_blank" rel="noreferrer">Medium</a>. This portfolio URL is the canonical owned version.</small></p>
         </div>
       </article>
     </main>
