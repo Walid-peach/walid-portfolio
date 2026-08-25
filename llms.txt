@@ -12,6 +12,7 @@ Walid El Khoukh is a Cloud Data Engineer in Paris who builds governed data platf
 
 ## Selected notes
 
+- How I Built Donna, My Personal AI Agent: https://walidelkhoukh.com/notes/donna-personal-ai-agent-hermes-obsidian/
 - How I Cut Claude Code Token Use by 87%: https://walidelkhoukh.com/notes/claude-code-token-optimization/
 - The Government API Did Not Exist: https://walidelkhoukh.com/notes/government-api-did-not-exist/
 
