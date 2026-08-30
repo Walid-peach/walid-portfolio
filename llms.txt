@@ -7,6 +7,7 @@ Walid El Khoukh is a Cloud Data Engineer in Paris who builds governed data platf
 - Portfolio: https://walidelkhoukh.com/
 - French portfolio: https://walidelkhoukh.com/fr/
 - About Walid: https://walidelkhoukh.com/about/
+- Cloud data engineering capabilities: https://walidelkhoukh.com/services/
 - Notes: https://walidelkhoukh.com/notes/
 - MonÉlu AI and data case study: https://walidelkhoukh.com/monelu/
 - Token budget estimator: https://walidelkhoukh.com/tools/token-budget/
