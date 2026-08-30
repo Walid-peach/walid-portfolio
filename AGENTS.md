@@ -77,7 +77,7 @@ This file applies to the entire repository. Frontend visuals, layout, copy, and 
 Run before considering frontend work complete:
 
 ```sh
-npx --yes html-validate index.html fr/index.html monelu/index.html fr/monelu/index.html notes/index.html notes/claude-code-token-optimization/index.html notes/government-api-did-not-exist/index.html tools/token-budget/index.html privacy/index.html
+npx --yes html-validate 404.html index.html fr/index.html monelu/index.html fr/monelu/index.html notes/index.html notes/claude-code-token-optimization/index.html notes/government-api-did-not-exist/index.html tools/token-budget/index.html privacy/index.html
 xmllint --noout sitemap.xml feed.xml
 node --check assets/analytics.js
 git diff --check

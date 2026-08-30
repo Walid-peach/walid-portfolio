@@ -13,6 +13,7 @@ Production: [walidelkhoukh.com](https://walidelkhoukh.com/)
 - `notes/` — owned AI and data engineering field notes
 - `tools/token-budget/` — private, client-side token budget estimator
 - `privacy/` — bilingual analytics and privacy disclosure
+- `404.html` — noindex recovery page with human and agent discovery links
 - `assets/` — optimized portraits, product captures, project artwork, social preview, and browser icons
 - `feed.xml` and `llms.txt` — RSS and an AI-readable site guide
 - `.agents/` — product positioning and content strategy
@@ -74,7 +75,7 @@ See `AGENTS.md` for the complete change contract.
 Run before deployment:
 
 ```sh
-npx --yes html-validate index.html fr/index.html monelu/index.html fr/monelu/index.html notes/index.html notes/claude-code-token-optimization/index.html notes/government-api-did-not-exist/index.html tools/token-budget/index.html privacy/index.html
+npx --yes html-validate 404.html index.html fr/index.html monelu/index.html fr/monelu/index.html notes/index.html notes/claude-code-token-optimization/index.html notes/government-api-did-not-exist/index.html tools/token-budget/index.html privacy/index.html
 xmllint --noout sitemap.xml feed.xml
 node --check assets/analytics.js
 git diff --check
