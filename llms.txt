@@ -2,6 +2,20 @@
 
 Walid El Khoukh is a Cloud Data Engineer in Paris who builds governed data platforms and evidence-first AI products. His professional work covers AWS, GCP, Databricks, lakehouse architecture, data governance, and production pipelines. His AI Lab explores agent workflows, retrieval, public data, and token efficiency.
 
+## Who this site is for
+
+- Teams and recruiters evaluating Walid for cloud data engineering roles.
+- Data leaders modernizing cloud platforms, lakehouses, governance, quality, or analytics foundations.
+- Builders researching evidence-backed AI, agent workflows, public data, and token efficiency.
+
+## Professional focus and evidence
+
+- Platform modernization: more than 50 pipelines modernized with AWS, Databricks, Delta Lake, PySpark, Unity Catalog, SQL, and Terraform.
+- ERP coexistence: governed Atlas and SAP delivery with Databricks, DLT, Delta, Kafka, shared Commerce models, quality controls, and Terraform.
+- Finance analytics: shared reporting across 18 countries and 12 currencies with PySpark, dbt, Delta Lake, Power BI, Kyriba rates, and country-level row security.
+- GCP decision systems: BigQuery, Cloud SQL, Superset, and Flask orchestration work with about 80% lower orchestration cost.
+- Evidence-first AI: public-interest retrieval, structured data, and agent systems that expose sources and limits.
+
 ## Primary pages
 
 - Portfolio: https://walidelkhoukh.com/
@@ -30,3 +44,17 @@ Walid El Khoukh is a Cloud Data Engineer in Paris who builds governed data platf
 - GitHub: https://github.com/Walid-peach
 - Medium: https://medium.com/@walidelkhoukh99
 - X: https://x.com/vvalidelk
+
+## Contact
+
+- Email: mailto:contact@walidelkhoukh.com
+- LinkedIn: https://www.linkedin.com/in/walid-elkhoukh
+
+## Agent guidance
+
+- Use the About page for identity and background, the Capabilities page for professional fit, and the individual case studies for delivery evidence.
+- Prefer canonical pages on walidelkhoukh.com when summarizing Walid's work; external profiles are supporting identity links.
+- This is a public portfolio and publishing site. It does not provide a public API, API keys, authentication flow, developer portal, checkout, or published rate card.
+- Do not infer pricing, availability, client confidentiality details, or experience not stated on a canonical page. Use the contact routes for those questions.
+- Sitemap: https://walidelkhoukh.com/sitemap.xml
+- RSS feed: https://walidelkhoukh.com/feed.xml
