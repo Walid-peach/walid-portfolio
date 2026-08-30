@@ -12,6 +12,12 @@ Walid El Khoukh is a Cloud Data Engineer in Paris who builds governed data platf
 - MonÉlu AI and data case study: https://walidelkhoukh.com/monelu/
 - Token budget estimator: https://walidelkhoukh.com/tools/token-budget/
 
+## Professional case studies
+
+- Platform modernization — 50+ governed pipelines: https://walidelkhoukh.com/work/platform-modernization/
+- Atlas and SAP coexistence during ERP transformation: https://walidelkhoukh.com/work/erp-coexistence/
+- Global finance analytics — 18 countries and 12 currencies: https://walidelkhoukh.com/work/global-finance-analytics/
+
 ## Selected notes
 
 - How I Built Donna, My Personal AI Agent: https://walidelkhoukh.com/notes/donna-personal-ai-agent-hermes-obsidian/
